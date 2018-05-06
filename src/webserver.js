@@ -8,7 +8,7 @@
    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
  ========================================================================
  Created:    02/10/2015
- Author:     Chris Brame
+ Modified:   Jay Han [Author:   Chris Brame]
 
  */
 
@@ -17,8 +17,7 @@ var express = require('express'),
     winston = require('winston'),
     middleware = require('./middleware'),
     routes = require('./routes'),
-    server = require('http').createServer(WebServer);
-    // cookieParser = require('cookie-parser'),//2018-4-22 JH
+    server = require('http').createServer(WebServer),
     port = process.env.PORT || 8118;
 
 
@@ -47,7 +46,7 @@ var express = require('express'),
             });
 
             server.listen(port, '0.0.0.0', function() {
-                winston.info('TruDesk is now listening on port: ' + port);
+                winston.info('IntelliAgent is now listening on port: ' + port);
 
                 callback();
             });

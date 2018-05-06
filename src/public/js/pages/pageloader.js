@@ -8,7 +8,7 @@
    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
  ========================================================================
  Created:    02/07/2017
- Author:     Chris Brame
+ Modified:   Jay Han [Author:   Chris Brame]
 
  Desc:       Needed to load the page states from the initial load. Ajaxify
              handles the load after the initial.
