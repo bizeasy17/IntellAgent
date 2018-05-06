@@ -1,0 +1,25 @@
+{
+  "about": {
+    "copyright": "about.copyright"
+  },
+  "notificataions": {
+    "title": "notificataions.title",
+    "type": "notificataions.type",
+    "notif-title": "notificataions.notif-title",
+    "date": "notificataions.date"
+  },
+  "reports": {
+    "group-breakdown": "reports.group-breakdown",
+    "user-breakdown": "reports.user-breakdown",
+    "subject": "reports.subject"
+  },
+  "tickets": {
+    "prio-critial": "tickets.prio-critial"
+  },
+  "setting": {
+    "tags-group": "setting.tags-group"
+  },
+  "accounts": {
+    "group-desc": "accounts.group-desc"
+  }
+}

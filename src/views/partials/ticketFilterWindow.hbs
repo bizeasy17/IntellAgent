@@ -1,0 +1,102 @@
+<div id="ticketFilterModal" class="uk-modal">
+    <div class="uk-modal-dialog uk-clearfix">
+        <a class="uk-modal-close uk-close no-ajaxy" aria-label="Close"></a>
+        <!--<h2 id="modalTitle">Filter</h2>-->
+        <div ng-controller="ticketsCtrl">
+            <form id="ticketFilterForm" class="uk-form-stacked" ng-submit="submitFilter()" >
+                <div class="uk-grid uk-grid-collapse uk-margin-small-bottom">
+                    <div class="uk-width-1-1">
+                        <label for="filterSubject">{{ t 'tickets.subject' }}</label>
+                        <input class="md-input" name="filterSubject" id="filterSubject" type="text" />
+                    </div>
+                </div>
+
+                <div class="uk-grid uk-grid-collapse uk-margin-small-bottom">
+                    <div class="uk-width-1-2" style="padding: 0 15px 0 0;">
+                        <label for="filterDate_Start" class="uk-form-label nopadding nomargin">{{ t 'reports.date-start' }}</label>
+                        <input id="filterDate_Start" class="md-input" name="filterDate_Start" type="text" data-uk-datepicker="{format:'MM/DD/YYYY'}" />
+                    </div>
+                    <div class="uk-width-1-2" style="padding: 0 0 0 15px;">
+                        <label for="filterDate_End" class="uk-form-label nopadding nomargin">{{ t 'reports.subject' }}</label>
+                        <input id="filterDate_End" class="md-input" name="filterDate_End" type="text" data-uk-datepicker="{format:'MM/DD/YYYY'}" />
+                    </div>
+                </div>
+
+                <div class="uk-grid uk-grid-collapse uk-margin-small-bottom">
+                    <div class="uk-width-1-1">
+                        <label for="filterStatus" class="uk-form-label" style="padding-bottom: 0; margin-bottom: 0;">{{ t 'tickets.status' }}:</label>
+                        <select name="filterStatus" id="filterStatus" class="selectize-white" multiple="multiple" data-md-selectize-inline data-md-selectize-bottom="true" data-md-selectize-top-offset="-12">
+                            <option value="0">{{ t 'tickets.status-new' }}</option>
+                            <option value="1">{{ t 'tickets.status-open' }}</option>
+                            <option value="2">{{ t 'tickets.status-pending' }}</option>
+                            <option value="3">{{ t 'tickets.status-closed' }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="uk-grid uk-grid-collapse uk-margin-small-bottom">
+                    <div class="uk-width-1-1">
+                        <label for="filterPriority" class="uk-form-label" style="padding-bottom: 0; margin-bottom: 0;">{{ t 'shared.prio' }}:</label>
+                        <select name="filterPriority" id="filterPriority" class="selectize-white" multiple="multiple" data-md-selectize-inline data-md-selectize-bottom="true" data-md-selectize-top-offset="-12">
+                            <option value="1">{{ t 'shared.prio-normal' }}</option>
+                            <option value="2">{{ t 'shared.prio-urgent' }}</option>
+                            <option value="3">{{ t 'tickets.prio-critial' }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="uk-grid uk-grid-collapse uk-margin-small-bottom">
+                    <div class="uk-width-1-1">
+                        <label for="filterTags" class="uk-form-label" style="padding-bottom: 0; margin-bottom: 0;">{{ t 'setting.tags-group' }}:</label>
+                        <select name="filterTags" id="filterTags" class="selectize-white" multiple="multiple" data-md-selectize-inline data-md-selectize-bottom="true" data-md-selectize-top-offset="-12">
+                            {{#each data.common.ticketTags}}
+                                <option value="{{_id}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="uk-grid uk-grid-collapse uk-margin-small-bottom">
+                    <div class="uk-width-1-1">
+                        <label for="filterType" class="uk-form-label" style="padding-bottom: 0; margin-bottom: 0;">{{ t 'shared.type' }}:</label>
+                        <select name="filterType" id="filterType" class="selectize-white" multiple="multiple" data-md-selectize-inline data-md-selectize-bottom="true" data-md-selectize-top-offset="-12">
+                            {{#each data.common.ticketTypes}}
+                                <option value="{{_id}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="uk-grid uk-grid-collapse uk-margin-small-bottom">
+                    <div class="uk-width-1-1">
+                        <label for="filterGroup" class="uk-form-label" style="padding-bottom: 0; margin-bottom: 0;">{{ t 'groups.title' }}:</label>
+                        <select name="filterGroup" id="filterGroup" class="selectize-white" multiple="multiple" data-md-selectize-inline data-md-selectize-bottom="true" data-md-selectize-top-offset="-12">
+                            {{#each data.common.groups}}
+                                <option value="{{_id}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="uk-grid uk-grid-collapse uk-margin-small-bottom">
+                    <div class="uk-width-1-1">
+                        <label for="filterAssignee" class="uk-form-label" style="padding-bottom: 0; margin-bottom: 0;">{{ t 'tickets.assignee' }}:</label>
+                        <select name="filterAssignee" id="filterAssignee" class="selectize-white" multiple="multiple" data-md-selectize-inline data-md-selectize-bottom="true" data-md-selectize-top-offset="-12">
+                            {{#each data.common.users}}
+                                {{#canUserRole role "ticket:assingee"}}
+                                    <option value="{{_id}}">{{fullname}}</option>
+                                {{/canUserRole}}
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="right" style="margin-top: 15px;">
+                    <!--<button class="uk-button" style="margin-right: 5px; background: #777;" type="reset" ng-click="clearFilterForm($event)">Clear</button>-->
+                    <button class="uk-button uk-button-primary nomargin" type="submit">{{ t 'shared.apply-filter' }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

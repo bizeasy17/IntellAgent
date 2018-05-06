@@ -1,0 +1,296 @@
+<div ng-controller="settingsCtrl" ng-init="
+    defaultTicketType='{{data.settings.defaultTicketType.value}}';
+    mailerEnabled={{data.settings.mailerEnabled.value}};
+    mailerHost='{{data.settings.mailerHost.value}}';
+    mailerSSL={{data.settings.mailerSSL.value}};
+    mailerPort={{data.settings.mailerPort.value}};
+    mailerUsername='{{data.settings.mailerUsername.value}}';
+    mailerPassword='{{data.settings.mailerPassword.value}}';
+    mailerFrom='{{data.settings.mailerFrom.value}}';
+
+    mailerCheckEnabled={{data.settings.mailerCheckEnabled.value}};
+    mailerCheckHost='{{data.settings.mailerCheckHost.value}}';
+    mailerCheckPort={{data.settings.mailerCheckPort.value}};
+    mailerCheckUsername='{{data.settings.mailerCheckUsername.value}}';
+    mailerCheckPassword='{{data.settings.mailerCheckPassword.value}}';
+    mailerCheckTicketType='{{data.settings.mailerCheckTicketType.value}}';
+
+    showTour={{data.settings.showTour.value}};
+    showOverdueTickets={{data.settings.showOverdueTickets.value}};
+    allowPublicTickets={{data.settings.allowPublicTickets.value}};
+    allowUserRegistration={{data.settings.allowUserRegistration.value}};
+    tpsEnabled={{data.settings.tpsEnabled.value}};
+    tpsUsername='{{data.settings.tpsUsername.value}}';
+    tpsApiKey='{{data.settings.tpsApiKey.value}}';
+    init();
+">
+    <div class="nopadding settings">
+        <div class="uk-width-1-1 page-title noshadow" style="padding-left: 25px !important; border-bottom: 1px solid #dadada;">
+            <p class="left">{{ t 'settings.title' }}</p>
+        </div>
+        <!--Content Here-->
+        <div class="page-wrapper full-height scrollable no-overflow-x">
+            <div id="page-content-inner">
+
+                <div class="setting-item-wrap uk-margin-medium-bottom">
+                    <div class="panel trupanel nopadding no-hover-shadow" style="min-height: 60px;">
+                        <div class="left">
+                            <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'settings.default-ticket-type' }}</h6>
+                            <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
+                                 {{ t 'settings.default-ticket-type-desc' }}
+                            </h5>
+                        </div>
+                        <div class="right" style="position:relative; padding-top: 5px;">
+                            <div class="uk-float-left" style="padding-right: 11px; min-width: 130px; width: 100%;">
+                                <select class="selectize-white" name="type" id="type"  ng-model="defaultTicketType" data-md-selectize-inline2 selectize>
+                                    {{#each data.common.ticketTypes}}
+                                        <option value="{{{_id}}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-item-wrap uk-margin-medium-bottom">
+                    <div class="panel trupanel nopadding no-hover-shadow" style="min-height: 60px;">
+                        <div class="left">
+                            <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'settings.show-tour' }} - <i style="font-size: 13px; color: #a1a1a1;">Beta</i></h6>
+                            <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
+                                 {{ t 'settings.show-tour-desc' }}
+                            </h5>
+                        </div>
+                        <div class="right" style="position:relative;">
+                            <!-- Switch -->
+                            <div class="md-switch md-green" style="margin: 20px 0 0 0;">
+                                <label>
+                                     {{ t 'settings.enable' }}
+                                    <input type="checkbox" id="showTour" name="showTour" ng-change="showTourChanged()" ng-model="showTour">
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-item-wrap uk-margin-medium-bottom">
+                    <div class="panel trupanel nopadding no-hover-shadow" style="min-height: 60px;">
+                        <div class="left">
+                            <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'settings.show-overdue-tickets' }}</h6>
+                            <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
+                                 {{ t 'settings.show-overdue-tickets-desc' }}
+                            </h5>
+                        </div>
+                        <div class="right" style="position:relative;">
+                            <!-- Switch -->
+                            <div class="md-switch md-green" style="margin: 20px 0 0 0;">
+                                <label>
+                                     {{ t 'settings.enable' }}
+                                    <input type="checkbox" id="showOverdueTickets" name="showOverdueTickets" ng-change="showOverdueTicketsChanged()" ng-model="showOverdueTickets">
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-item-wrap uk-margin-medium-bottom">
+                    <div class="panel trupanel nopadding no-hover-shadow" style="min-height: 60px;">
+                        <div class="left">
+                            <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'settings.allow-public-tickets' }}</h6>
+                            <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
+                                 {{ t 'settings.allow-public-tickets-desc' }}
+                            </h5>
+                        </div>
+                        <div class="right" style="position:relative;">
+                            <!-- Switch -->
+                            <div class="md-switch md-green" style="margin: 20px 0 0 0;">
+                                <label>
+                                     {{ t 'settings.enable' }}
+                                    <input type="checkbox" id="allowPublicTickets" name="allowPublicTickets" ng-change="allowPublicTicketsChanged()" ng-model="allowPublicTickets">
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-item-wrap uk-margin-medium-bottom">
+                    <div class="panel trupanel nopadding no-hover-shadow" style="min-height: 60px;">
+                        <div class="left">
+                            <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'settings.allow-user-reg' }}</h6>
+                            <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
+                                 {{ t 'settings.allow-user-reg-desc' }}
+                            </h5>
+                        </div>
+                        <div class="right" style="position:relative;">
+                            <!-- Switch -->
+                            <div class="md-switch md-green" style="margin: 20px 0 0 0;">
+                                <label>
+                                     {{ t 'settings.enable' }}
+                                    <input type="checkbox" id="allowUserRegistration" name="allowUserRegistration" ng-change="allowUserRegistrationChanged()" ng-model="allowUserRegistration">
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-item-wrap uk-margin-medium-bottom">
+                    <div class="panel trupanel nopadding no-hover-shadow uk-overflow-hidden" style="min-height: 60px; height: auto;">
+                        <div class="left">
+                            <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'settings.mailer' }}</h6>
+                            <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
+                                 {{ t 'settings.mailer-desc' }}
+                            </h5>
+                        </div>
+                        <div class="right" style="position:relative;">
+                            <!-- Switch -->
+                            <div class="md-switch md-green" style="margin: 20px 0 0 0;">
+                                <label>
+                                     {{ t 'settings.enable' }}
+                                    <input id="mailerEnabled" name="mailerEnabled" type="checkbox" ng-model="mailerEnabled" ng-change="mailerEnabledChange()">
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="nomargin-top clear">
+                        <div class="panel-body2" style="padding: 20px 15px 15px 15px;">
+                            <div class="uk-position-relative">
+                                <div class="uk-margin-medium-bottom">
+                                    <div class="right">
+                                        <div class="md-switch md-green" style="position: absolute; top: 5px; right: -15px; z-index: 99;">
+                                            <label>
+                                                 {{ t 'settings.use-sslv3' }}
+                                                <input id="mailerSSL" name="mailerSSL" type="checkbox" ng-model="mailerSSL" ng-change="mailerSSLChange()">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <label for="mailerHost">{{ t 'settings.mailserver' }}</label>
+                                    <input id="mailerHost" class="md-input md-input-width-medium" name="mailerHost" type="text" ng-model="mailerHost" />
+
+                                </div>
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="mailerPort">{{ t 'settings.port' }}</label>
+                                    <input id="mailerPort" class="md-input md-input-width-medium" name="mailerPort" type="text" value="25" ng-model="mailerPort" />
+                                </div>
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="mailerUsername">{{ t 'settings.auth-username' }}</label>
+                                    <input id="mailerUsername" class="md-input md-input-width-medium" name="mailerUsername" type="text" ng-model="mailerUsername" />
+                                </div>
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="mailerPassword">{{ t 'settings.auth-pwd' }}</label>
+                                    <input id="mailerPassword" class="md-input md-input-width-medium" name="mailerPassword" type="password" ng-model="mailerPassword" />
+                                </div>
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="mailerFrom">{{ t 'settings.from-addr' }}</label>
+                                    <input id="mailerFrom" class="md-input md-input-width-medium" name="mailerFrom" type="email" ng-model="mailerFrom" />
+                                </div>
+
+                                <div class="uk-clearfix">
+                                    <button type="submit" class="uk-float-left md-btn md-btn-flat md-btn-flat-primary md-btn-wave-light" id="mailerTest" ng-click="submitTestMailer($event)">{{ t 'settings.test-mail-setting' }}</button>
+                                    <button type="submit" class="uk-float-right md-btn md-btn-flat md-btn-flat-success md-btn-wave-light" id="mailerSubmit" ng-click="mailerFormSubmit($event);">{{ t 'settings.setting-apply' }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item-wrap uk-margin-medium-bottom">
+                    <div class="panel trupanel nopadding no-hover-shadow" style="min-height: 60px;">
+                        <div class="left">
+                            <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'settings.mailer-check' }}</h6>
+                            <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
+                                 {{ t 'settings.mailer-check-desc' }}
+                            </h5>
+                        </div>
+                        <div class="right" style="position:relative;">
+                            <!-- Switch -->
+                            <div class="md-switch md-green" style="margin: 20px 0 0 0;">
+                                <label>
+                                     {{ t 'settings.enable' }}
+                                    <input id="mailerCheckEnabled" name="mailerCheckEnabled" type="checkbox" ng-model="mailerCheckEnabled" ng-change="mailerCheckEnabledChange()" />
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="nomargin-top clear">
+                        <div class="panel-body2" style="padding: 20px 15px 15px 15px;">
+                            <div class="">
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="mailerCheckHost">{{ t 'settings.mailserver' }}</label>
+                                    <input id="mailerCheckHost" class="md-input md-input-width-medium" name="mailerCheckHost" type="text" ng-model="mailerCheckHost"/>
+                                </div>
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="mailerCheckPort">{{ t 'settings.port' }}</label>
+                                    <input id="mailerCheckPort" class="md-input md-input-width-medium" name="mailerCheckPort" type="text" value="143" ng-model="mailerCheckPort"/>
+                                </div>
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="mailerCheckUsername">{{ t 'settings.mail-username' }}</label>
+                                    <input id="mailerCheckUsername" class="md-input md-input-width-medium" name="mailerCheckUsername" type="text" ng-model="mailerCheckUsername"/>
+                                </div>
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="mailerCheckPassword">{{ t 'settings.mail-pwd' }}</label>
+                                    <input id="mailerCheckPassword" class="md-input md-input-width-medium" name="mailerCheckPassword" type="password" ng-model="mailerCheckPassword"/>
+                                </div>
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="mailerCheckTicketType">{{ t 'settings.mail-default-ticket-type' }}</label>
+                                    <select name="mailerCheckTicketType" id="mailerCheckTicketType" class="selectize-white selectize-noremove" data-md-selectize-inline data-md-selectize-bottom="true" data-md-selectize-top-offset="-12">
+                                        {{#each data.common.ticketTypes}}
+                                            <option value="{{{_id}}}">{{name}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <div class="uk-clearfix">
+                                    <button type="submit" class="uk-float-right md-btn md-btn-flat md-btn-flat-success md-btn-wave-light" id="mailerCheckSubmit" ng-click="mailerCheckFormSubmit($event)">{{ t 'settings.setting-apply' }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-item-wrap uk-margin-medium-bottom">
+                    <div class="panel trupanel nopadding no-hover-shadow uk-overflow-hidden" style="min-height: 60px; height: auto;">
+                        <div class="left">
+                            <h6 style="padding: 0 0 0 15px; margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'settings.tps' }}</h6>
+                            <h5 style="padding: 0 0 10px 15px; margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
+                                 {{ t 'settings.tps-desc' }} <a href="http://push.trudesk.io/signup" target="_blank">{{ t 'settings.tps-get-apikey' }}</a>
+                            </h5>
+                        </div>
+                        <div class="right" style="position:relative;">
+                            <!-- Switch -->
+                            <div class="md-switch md-green" style="margin: 20px 0 0 0;">
+                                <label>
+                                     {{ t 'settings.enable' }}
+                                    <input id="tpsEnabled" name="tpsEnabled" type="checkbox" ng-model="tpsEnabled" ng-change="tpsEnabledChange()">
+                                    <span class="lever"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="nomargin-top clear">
+                        <div class="panel-body2" style="padding: 20px 15px 15px 15px;">
+                            <div class="">
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="tpsUsername">{{ t 'settings.tps-username' }}</label>
+                                    <input id="tpsUsername" class="md-input md-input-width-medium" name="tpsUsername" type="text" ng-model="tpsUsername" />
+                                </div>
+                                <div class="uk-margin-medium-bottom">
+                                    <label for="tspAPIKey">{{ t 'settings.tps-apikey' }}</label>
+                                    <input id="tspAPIKey" class="md-input md-input-width-medium" name="tpsApiKey" type="text" ng-model="tpsApiKey" />
+                                </div>
+                                <div class="uk-clearfix">
+                                    <button type="submit" class="uk-float-right md-btn md-btn-flat md-btn-flat-success md-btn-wave-light" id="tpsSubmit" ng-click="tpsFormSubmit($event);">{{ t 'settings.setting-apply' }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#contentFor 'js-plugins'}}
+
+{{/contentFor}}
