@@ -32,7 +32,9 @@
     "restart-message6": "我想要重新开始了.",
     "restart-message7": "或者阅读系统文档!",
     "restart": "重启!",
-    "start-over": "重新开始"
+    "start-over": "重新开始",
+    "loading": "加载中...",
+    "clear": "清除"
   },
   "main": {
     "please-wait": "请耐心等候...",
@@ -115,7 +117,23 @@
     "issue-created-message1": "您的问题,",
     "issue-created-message2": "已经递交了. 请您保存以下的登陆信息，以方便您查看你递交的问题的状态.",
     "issue-created-message3": "请您在以下的链接中登陆，更新或者查看您递交的问题的状态.",
-    "create-instruction": "请您详细描述您的问题，包括您曾经尝试过的解决步骤以方便我们快速解决问题."
+    "create-instruction": "请您详细描述您的问题，包括您曾经尝试过的解决步骤以方便我们快速解决问题.",
+    "clear-assignee": "重新分配",
+    "edit-tag": "编辑标签",
+    "action-by": "执行人",
+    "add-comment": "添加评论",
+    "comments": "评论",
+    "comment": "评论",
+    "post-comment": "发布评论",
+    "notes": "注解",
+    "internal-note": "内部注解",
+    "save-note": "保存注解",
+    "note-uppercase": "注解",
+    "create-tag": "创建标签",
+    "save-tags": "保存标签",
+    "all": "所有",
+    "select-assignee": "选择分配人",
+    "prio": "优先级"
   },
   "messages": {
     "title": "对话",

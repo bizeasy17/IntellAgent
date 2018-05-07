@@ -32,7 +32,9 @@
     "restart-message6": "I think i will start over.",
     "restart-message7": "or maybe i should read the docs!",
     "restart": "Restart Me!",
-    "start-over": "Start Over"
+    "start-over": "Start Over",
+    "loading": "Loading...",
+    "clear": "Clear"
   },
   "main": {
     "please-wait": "Please Wait...",
@@ -115,7 +117,23 @@
     "issue-created-message1": "Your issue,",
     "issue-created-message2": "has been submitted. Please store the following information to access and update your ticket.",
     "issue-created-message3": "Please follow the link below in order to login and update or view the current status of this issue.",
-    "create-instruction": "Please try to be as specific as possible. Please include any details you think may be relevant, such as troubleshooting steps you've taken."
+    "create-instruction": "Please try to be as specific as possible. Please include any details you think may be relevant, such as troubleshooting steps you've taken.",
+    "clear-assignee": "Clear Assignee",
+    "edit-tag": "Edit Tag",
+    "action-by": "Action By",
+    "add-comment": "Add Comment",
+    "comments": "Comments",
+    "comment": "Comment",
+    "post-comment": "Post Comment",
+    "notes": "Notes",
+    "internal-note": "Internal Note",
+    "save-note": "Save Note",
+    "note-uppercase": "NOTE",
+    "create-tag": "Create Tag",
+    "save-tags": "Save Tags",
+    "all": "All",
+    "select-assignee": "Select Assignee",
+    "prio": "Priority"
   },
   "messages": {
     "title": "Conversations",
