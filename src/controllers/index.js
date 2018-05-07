@@ -21,6 +21,9 @@ var Controllers = {
     accounts: require('./accounts'),
     groups: require('./groups'),
     reports: require('./reports'),
+    // 2018-5-6 JH for KB START
+    articles: require('./articles'),
+    // END
     notices: require('./notices'),
     plugins: require('./plugins'),
     settings: require('./settings'),
