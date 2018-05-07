@@ -219,7 +219,8 @@
     "account-created": "您的账户已经创建.",
     "signup-login-text": "请用您的邮箱地址登陆系统",
     "active-now": "目前活跃的",
-    "more-conversation": "更多对话"
+    "more-conversation": "更多对话",
+    "login": "登陆"
   },  
   "groups": {
     "title": "组管理",

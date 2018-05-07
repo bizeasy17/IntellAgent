@@ -219,7 +219,8 @@
     "account-created": "Your account has been created.",
     "signup-login-text": "Please click the button below in order to login with your email",
     "active-now": "Active Now",
-    "more-conversation": "More Conversations"
+    "more-conversation": "More Conversations",
+    "login": "Login"
   },
   "groups": {
     "title": "Groups",
@@ -238,8 +239,8 @@
     "title": "Generate Report",
     "generate": "Generate",
     "select-report": "Select Report",
-    "dashboard-user-breakdown": "Dashboard (User Breakdown)",
-    "dashboard-group-breakdown": "Dashboard (Group Breakdown)",
+    "dashboard-user-breakdown": "Dashboard (By User)",
+    "dashboard-group-breakdown": "Dashboard (By Group)",
     "tickets-by-groups": "Tickets by Groups",
     "tickets-by-groups-desc": "Please select the start and end dates for the report and which groups to include in the report.",
     "tickets-by-prio": "Tickets by Priorities",
