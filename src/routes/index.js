@@ -7,6 +7,8 @@
    888 .  888      888   888  888   888  888    .o o.  )88b  888 `88b.
    "888" d888b     `V88V"V8P' `Y8bod88P" `Y8bod8P' 8""888P' o888o o888o
  ========================================================================
+ Modified:  Jay Han [Author: Chris Brame]
+ Modified date: 2018-5-10
  **/
 
 var express     = require('express'),
@@ -67,6 +69,18 @@ function mainRoutes(router, middleware, controllers) {
     router.get('/tickets/:id', middleware.redirectToLogin, middleware.loadCommonData, controllers.tickets.single);
     router.post('/tickets/postcomment', middleware.redirectToLogin, controllers.tickets.postcomment);
     router.post('/tickets/uploadattachment', middleware.redirectToLogin, controllers.tickets.uploadAttachment);
+
+    //Articles
+    // 2018-5-10 JH route for the articles START
+    router.get('/articles', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.processor);
+    router.get('/articles/new', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getCreate);
+    router.get('/articles', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.edit);
+    // END
+
+    //Organization
+    // 2018-5-16 JH route for the organization START
+    router.get('/organizations', middleware.redirectToLogin, middleware.loadCommonData, controllers.organizations.get);
+    // END
 
     //Messages
     router.get('/messages', middleware.redirectToLogin, middleware.loadCommonData, controllers.messages.get);
@@ -187,6 +201,14 @@ function mainRoutes(router, middleware, controllers) {
     router.get('/api/v1/notices/clearactive', middleware.api, controllers.api.notices.clearActive);
     router.put('/api/v1/notices/:id', middleware.api, controllers.api.notices.updateNotice);
     router.delete('/api/v1/notices/:id', middleware.api, controllers.api.notices.deleteNotice);
+
+    // 2018-5-13 add route for Articles JH, START
+    router.post('/api/v1/articles/create', middleware.api, controllers.api.articles.create);
+    // END
+
+    // 2018-5-16 add route for Articles JH, START
+    router.post('/api/v1/articles/create', middleware.api, controllers.api.organizations.create);
+    // END
 
     //Reports Generator
     router.post('/api/v1/reports/generate/tickets_by_group', middleware.api, controllers.api.reports.generate.ticketsByGroup);

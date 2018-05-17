@@ -43,24 +43,37 @@ var roles = {
         description: "Administrators",
         allowedAction: ["*"]
     },
+    // 2018-5-9 JH add organization related role:action pair. START
+    adminOrg: {
+        id: "adminOrg",
+        name: "AdministratorsOrg",
+        description: "Organization Administrators",
+        allowedAction: ["users:create editSelf view delete", "groups:create editSelf view delete", "organizations:create editSelf view delete", "notices:create editSelf view delete", "settings:*"]
+    },
+    // END
+    // 2018-5-9 JH add article related role:action pair. START
+    // 2018-5-9 for moderator, can view articles only
     mod: {
         id: "mod",
         name: "Moderators",
         description: "Moderators",
-        allowedAction: ["mod:*", "ticket:create edit view attachment removeAttachment", "comment:*", "notes:*", "reports:view"]
+        allowedAction: ["mod:*", "ticket:create edit view attachment removeAttachment", "comment:*", "notes:*", "reports:view", "articles:view"]
     },
+    // 2018-5-9 for support, can create,edit,view,delete (only for self created) articles
     support: {
         id: "support",
         name: "Support",
         description: "Support User",
-        allowedAction: ["ticket:*", "accounts:create edit view delete", "comment:editSelf create delete", "notes:create view", "reports:view", "notices:*"]
+        allowedAction: ["ticket:*", "accounts:create edit view delete", "comment:editSelf create delete", "notes:create view", "reports:view", "notices:*", "articles:create edit view delete"]
     },
+    // 2018-5-9 for user, can view, comments articles
     user: {
         id: "user",
         name: "User",
         description: "User",
-        allowedAction: ["ticket:create editSelf attachment", "comment:create editSelf" ]
+        allowedAction: ["ticket:create editSelf attachment", "comment:create editSelf", "articles:view"]
     }
+    // END
 };
 
 if (typeof exports !== 'undefined') {

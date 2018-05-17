@@ -95,6 +95,13 @@
                 </ul>
             </li>
 
+            {{#canUser data.user "articles:view"}}
+            <li {{#is nav 'acticles'}} class='active' {{/is}}>
+                <a href="/articles">
+                    <i class="material-icons">school</i>{{ t 'articles.title' }}</a>
+            </li>
+            {{/canUser}}
+
             {{#canUser data.user "notices:view"}}
                 <li {{#is nav 'notices'}} class='active' {{/is}}><a href="/notices"><i class="fa fa-exclamation-triangle fa-large"></i>{{ t 'notices.title' }}</a></li>
             {{/canUser}}
