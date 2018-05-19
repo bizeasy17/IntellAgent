@@ -207,7 +207,7 @@ function mainRoutes(router, middleware, controllers) {
     // END
 
     // 2018-5-16 add route for Articles JH, START
-    router.post('/api/v1/articles/create', middleware.api, controllers.api.organizations.create);
+    router.post('/api/v1/organizations/create', middleware.api, controllers.api.organizations.create);
     // END
 
     //Reports Generator

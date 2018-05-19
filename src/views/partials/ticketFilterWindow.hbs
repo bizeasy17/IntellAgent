@@ -17,7 +17,7 @@
                         <input id="filterDate_Start" class="md-input" name="filterDate_Start" type="text" data-uk-datepicker="{format:'MM/DD/YYYY'}" />
                     </div>
                     <div class="uk-width-1-2" style="padding: 0 0 0 15px;">
-                        <label for="filterDate_End" class="uk-form-label nopadding nomargin">{{ t 'reports.subject' }}</label>
+                        <label for="filterDate_End" class="uk-form-label nopadding nomargin">{{ t 'reports.date-end' }}</label>
                         <input id="filterDate_End" class="md-input" name="filterDate_End" type="text" data-uk-datepicker="{format:'MM/DD/YYYY'}" />
                     </div>
                 </div>
@@ -40,14 +40,14 @@
                         <select name="filterPriority" id="filterPriority" class="selectize-white" multiple="multiple" data-md-selectize-inline data-md-selectize-bottom="true" data-md-selectize-top-offset="-12">
                             <option value="1">{{ t 'shared.prio-normal' }}</option>
                             <option value="2">{{ t 'shared.prio-urgent' }}</option>
-                            <option value="3">{{ t 'tickets.prio-critial' }}</option>
+                            <option value="3">{{ t 'shared.prio-critical' }}</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="uk-grid uk-grid-collapse uk-margin-small-bottom">
                     <div class="uk-width-1-1">
-                        <label for="filterTags" class="uk-form-label" style="padding-bottom: 0; margin-bottom: 0;">{{ t 'setting.tags-group' }}:</label>
+                        <label for="filterTags" class="uk-form-label" style="padding-bottom: 0; margin-bottom: 0;">{{ t 'settings.tags-group' }}:</label>
                         <select name="filterTags" id="filterTags" class="selectize-white" multiple="multiple" data-md-selectize-inline data-md-selectize-bottom="true" data-md-selectize-top-offset="-12">
                             {{#each data.common.ticketTags}}
                                 <option value="{{_id}}">{{name}}</option>

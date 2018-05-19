@@ -20,6 +20,27 @@ var typeSchema      = require('../models/tickettype');
 var emitter         = require('../emitter');
 var permissions     = require('../permissions');
 
+// 2018-5-7 JH workaround for i18next not work in handlebar each loop. START
+var hbs = require('express-hbs');
+var path = require('path');
+var i18next = require('i18next');
+var i18nextMiddleware = require('i18next-express-middleware');
+var Backend = require('i18next-node-fs-backend');
+
+i18next
+    .use(Backend)
+    .use(i18nextMiddleware.LanguageDetector)
+    .init({
+        backend: {
+            loadPath: path.join(__dirname, '../../', 'locales/{{lng}}/{{ns}}.json'),
+            addPath: path.join(__dirname, '../../', 'locales/{{lng}}/{{ns}}.missing.json')
+        },
+        fallbackLng: 'en',
+        preload: ['en', 'zh-cn'],
+        saveMissing: true
+    });
+// END
+
 /**
  * @since 1.0
  * @author Chris Brame <polonel@gmail.com>
@@ -259,6 +280,13 @@ ticketsController.processor = function(req, res) {
     var processor = req.processor;
     if (_.isUndefined(processor)) return res.redirect('/');
 
+    // 2018-5-7 JH workaround for i18next helper not work in handlebar each loop.  START
+    // need to registerHelper agian for 't' 
+    hbs.registerHelper('t', function (options) {
+        return req.t(options).toString();
+    });
+    // END
+
     var content = {};
     content.title = processor.title;
     content.nav = processor.nav;
@@ -355,6 +383,7 @@ ticketsController.print = function(req, res) {
     if (isNaN(uid)) {
         return res.redirect('/tickets');
     }
+    
     var content = {};
     content.title = "Tickets - " + req.params.id;
     content.nav = 'tickets';
@@ -419,6 +448,13 @@ ticketsController.single = function(req, res) {
     if (isNaN(uid)) {
         return res.redirect('/tickets');
     }
+
+    // 2018-5-7 JH workaround for i18next not work in handlebar each loop. 
+    // need to registerHelper agian for 't' START
+    hbs.registerHelper('t', function (options) {
+        return req.t(options).toString();
+    });
+    // END
 
     var content = {};
     content.title = "Tickets - " + req.params.id;

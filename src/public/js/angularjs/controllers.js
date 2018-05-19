@@ -26,7 +26,12 @@ define([
     'angularjs/controllers/notices',
     'angularjs/controllers/plugins',
     'angularjs/controllers/reports',
-    'angularjs/controllers/settings'
+    'angularjs/controllers/settings',
+    // 2018-5-17 JH: register controller for Organizations, Articles in module START
+    'angularjs/controllers/organizations',
+    //'angularjs/controllers/articles',
+    // END
+
 
 ], function($, angular, _) {
 
@@ -43,7 +48,11 @@ define([
             'trudesk.controllers.notices',
             'trudesk.controllers.plugins',
             'trudesk.controllers.reports',
-            'trudesk.controllers.settings'
+            'trudesk.controllers.settings',
+            // 2018-5-17 JH: register controller for Organizations, Articles in module START
+            'trudesk.controllers.organizations',
+            //'trudesk.controllers.articles'
+            // END
         ])
         .controller('truCtrl', function($rootScope, $scope) {
             $scope.submitForm = function(formName, $event) {

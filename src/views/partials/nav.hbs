@@ -38,6 +38,13 @@
             <!--</li>-->
             {{#canUser data.user "accounts:view"}}<li {{#is nav 'accounts'}} class='active' {{/is}}><a href="/accounts"><i class="material-icons">&#xE7FD;</i>{{ t 'accounts.title' }}</a></li>{{/canUser}}
             {{#canUser data.user "groups:view"}}<li {{#is nav 'groups'}} class='active' {{/is}}><a href="/groups"><i class="material-icons">supervisor_account</i>{{ t 'groups.title' }}</a></li>{{/canUser}}
+            <!-- 2018-5-17 JH: add organization menu item start !-->
+            {{#canUser data.user "organizations:view"}}
+            <li {{#is nav 'organizations'}} class='active' {{/is}}>
+                <a href="/organizations">
+                    <i class="material-icons">business</i>{{ t 'organizations.title' }}</a>
+            </li>{{/canUser}}
+            <!-- END -->
             <!--<li {{#is nav 'chat'}} class='active' {{/is}}><a href="/chat"><i class="fa fa-comments-o fa-large"></i>Chat</a></li>-->
             <!--<li {{#is nav 'invoices'}} class='active' {{/is}}><a href="/invoices"><i class="material-icons">payment</i>Invoices</a></li>-->
             {{#canUser data.user "reports:view"}}
@@ -64,7 +71,7 @@
             {{/canUser}}
 
             <li {{#is nav 'plugins'}} class='active tether-plugins' {{/is}} >
-                <a href="/plugins"><i class="material-icons">select_all</i>{{ t 'plugins.title' }}</a>
+                <a href="/plugins"><i class="material-icons">extension</i>{{ t 'plugins.title' }}</a>
                 <ul id="side-nav-sub-plugins" class="side-nav-sub {{#is nav 'plugins'}} subMenuOpen {{/is}}">
                     {{#each data.common.plugins}}
                         {{#hasPluginPerm ../data.user permissions}}
@@ -94,13 +101,14 @@
                     {{/each}}
                 </ul>
             </li>
-
+            <!-- 2018-5-17 JH: add article menu item start !-->
             {{#canUser data.user "articles:view"}}
             <li {{#is nav 'acticles'}} class='active' {{/is}}>
                 <a href="/articles">
                     <i class="material-icons">school</i>{{ t 'articles.title' }}</a>
             </li>
             {{/canUser}}
+            <!-- end -->
 
             {{#canUser data.user "notices:view"}}
                 <li {{#is nav 'notices'}} class='active' {{/is}}><a href="/notices"><i class="fa fa-exclamation-triangle fa-large"></i>{{ t 'notices.title' }}</a></li>

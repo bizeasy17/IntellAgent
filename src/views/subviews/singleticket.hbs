@@ -103,12 +103,12 @@
                                 <div class="actions">
                                     <strong>{{ t 'tickets.select-assignee' }}</strong>
                                     <div class="right">
-                                        <a role="button" class="no-ajaxy" ng-click="clearAssignee()">{{ t 'tickets.clear' }}</a>
+                                        <a role="button" class="no-ajaxy" ng-click="clearAssignee()">{{ t 'shared.clear' }}</a>
                                     </div>
                                 </div>
                                 <div id="assigneeDropdown-content" class="" style="height: 215px;">
                                     <ul>
-                                        <li style="width: 295px; text-align: center; font-size: 16px; padding-top: 80px; background: white !important;">{{ t 'tickets.loading' }}</li>
+                                        <li style="width: 295px; text-align: center; font-size: 16px; padding-top: 80px; background: white !important;">{{ t 'shared.loading' }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -664,7 +664,7 @@
         <div id="addTagModal" class="uk-modal" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
             <div class="uk-modal-dialog uk-clearfix">
                 <a class="uk-modal-close uk-close no-ajaxy"></a>
-                <h5 style="font-weight: 300;">Add Tags</h5>
+                <h5 style="font-weight: 300;">{{ t 'tickets.add-tags' }}</h5>
                 <div>
                     <form id="addTagForm" action="#" method="POST" class="nomargin" ng-submit="submitAddTags($event)">
                         <!--<label for="tags">Tag:</label>-->
