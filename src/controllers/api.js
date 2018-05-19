@@ -27,6 +27,12 @@ var async = require('async'),
     api_groups_v1       = require('./api/v1/groups'),
     api_reports_v1      = require('./api/v1/reports'),
     api_settings_v1     = require('./api/v1/settings'),
+    // 2018-5-13 JH: Add Article api for controller, START
+    api_articles_v1 = require('./api/v1/articles'),
+    // END
+    // 2018-5-16 JH: Add Article api for controller, START
+    api_organizations_v1 = require('./api/v1/organizations'),
+    //END
     api_plugins_v1      = require('./api/v1/plugins');
 
 /**
@@ -44,6 +50,8 @@ var async = require('async'),
  * @requires {@link TicketType}
  * @requires {@link Emitter}
  * @requires {@link Setting}
+ * @requires {@link Article} // 2018-5-13 JH: Add Article api for controller
+ * @requires {@link Organization}// 2018-5-13 JH: Add Organizations api for controller
  *
  */
 var apiController = {};
@@ -55,6 +63,8 @@ apiController.groups = api_groups_v1;
 apiController.reports = api_reports_v1;
 apiController.settings = api_settings_v1;
 apiController.plugins = api_plugins_v1;
+apiController.articles = api_articles_v1;// 2018-5-13 JH: Add Article api for controller, START
+apiController.organizations = api_organizations_v1; // 2018-5-16 JH: Add Organization api for controller, START
 
 apiController.import = function(req, res) {
     var fs = require('fs');
