@@ -8,7 +8,7 @@
     8888  88   88    888    88888   8889 8889 88  88   88      88    88888   88   88   8888
                                                           8888888
  ===========================================================================================
- Created:    02/10/2015
+ Created:    05/17/2018
  Author:     Jay Han 
  **/
 
@@ -63,12 +63,13 @@ organizationsController.get = function (req, res) {
     content.data = {};
     content.data.user = req.user;
     content.data.common = req.viewdata;
+    content.data.organizations = {};
     content.data.users = [];
 
     organizationSchema.getAllOrgsOfUser(user._id, function (err, organizations) {
         if (err) handleError(res, err);
 
-        content.data.groups = _.sortBy(organizations, 'name');
+        content.data.organizations = _.sortBy(organizations, 'name');
 
         userSchema.findAll(function (err, users) {
             if (err) handleError(res, err);
@@ -80,74 +81,6 @@ organizationsController.get = function (req, res) {
     });
 };
 
-organizationsController.getCreate = function (req, res) {
-    var user = req.user;
-    if (_.isUndefined(user) || !permissions.canThis(user.role, 'groups:create')) {
-        req.flash('message', 'Permission Denied.');
-        return res.redirect('/');
-    }
-
-    var content = {};
-    content.title = "Groups";
-    content.nav = 'groups';
-
-    content.data = {};
-    content.data.user = req.user;
-    content.data.common = req.viewdata;
-    content.data.groups = {};
-    content.data.users = [];
-
-    userSchema.findAll(function (err, users) {
-        if (err) return handleError(res, err);
-
-        content.data.users = _.sortBy(users, "fullname");
-
-        res.render('subviews/createGroup', content);
-    });
-};
-
-organizationsController.edit = function (req, res) {
-    var user = req.user;
-    if (_.isUndefined(user) || !permissions.canThis(user.role, 'groups:edit')) {
-        req.flash('message', 'Permission Denied.');
-        return res.redirect('/');
-    }
-
-    var content = {};
-    content.title = "Groups";
-    content.nav = 'groups';
-
-    content.data = {};
-    content.data.user = req.user;
-    content.data.common = req.viewdata;
-    content.data.users = [];
-    var groupId = req.params.id;
-    if (_.isUndefined(groupId)) return res.redirect('/groups/');
-
-    async.parallel({
-        users: function (next) {
-            userSchema.findAll(function (err, users) {
-                if (err) return next(err);
-
-                next(null, users);
-            });
-        },
-        group: function (next) {
-            organizationSchema.getGroupById(groupId, function (err, group) {
-                if (err) return next(err);
-
-                next(null, group);
-            });
-        }
-    }, function (err, done) {
-        if (err) return handleError(res, err);
-
-        content.data.users = _.sortBy(done.users, 'fullname');
-        content.data.group = done.group;
-
-        res.render('subviews/editGroup', content);
-    });
-};
 
 function handleError(res, err) {
     if (err) {

@@ -24,6 +24,9 @@ var Controllers = {
     // 2018-5-6 JH for KB START
     articles: require('./articles'),
     // END
+    // 2018-5-17 JH for Organizations START
+    organizations: require('./organizations'),
+    // END
     notices: require('./notices'),
     plugins: require('./plugins'),
     settings: require('./settings'),
