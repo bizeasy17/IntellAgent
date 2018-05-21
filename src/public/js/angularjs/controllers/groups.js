@@ -86,6 +86,7 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'uikit', 'history'
             };
 
             $scope.createGroup = function() {
+                //$log.log('[trudesk:organizations:createGroup] - Info: enter the create function');
                 var formData = $('#createGroupForm').serializeObject();
                 var apiData = {
                     name: formData.gName,

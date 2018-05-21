@@ -5,6 +5,10 @@
                 <label for="gName">{{ t 'organizations.name' }}</label>
                 <input type="text" class="md-input" id="gName" name="gName"/>
             </div>
+            <div class="uk-margin-medium-bottom">
+                <label for="gShortName">{{ t 'organizations.short-name' }}</label>
+                <input type="text" class="md-input" id="gShortName" name="gShortName" />
+            </div>
             <div class="uk-margin-small-bottom">
                 <label for="gMembers" class="uk-form-label nopadding">{{ t 'organizations.members' }}</label>
                 <select class="selectize-white" name="gMembers" id="gMembers" multiple data-md-selectize-inline data-md-selectize-bottom="true">
@@ -13,17 +17,29 @@
                     {{/each}}
                 </select>
             </div>
-            <div class="uk-margin-small-bottom">
-                <label for="gSendMailTo" class="uk-form-label nopadding">{{ t 'organizations.send-mail' }}</label>
-                <select name="gSendMailTo" id="gSendMailTo" class="selectize-white" multiple data-md-selectize-inline data-md-selectize-bottom="true">
-                    {{#each data.users}}
-                        <option value="{{_id}}">{{fullname}}</option>
-                    {{/each}}
-                </select>
+            <div class="uk-margin-medium-bottom">
+                <label for="gType">{{ t 'organizations.type' }}</label>
+                <input type="text" class="md-input" id="gType" name="gType" />
+            </div>
+            <div class="uk-margin-medium-bottom">
+                <label for="gCity">{{ t 'organizations.city' }}</label>
+                <input type="text" class="md-input" id="gCity" name="gCity" />
+            </div>
+            <div class="uk-margin-medium-bottom">
+                <label for="gAddress1">{{ t 'organizations.address1' }}</label>
+                <input type="text" class="md-input" id="gAddress1" name="gAddress1" />
+            </div>
+            <div class="uk-margin-medium-bottom">
+                <label for="gAddress2">{{ t 'organizations.address2' }}</label>
+                <input type="text" class="md-input" id="gAddress2" name="gAddress2" />
+            </div>
+            <div class="uk-margin-medium-bottom">
+                <label for="gAddress3">{{ t 'organizations.address3' }}</label>
+                <input type="text" class="md-input" id="gAddress3" name="gAddress3" />
             </div>
             <div class="uk-modal-footer uk-text-right">
                 <button type="button" class="md-btn md-btn-flat uk-modal-close">{{ t 'shared.close' }}</button>
-                <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" id="submitNewGroup" ng-click="createGroup()">{{ t 'groups.create' }}</button>
+                <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" id="submitNewOrganization" ng-click="createOrganization()">{{ t 'shared.create' }}</button>
             </div>
         </form>
     </div>

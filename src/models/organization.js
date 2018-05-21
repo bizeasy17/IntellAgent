@@ -46,7 +46,7 @@ var organizationSchema = mongoose.Schema({
     address1: { type: String, required: true},
     address2: { type: String, required: true },
     address3: { type: String, required: false },
-    status: { type: String, required: true },
+    status: { type: String, required: true, default: '1'},
     deleted: { type: Boolean, default: false, required: true, index: true },
     createdBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'accounts' }],
     createDate: { type: Date, required: true, default: Date.now },
