@@ -37,6 +37,15 @@
                 </select>
             </div>
             <div class="uk-margin-medium-bottom">
+                <label for="aOrg" class="uk-form-label">{{ t 'accounts.organization' }}</label>
+                <select name="aOrg" id="aOrg" class="selectize-white" data-md-selectize-inline>
+                    {{#each data.allOrgs}}
+                    <option value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                <span class="aOrgs-error-message hide help-block uk-form-danger">{{ t 'accounts.org-desc' }}</span>
+            </div>
+            <div class="uk-margin-medium-bottom">
                 <label for="aGrps" class="uk-form-label">{{ t 'accounts.groups' }}</label>
                 <select name="aGrps" id="aGrps" class="selectize-white" multiple data-md-selectize-inline data-md-selectize-bottom="true">
                     {{#each data.allGroups}}

@@ -51,6 +51,9 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'uikit', 'history'
                 }
                 event.preventDefault();
                 form.serializeArray().map(function(x){data[x.name] = x.value;});
+                // 2018-5-26 JH save organization START
+                data.aOrg = form.find('select[name="aOrg"]').val();
+                // END
                 data.aGrps = form.find('select[name="aGrps"]').val();
                 $http({
                     method: 'POST',
@@ -173,6 +176,11 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'uikit', 'history'
                     var $selectizeRole = form.find('#aRole')[0].selectize;
                     $selectizeRole.setValue(user.role, true);
                     $selectizeRole.refreshItems();
+
+                    form.find('#aRole option[value="' + user.organization + '"]').prop('selected', true);
+                    var $selectizeOrg = form.find('#aOrg')[0].selectize;
+                    $selectizeOrg.setValue(user.organization, true);
+                    $selectizeOrg.refreshItems();
 
                     var $selectizeGrps = form.find('#aGrps')[0].selectize;
                     var groups = data.groups;

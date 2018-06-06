@@ -1,9 +1,13 @@
-<div ng-init="preferences_autoRefreshTicketGrid={{data.user.preferences.autoRefreshTicketGrid}}; username='{{data.user.username}}';"
-    ng-controller="ticketsCtrl">
-    <div class="nopadding ticketContent">
+<div ng-init="username='{{data.user.username}}';" ng-controller="articlesCtrl">
+    <div class="nopadding articleContent">
         <div class="page-title noshadow uk-clearfix">
-            <p class="uk-display-inline-block">{{ t 'tickets.title'}}</p>
+            <p class="uk-display-inline-block">{{ t 'articles.title'}}</p>
             <div class="uk-float-right">
+                <div class="md-fab-wrapper">
+                    <a class="md-fab md-fab-accent no-ajaxy" href="/articles/create">
+                        <i class="material-icons" style="color: white;">add</i>
+                    </a>
+                </div>
                 <div class="autorefresh uk-float-left uk-clearfix"></div>
                 <div class="pagination uk-float-left uk-clearfix">
                     <span class="pagination-info">{{formatNumber data.pagination.start}} - {{formatNumber data.pagination.end}} of {{formatNumber data.pagination.total}}</span>
@@ -58,11 +62,11 @@
                         </label>
                     </div>
                     <ul class="button-group">
-                        <li class="pagination">
+                        {{!-- <li class="pagination">
                             <a id="refreshTicketGrid" href="#" class="btn md-btn-wave-light" style="border-radius: 3px; margin-right: 5px;" ng-click="RefreshTicketGrid($event)">
                                 <i class="fa fa-large fa-refresh"></i>
                             </a>
-                        </li>
+                        </li> --}}
                         <!--<li class="pagination">-->
                         <!--<a href="#" class="btn md-btn-wave-light" style="border-radius: 3px; margin-right: 5px;"><i class="fa fa-large fa-search"></i></a>-->
                         <!--</li>-->
@@ -70,53 +74,6 @@
                             <a href="" class="btn no-ajaxy md-btn-wave-light" style="border-radius: 3px;" ng-click="openFilterTicketWindow($event)">
                                 <i class="fa fa-large fa-filter"></i>
                             </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="pagination uk-float-left">
-                    <ul class="button-group uk-float-left">
-                        <li class="pagination relative">
-                            <div class="right" data-uk-dropdown="{pos: 'bottom-right', mode: 'click'}" aria-haspopup="true" aria-expanded="false">
-                                <a href="#" class="btn no-ajaxy" data-notifications="ticket-actions" style="border-radius: 3px;">
-                                    <i class="fa fa-large fa-tasks"></i>
-                                </a>
-                                <div class="uk-dropdown uk-dropdown-xsmall uk-dropdown-bottom">
-                                    <ul class="uk-nav">
-                                        <li>
-                                            <a href="#" class="no-ajaxy" role="button" data-uk-modal="{target:'#ticketCreateModal',bgclose:false}">{{ t 'tickets.create'}}</a>
-                                        </li>
-                                        <li>
-                                            <hr style="margin: 5px 0;">
-                                        </li>
-                                        {{#canUser data.user "ticket:Edit"}}
-                                        <li>
-                                            <a href="#" class="no-ajaxy" role="button" ng-click="setOpenTickets()">{{ t 'tickets.set-status-open'}}</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="no-ajaxy" role="button" ng-click="setPendingTickets()">{{ t 'tickets.set-status-pending'}}</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="no-ajaxy" role="button" ng-click="setClosedTickets()">{{ t 'tickets.set-status-closed'}}</a>
-                                        </li>
-                                        {{else}} {{#canUser data.user "ticket:editSelf"}}
-                                        <li>
-                                            <a href="#" class="no-ajaxy" role="button" ng-click="setOpenTickets()">{{ t 'tickets.set-status-open'}}</a>
-                                        </li>
-                                        <!--<li><a href="#" class="no-ajaxy" role="button" ng-click="setPendingTickets()">Set Pending</a></li>-->
-                                        <li>
-                                            <a href="#" class="no-ajaxy" role="button" ng-click="setClosedTickets()">{{ t 'tickets.set-status-closed'}}</a>
-                                        </li>
-                                        {{/canUser}} {{/canUser}} {{#canUser data.user "ticket:delete"}}
-                                        <li>
-                                            <hr style="margin: 5px 0;">
-                                        </li>
-                                        <li>
-                                            <a class="no-ajaxy" href="#" role="button" style="color: red;" ng-click="deleteTickets()">{{ t 'tickets.delete'}}</a>
-                                        </li>
-                                        {{/canUser}}
-                                    </ul>
-                                </div>
-                            </div>
                         </li>
                     </ul>
                 </div>
@@ -135,14 +92,14 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>{{ t 'tickets.status'}}</th>
+                            <th>{{ t 'articles.status'}}</th>
                             <th>#</th>
-                            <th>{{ t 'tickets.subject'}}</th>
-                            <th>{{ t 'tickets.created'}}</th>
-                            <th>{{ t 'tickets.requester'}}</th>
-                            <th>{{ t 'tickets.group'}}</th>
-                            <th>{{ t 'tickets.assignee'}}</th>
-                            <th>{{ t 'tickets.updated'}}</th>
+                            <th>{{ t 'articles.subject'}}</th>
+                            <th>{{ t 'articles.created'}}</th>
+                            <th>{{ t 'articles.requester'}}</th>
+                            <th>{{ t 'articles.group'}}</th>
+                            <th>{{ t 'articles.assignee'}}</th>
+                            <th>{{ t 'articles.updated'}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -153,7 +110,7 @@
                                 <label for="c_{{_id}}"></label>
                             </td>
                             <td class="ticket-status ticket-new">
-                                <span>{{ t 'tickets.status-new'}}</span>
+                                <span>{{ t 'articles.status-new'}}</span>
                             </td>
                             <td>{{uid}}</td>
                             <td>{{subject}}</td>
@@ -174,7 +131,7 @@
                                 <label for="c_{{_id}}"></label>
                             </td>
                             <td class="ticket-status ticket-open">
-                                <span>{{ t 'tickets.status-open'}}</span>
+                                <span>{{ t 'articles.status-open'}}</span>
                             </td>
                             <td>{{uid}}</td>
                             <td>{{subject}}</td>
@@ -195,7 +152,7 @@
                                 <label for="c_{{_id}}"></label>
                             </td>
                             <td class="ticket-status ticket-pending">
-                                <span>{{ t 'tickets.status-pending'}}</span>
+                                <span>{{ t 'articles.status-pending'}}</span>
                             </td>
                             <td>{{uid}}</td>
                             <td>{{subject}}</td>
@@ -216,7 +173,7 @@
                                 <label for="c_{{_id}}"></label>
                             </td>
                             <td class="ticket-status ticket-closed">
-                                <span>{{ t 'tickets.status-closed'}}</span>
+                                <span>{{ t 'articles.status-closed'}}</span>
                             </td>
                             <td>{{uid}}</td>
                             <td>{{subject}}</td>

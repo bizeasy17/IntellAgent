@@ -1,30 +1,47 @@
-<div class="uk-modal" id="groupEditModal">
+<div class="uk-modal" id="organizationEditModal">
     <div class="uk-modal-dialog">
-        <form class="uk-form-stacked" id="editGroupForm" action="#" method="POST">
+        <form class="uk-form-stacked" id="editOrganizationForm" action="#" method="POST">
             <div id="__EditId" class="hide">{{id}}</div>
             <div class="uk-margin-medium-bottom">
-                <label for="gName">{{ t 'groups.title' }}</label>
+                <label for="gName">{{ t 'organizations.name' }}</label>
                 <input type="text" class="md-input" id="gName" name="gName"/>
             </div>
+            <div class="uk-margin-medium-bottom">
+                <label for="gShortName">{{ t 'organizations.short-name' }}</label>
+                <input type="text" class="md-input" id="gShortName" name="gShortName" />
+            </div>
+            {{!--
             <div class="uk-margin-small-bottom">
-                <label for="gMembers" class="uk-form-label nopadding">{{ t 'groups.members' }}</label>
+                <label for="gMembers" class="uk-form-label nopadding">{{ t 'organizations.members' }}</label>
                 <select class="selectize-white" name="gMembers" id="gMembers" multiple data-md-selectize-inline data-md-selectize-bottom="true">
                     {{#each data.users}}
-                        <option value="{{id}}">{{fullname}}</option>
+                    <option value="{{id}}">{{fullname}}</option>
                     {{/each}}
                 </select>
+            </div> --}}
+            <div class="uk-margin-medium-bottom">
+                <label for="gType" class="uk-form-label nopadding">{{ t 'organizations.type' }}</label>
+                <input type="text" class="md-input" id="gType" name="gType" />
             </div>
-            <div class="uk-margin-small-bottom">
-                <label for="gSendMailTo" class="uk-form-label nopadding">{{ t 'groups.send-mail' }}</label>
-                <select name="gSendMailTo" id="gSendMailTo" class="selectize-white" multiple data-md-selectize-inline data-md-selectize-bottom="true">
-                    {{#each data.users}}
-                        <option value="{{_id}}">{{fullname}}</option>
-                    {{/each}}
-                </select>
+            <div class="uk-margin-medium-bottom">
+                <label for="gCity" class="uk-form-label nopadding">{{ t 'organizations.city' }}</label>
+                <input type="text" class="md-input" id="gCity" name="gCity" />
+            </div>
+            <div class="uk-margin-medium-bottom">
+                <label for="gAddress1" class="uk-form-label nopadding">{{ t 'organizations.address1' }}</label>
+                <input type="text" class="md-input" id="gAddress1" name="gAddress1" />
+            </div>
+            <div class="uk-margin-medium-bottom">
+                <label for="gAddress2" class="uk-form-label nopadding">{{ t 'organizations.address2' }}</label>
+                <input type="text" class="md-input" id="gAddress2" name="gAddress2" />
+            </div>
+            <div class="uk-margin-medium-bottom">
+                <label for="gAddress3" class="uk-form-label nopadding">{{ t 'organizations.address3' }}</label>
+                <input type="text" class="md-input" id="gAddress3" name="gAddress3" />
             </div>
             <div class="uk-modal-footer uk-text-right">
                 <button type="button" class="md-btn md-btn-flat uk-modal-close">{{ t 'shared.close' }}</button>
-                <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" id="submitEditGroup" ng-click="saveEditGroup($event)">{{ t 'shared.save-changes' }}</button>
+                <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" id="submitEditOrganization" ng-click="saveEditOrganization($event)">{{ t 'shared.save-changes' }}</button>
             </div>
         </form>
     </div>

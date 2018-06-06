@@ -103,10 +103,27 @@
             </li>
             <!-- 2018-5-17 JH: add article menu item start !-->
             {{#canUser data.user "articles:view"}}
-            <li {{#is nav 'acticles'}} class='active' {{/is}}>
-                <a href="/articles">
-                    <i class="material-icons">school</i>{{ t 'articles.title' }}</a>
-            </li>
+                <li class="hasSubMenu {{#is nav 'acticles-all'}}active{{/is}}"  data-nav-id="articles" data-nav-accordion data-nav-accordion-target="side-nav-accordion-articles">
+                    <a class="no-ajax" href="/articles/all">
+                        <i class="material-icons">school</i>{{ t 'articles.title' }}</a>
+                    <ul id="side-nav-accordion-articles" class="side-nav-sub side-nav-accordion">
+                        <li {{#is subnav 'articles-all'}} class='active' {{/is}}>
+                            <a href="/articles/all">
+                                <i class="material-icons fa-sub-icon">format_list_bulleted</i>
+                                <span>{{ t 'articles.view-all' }}</span>
+                            </a>
+                        </li>
+                        {{#canUser data.user "articles:create"}}
+                        <hr>
+                        <li {{#is subnav 'articles-create'}} class='active' {{/is}}>
+                            <a href="/articles/create">
+                                <i class="material-icons fa-sub-icon">create</i>
+                                <span>{{ t 'articles.create' }}</span>
+                            </a>
+                        </li>
+                        {{/canUser}}
+                    </ul>
+                </li>
             {{/canUser}}
             <!-- end -->
 
@@ -161,6 +178,25 @@
         <!--<li {{#is subnav 'reports-inactive'}} class='active' {{/is}}><a href="/reports/inactive"><i class="fa fa-times-circle fa-sub-icon"></i>Inactive</a></li>-->
         <!--<li {{#is subnav 'reports-completed'}} class='active' {{/is}}><a href="/reports/completed"><i class="fa fa-check-circle fa-sub-icon"></i>Completed</a></li>-->
     </ul>
+    <!-- 2018-6-2 JH: add article menu item start !-->
+    <ul id="side-nav-sub-articles" class="side-nav-sub side-nav-floating">
+        <li {{#is subnav 'articles-all'}} class='active' {{/is}}>
+            <a href="/articles/all">
+                <i class="material-icons fa-sub-icon">format_list_bulleted</i>
+                <span>{{ t 'articles.view-all' }}</span>
+            </a>
+        </li>
+        {{#canUser data.user "articles:create"}}
+            <hr>
+            <li {{#is subnav 'articles-create'}} class='active' {{/is}}>
+                <a href="/articles/create">
+                    <i class="material-icons fa-sub-icon">create</i>
+                    <span>{{ t 'articles.create' }}</span>
+                </a>
+            </li>
+        {{/canUser}}
+    </ul>
+    <!-- end -->
     <ul id="side-nav-sub-settings" class="side-nav-sub side-nav-floating">
         <li {{#is subnav 'settings-general'}} class='active' {{/is}}><a href="/settings"><i class="material-icons fa-sub-icon">tune</i><span>{{ t 'settings.general-group' }}</span></a></li>
         <li {{#is subnav 'settings-legal'}} class='active' {{/is}}><a href="/settings/legal"><i class="material-icons fa-sub-icon">gavel</i><span>{{ t 'settings.legal-group' }}</span></a></li>

@@ -34,7 +34,10 @@
     "restart": "重启!",
     "start-over": "重新开始",
     "loading": "加载中...",
-    "clear": "清除"
+    "clear": "清除",
+    "edit": "编辑",
+    "remove": "删除",
+    "invalid-request": "无效请求"
   },
   "main": {
     "please-wait": "请耐心等候...",
@@ -133,7 +136,8 @@
     "save-tags": "保存标签",
     "all": "所有",
     "select-assignee": "选择分配人",
-    "prio": "优先级"
+    "prio": "优先级",
+    "add-tags": "添加标签"
   },
   "messages": {
     "title": "对话",
@@ -163,6 +167,7 @@
     "add": "添加",
     "tab-all": "所有账户",
     "tab-admin": "管理员",
+    "tab-admin-org": "企业管理员",
     "tab-moderators": "调解人",
     "tab-users": "普通用户",
     "find-account": "查找账户",
@@ -220,7 +225,8 @@
     "signup-login-text": "请用您的邮箱地址登陆系统",
     "active-now": "目前活跃的",
     "more-conversation": "更多对话",
-    "login": "登陆"
+    "login": "登陆",
+    "organization": "企业/组织"
   },  
   "groups": {
     "title": "组管理",

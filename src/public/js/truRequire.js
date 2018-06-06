@@ -8,6 +8,9 @@ var allMods = {
     dt_ipaddress: function() { return require('dt_ipaddress'); },
     dt_scroller: function() { return require('dt_scroller'); },
     uikit: function() { return require('uikit'); }
+    //2018-5-27, JH add i18next for Angular START, can not build
+    //ng_i18next: function() { return require('ng-i18next'); }
+    //END
 };
 
 module.exports = function (modules, cb) {

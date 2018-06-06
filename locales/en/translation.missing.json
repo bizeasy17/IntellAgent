@@ -1,6 +1,9 @@
 {
-  "about": {
-    "copyright": "about.copyright"
+  "accounts": {
+    "group-desc": "accounts.group-desc",
+    "organization": "accounts.organization",
+    "org-desc": "accounts.org-desc",
+    "tab-admin-org": "accounts.tab-admin-org"
   },
   "notificataions": {
     "title": "notificataions.title",
@@ -14,12 +17,64 @@
     "subject": "reports.subject"
   },
   "tickets": {
-    "prio-critial": "tickets.prio-critial"
+    "prio-critial": "tickets.prio-critial",
+    "clear": "tickets.clear",
+    "loading": "tickets.loading",
+    "upload-profile-image": "tickets.upload-profile-image",
+    "upload-profile-image-desc": "tickets.upload-profile-image-desc"
   },
   "setting": {
     "tags-group": "setting.tags-group"
   },
-  "accounts": {
-    "group-desc": "accounts.group-desc"
+  "dashboard": {
+    "resp-time-hour": "dashboard.resp-time-hour"
+  },
+  "shared": {
+    "prio-critial": "shared.prio-critial",
+    "edit": "shared.edit",
+    "remove": "shared.remove",
+    "edit-tag": "shared.edit-tag",
+    "add-tags": "shared.add-tags",
+    "save-tags": "shared.save-tags",
+    "create-tag": "shared.create-tag"
+  },
+  "articles": {
+    "title": "articles.title",
+    "create": "articles.create",
+    "set-status-open": "articles.set-status-open",
+    "set-status-pending": "articles.set-status-pending",
+    "set-status-closed": "articles.set-status-closed",
+    "delete": "articles.delete",
+    "status": "articles.status",
+    "subject": "articles.subject",
+    "created": "articles.created",
+    "requester": "articles.requester",
+    "category": "articles.category",
+    "assignee": "articles.assignee",
+    "updated": "articles.updated",
+    "title-create-new": "articles.title-create-new",
+    "view-all": "articles.view-all"
+  },
+  "notices": {
+    "turquoise": "notices.turquoise"
+  },
+  "organizations": {
+    "title": "organizations.title",
+    "find-org": "organizations.find-org",
+    "name": "organizations.name",
+    "members": "organizations.members",
+    "send-mail": "organizations.send-mail",
+    "short-name": "organizations.short-name",
+    "type": "organizations.type",
+    "city": "organizations.city",
+    "address1": "organizations.address1",
+    "address2": "organizations.address2",
+    "address3": "organizations.address3"
+  },
+  "about": {
+    "copyright": "about.copyright"
+  },
+  "article": {
+    "author": "article.author"
   }
 }

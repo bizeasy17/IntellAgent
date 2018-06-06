@@ -72,9 +72,10 @@ function mainRoutes(router, middleware, controllers) {
 
     //Articles
     // 2018-5-10 JH route for the articles START
-    router.get('/articles', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.processor);
-    router.get('/articles/new', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getCreate);
-    router.get('/articles', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.edit);
+    router.get('/articles/self', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getSelf, controllers.articles.processor);
+    router.get('/articles/all', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getAll, controllers.articles.processor);
+    router.get('/articles/create', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getCreate);
+    // router.post('/article/create', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.edit);
     // END
 
     //Organization
@@ -206,7 +207,11 @@ function mainRoutes(router, middleware, controllers) {
     router.post('/api/v1/articles/create', middleware.api, controllers.api.articles.create);
     // END
 
-    // 2018-5-16 add route for Articles JH, START
+    // 2018-5-16 add route for Organization JH, START
+    router.get('/api/v1/organizations/get', middleware.api, controllers.api.organizations.get);//2018-5-23
+    router.get('/api/v1/organizations/:id', middleware.api, controllers.api.organizations.getSingleOrganization);//2018-5-25   
+    router.put('/api/v1/organizations/:id', middleware.api, controllers.api.organizations.updateOrganization);//2018-5-25       
+    router.delete('/api/v1/organizations/:id', middleware.api, controllers.api.organizations.deleteOrganization);//2018-5-25
     router.post('/api/v1/organizations/create', middleware.api, controllers.api.organizations.create);
     // END
 

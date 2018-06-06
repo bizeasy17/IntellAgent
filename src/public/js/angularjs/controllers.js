@@ -29,7 +29,7 @@ define([
     'angularjs/controllers/settings',
     // 2018-5-17 JH: register controller for Organizations, Articles in module START
     'angularjs/controllers/organizations',
-    //'angularjs/controllers/articles',
+    'angularjs/controllers/articles',
     // END
 
 
@@ -51,7 +51,7 @@ define([
             'trudesk.controllers.settings',
             // 2018-5-17 JH: register controller for Organizations, Articles in module START
             'trudesk.controllers.organizations',
-            //'trudesk.controllers.articles'
+            'trudesk.controllers.articles'
             // END
         ])
         .controller('truCtrl', function($rootScope, $scope) {

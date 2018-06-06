@@ -9,14 +9,14 @@
                 <label for="gShortName">{{ t 'organizations.short-name' }}</label>
                 <input type="text" class="md-input" id="gShortName" name="gShortName" />
             </div>
-            <div class="uk-margin-small-bottom">
+            {{!-- <div class="uk-margin-small-bottom">
                 <label for="gMembers" class="uk-form-label nopadding">{{ t 'organizations.members' }}</label>
                 <select class="selectize-white" name="gMembers" id="gMembers" multiple data-md-selectize-inline data-md-selectize-bottom="true">
                     {{#each data.users}}
                         <option value="{{id}}">{{fullname}}</option>
                     {{/each}}
                 </select>
-            </div>
+            </div> --}}
             <div class="uk-margin-medium-bottom">
                 <label for="gType">{{ t 'organizations.type' }}</label>
                 <input type="text" class="md-input" id="gType" name="gType" />

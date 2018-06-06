@@ -19,8 +19,7 @@ var COLLECTION = 'organizations';
 /**
  * Group Schema
  * @module models/organization
- * @class Group
- * @requires {@link Tag}
+ * @class Organization
  * @requires {@link User}
  *
  * @property {object} _id ```Required``` ```unique``` MongoDB Object ID
@@ -37,14 +36,14 @@ var COLLECTION = 'organizations';
  * @property {Date} createDate to allow comments or not open | closed
  */
 var organizationSchema = mongoose.Schema({
-    uid: { type: Number, unique: true, index: true },
-    name: { type: String, required: true },
+    //uid: { type: Number, unique: true, index: true },
+    name: { type: String, required: true, unique: true},
     shortName: { type: String, required: false },
-    members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'accounts' }],
+    members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'accounts', required: false }],
     type: {type: String, required: true },
     city: { type: String, required: true },
     address1: { type: String, required: true},
-    address2: { type: String, required: true },
+    address2: { type: String, required: false },
     address3: { type: String, required: false },
     status: { type: String, required: true, default: '1'},
     deleted: { type: Boolean, default: false, required: true, index: true },
@@ -60,6 +59,24 @@ organizationSchema.statics.getAllOrgsOfUser = function (userId, callback) {
         .sort('name');
 
     return q.exec(callback)
+};
+
+organizationSchema.statics.getOrganizationById = function (orgId, callback) {
+    if (_.isUndefined(orgId)) return callback("Invalid OrganizationId - OrganizationSchema.GetOrganizationById()");
+
+    var q = this.model(COLLECTION).findOne({ _id: orgId });
+        // .populate('members', '_id username fullname email role preferences image title')
+        // .populate('sendMailTo', '_id username fullname email role preferences image title');
+
+    return q.exec(callback);
+};
+
+organizationSchema.statics.getOrganizationById = function (orgId, callback) {
+    if (_.isUndefined(orgId)) return callback("Invalid OrganizationId - GroupSchema.GetOrganizationById()");
+
+    var q = this.model(COLLECTION).findOne({ _id: orgId });
+
+    return q.exec(callback);
 };
 
 module.exports = mongoose.model(COLLECTION, organizationSchema);

@@ -151,7 +151,8 @@ api_users.create = function(req, res) {
         fullname:   postData.aFullname,
         email:      postData.aEmail,
         role:       postData.aRole,
-        title:      postData.aTitle
+        title:      postData.aTitle,
+        organization:   postData.aOrg
     });
 
     account.save(function(err, a) {
@@ -312,6 +313,7 @@ api_users.update = function(req, res) {
         passconfirm:    data.aPassConfirm,
         email:          data.aEmail,
         role:           data.aRole,
+        organization:   data.aOrg,
         groups:         data.aGrps
     };
 
@@ -335,6 +337,7 @@ api_users.update = function(req, res) {
 
                     if (!_.isUndefined(obj.title)) user.title = obj.title;
                     if (!_.isUndefined(obj.role)) user.role = obj.role;
+                    if (!_.isUndefined(obj.organization)) user.organization = obj.organization;
 
                     user.save(function (err, nUser) {
                         if (err) return done(err);

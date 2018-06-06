@@ -14,7 +14,8 @@
 
 var _ = require('lodash'),
     async = require('async'),
-    organizationSchema = require('../../../models/organization');
+    organizationSchema = require('../../../models/organization'),
+    userSchema = require('../../../models/user');//2018-5-25, JH: to check if the organization has user assigned
 
 var api_organizations = {};
 
@@ -38,20 +39,13 @@ var api_organizations = {};
  */
 api_organizations.get = function (req, res) {
     var user = req.user;
-    var permissions = require('../../../permissions');
-    var hasPublic = permissions.canThis(user.role, 'ticket:public');
+    // var permissions = require('../../../permissions');
+    // var hasPublic = permissions.canThis(user.role, 'ticket:public');
 
-    groupSchema.getAllGroupsOfUser(user._id, function (err, groups) {
+    organizationSchema.getAllOrgsOfUser(user._id, function (err, organizations) {
         if (err) return res.status(400).json({ success: false, error: err.message });
 
-        if (hasPublic) {
-            groupSchema.getAllPublicGroups(function (err, grps) {
-                groups = groups.concat(grps);
-
-                return res.json({ success: true, groups: groups });
-            });
-        } else
-            return res.json({ success: true, groups: groups });
+        return res.json({ success: true, organizations: organizations });
     });
 };
 
@@ -102,12 +96,12 @@ api_organizations.getAll = function (req, res) {
  */
 api_organizations.getSingleOrganization = function (req, res) {
     var id = req.params.id;
-    if (_.isUndefined(id)) return res.status(400).json({ error: 'Invalid Request' });
+    if (_.isUndefined(id)) return res.status(400).json({ error: req.t('shared.invalid-request')});
 
-    groupSchema.getGroupById(id, function (err, group) {
+    organizationSchema.getOrganizationById(id, function (err, organization) {
         if (err) return res.status(400).json({ error: err.message });
 
-        return res.status(200).json({ success: true, group: group });
+        return res.status(200).json({ success: true, organization: organization });
     });
 };
 
@@ -145,10 +139,19 @@ api_organizations.getSingleOrganization = function (req, res) {
  }
  */
 api_organizations.create = function (req, res) {
-    var postData = req.postData;
-    var orgSchenma = new organizationSchema(postData);
+    var user = req.user;
+    var Organization = new organizationSchema();
+    Organization.name = req.body.name;
+    Organization.shortName = req.body.shortName;
+    Organization.members = req.body.members;
+    Organization.type = req.body.type;
+    Organization.city = req.body.city;
+    Organization.address1 = req.body.address1;
+    Organization.address2 = req.body.address2;
+    Organization.address3 = req.body.address3;
+    Organization.createdBy = user._id;
 
-    orgSchenma.save(function (err, org) {
+    Organization.save(function (err, org) {
         if (err) return res.status(400).json({ success: false, error: 'Error: ' + err.message });
 
         res.json({ success: true, error: null, organization: org });
@@ -188,30 +191,31 @@ api_organizations.create = function (req, res) {
      "error": "Invalid Post Data"
  }
  */
-api_organizations.updateGroup = function (req, res) {
+api_organizations.updateOrganization = function (req, res) {
     var id = req.params.id;
     var data = req.body;
     if (_.isUndefined(id) || _.isUndefined(data) || !_.isObject(data)) return res.status(400).json({ error: 'Invalid Post Data' });
 
-    if (!_.isArray(data.members))
-        data.members = [data.members];
-    if (!_.isArray(data.sendMailTo))
-        data.sendMailTo = [data.sendMailTo];
+    // if (!_.isArray(data.members))
+    //     data.members = [data.members];
+    // if (!_.isArray(data.sendMailTo))
+    //     data.sendMailTo = [data.sendMailTo];
 
-    groupSchema.getGroupById(id, function (err, group) {
+    organizationSchema.getOrganizationById(id, function (err, organization) {
         if (err) return res.status(400).json({ error: err.message });
 
-        var members = _.compact(data.members);
-        var sendMailTo = _.compact(data.sendMailTo);
+        // organization.name = data.name;
+        organization.shortName = data.shortName;
+        organization.type = data.type;
+        organization.city = data.city;
+        organization.address1 = data.address1;
+        organization.address2 = data.address2;
+        organization.address3 = data.address3;
 
-        group.name = data.name;
-        group.members = members;
-        group.sendMailTo = sendMailTo;
-
-        group.save(function (err, savedGroup) {
+        organization.save(function (err, savedOrganization) {
             if (err) return res.status(400).json({ error: err.message });
 
-            return res.json({ success: true, group: savedGroup });
+            return res.json({ success: true, organization: savedOrganization });
         });
     });
 };
@@ -237,32 +241,30 @@ api_organizations.updateGroup = function (req, res) {
      "error": "Invalid Post Data"
  }
  */
-api_organizations.deleteGroup = function (req, res) {
+api_organizations.deleteOrganization = function (req, res) {
     var id = req.params.id;
-    if (_.isUndefined(id)) return res.status(400).json({ success: false, error: 'Error: Invalid Group Id.' });
+    if (_.isUndefined(id)) return res.status(400).json({ success: false, error: 'Error: Invalid Organization Id.' });
 
     async.series([
         function (next) {
-            var grps = [id];
-            ticketSchema.getTickets(grps, function (err, tickets) {
+            var orgs = [id];
+            userSchema.getUsersByOrganization(orgs, function (err, users) {
                 if (err) {
                     return next('Error: ' + err.message);
                 }
 
-                if (_.size(tickets) > 0) {
-                    return next('Error: Cannot delete a group with tickets.');
+                if (_.size(users) > 0) {
+                    return next('Error: Cannot delete a organization with users.');
                 }
 
                 return next();
             });
         },
         function (next) {
-            groupSchema.getGroupById(id, function (err, group) {
+            organizationSchema.getOrganizationById(id, function (err, organization) {
                 if (err) return next('Error: ' + err.message);
 
-                if (group.name.toLowerCase() === 'administrators') return next('Error: Unable to delete default Administrators group.');
-
-                group.remove(function (err, success) {
+                organization.remove(function (err, success) {
                     if (err) return next('Error: ' + err.message);
 
                     return next(null, success);

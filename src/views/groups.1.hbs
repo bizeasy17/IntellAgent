@@ -29,7 +29,7 @@
     <div class="full-height page-right-content scrollable" style="background: #f6f8fb; padding: 0 24px;">
         <div class="group-list-wrapper" style="padding-top: 24px; padding-bottom: 100px;">
             <div id="group_list" class="uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4 uk-grid-width-xlarge-1-5">
-                {{#each data.groups}}
+                {{#each data.organizations}}
                     <div class="tru-card-wrapper" data-uk-filter="{{name}}">
                         <div class="tru-card tru-card-hover">
                             <div class="tru-card-head">
@@ -38,8 +38,8 @@
 
                                     <div class="uk-dropdown uk-dropdown-small">
                                         <ul class="uk-nav">
-                                            <li><a href="#" class="no-ajaxy" data-group-id="{{_id}}" ng-click="editGroup($event)">{{ t 'groups.edit' }}</a></li>
-                                            <li><a href="#" class="no-ajaxy" data-group-id="{{_id}}" ng-click="deleteGroup($event)">{{ t 'groups.remove' }}</a></li>
+                                            <li><a href="#" class="no-ajaxy" data-group-id="{{_id}}" ng-click="editOrganization($event)">{{ t 'shared.edit' }}</a></li>
+                                            <li><a href="#" class="no-ajaxy" data-group-id="{{_id}}" ng-click="deleteOrganization($event)">{{ t 'shared.remove' }}</a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -16,7 +16,7 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'uikit', 'history'
     return angular.module('trudesk.controllers.articles', [])
         .controller('articlesCtrl', function($scope, $http, $timeout, $log) {
 
-            $scope.editGroup = function($event) {
+            $scope.editArticles = function($event) {
                 if (_.isNull($event.target) || _.isUndefined($event.target))
                     return false;
                 var self = $($event.target);
@@ -54,7 +54,7 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'uikit', 'history'
                     });
             };
 
-            $scope.saveEditGroup = function($event) {
+            $scope.saveEditArticle = function($event) {
                 var id = $($event.target).parents('form').find('#__EditId').text();
                 if (_.isUndefined(id)) {
                     helpers.UI.showSnackbar('Unable to get Group ID', true);
@@ -85,7 +85,7 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'uikit', 'history'
                     });
             };
 
-            $scope.createGroup = function() {
+            $scope.createArticle = function() {
                 var formData = $('#createOrganizationForm').serializeObject();
                 var apiData = {
                     name: formData.gName,
@@ -113,7 +113,7 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'uikit', 'history'
                     })
             };
 
-            $scope.deleteGroup = function(event) {
+            $scope.deleteArticle = function(event) {
                 event.preventDefault();
                 var self = $(event.target);
                 var groupID = self.attr('data-group-id');
@@ -175,33 +175,6 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'uikit', 'history'
                         helpers.UI.showSnackbar(err.error, true);
                     })
 
-            }
-
-            function buildHTML(group) {
-                var html = '';
-                    html += '<div class="tru-card-wrapper" data-uk-filter="' + group.name + '">';
-                    html += '<div class="tru-card tru-card-hover">';
-                    html += '<div class="tru-card-head">';
-                    html += '<div class="tru-card-head-menu" data-uk-dropdown="{pos: \'bottom-right\',mode:\'click\'}">';
-                    html += '<i class="material-icons tru-icon">&#xE5D4;</i>';
-                    html += '<div class="uk-dropdown uk-dropdown-small">';
-                    html += '<ul class="uk-nav">';
-                    html += '<li><a href="#" class="no-ajaxy" data-group-id="' + group._id + '" ng-click="editGroup($event)">Edit</a></li>';
-                    html += '<li><a href="#" class="no-ajaxy" data-group-id="' + group._id + '" ng-click="deleteGroup($event)">Remove</a></li>';
-                    html += '</ul>';
-                    html += '</div>';
-                    html += '</div>';
-                    html += '<h3 class="tru-card-head-text uk-text-center" style="padding-top:60px;">';
-                    html += group.name;
-                    html += '<span class="uk-text-truncate">';
-                    html += _.size(group.members).toString() + ' ' + (_.size(group.members) === 1 ? 'member' : 'members');
-                    html += '</span>';
-                    html += '</h3>';
-                    html += '</div>';
-                    html += '</div>';
-                    html += '</div>';
-
-                return html;
             }
         });
 });

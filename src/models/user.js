@@ -36,6 +36,7 @@ var COLLECTION = "accounts";
  * @property {Date} lastOnline Last timestamp given user was online.
  * @property {String} title Job Title of user
  * @property {String} image Filename of user image
+ * @property {Object} orgnaization User's organization // 2018-5-25 JH
  * @property {String} resetPassHash Password reset has for recovery password link.
  * @property {Date} resetPassExpire Date when the password recovery link will expire
  * @property {String} tOTPKey One Time Password Secret Key
@@ -55,6 +56,8 @@ var userSchema = mongoose.Schema({
         lastOnline: Date,
         title:      String,
         image:      String,
+        organization: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'organizations'},
+        //2018-5-25, JH: User organization
 
         resetPassHash: { type: String, select: false},
         resetPassExpire: { type: Date, select: false},
@@ -322,6 +325,25 @@ userSchema.statics.getUserByEmail = function(email, callback) {
     }
 
     return this.model(COLLECTION).findOne({email: email}, callback);
+};
+
+// 2018-5-25, JH: get users by organization
+/**
+ * Gets user via organziation
+ *
+ * @memberof User
+ * @static
+ * @method getUsersByOrganization
+ *
+ * @param {String} organization Organization to Query MongoDB
+ * @param {QueryCallback} callback MongoDB Query Callback
+ */
+userSchema.statics.getUsersByOrganization = function (organization, callback) {
+    if (_.isUndefined(organization)) {
+        return callback("Invalid Organization - UserSchema.GetUserByOrganization()", null);
+    }
+
+    return this.model(COLLECTION).find({ organization: organization }, callback);
 };
 
 /**

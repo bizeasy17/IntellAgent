@@ -34,7 +34,10 @@
     "restart": "Restart Me!",
     "start-over": "Start Over",
     "loading": "Loading...",
-    "clear": "Clear"
+    "clear": "Clear",
+    "edit": "Edit",
+    "remove": "Remove",
+    "invalid-request": "Invalid Request"
   },
   "main": {
     "please-wait": "Please Wait...",
@@ -133,7 +136,8 @@
     "save-tags": "Save Tags",
     "all": "All",
     "select-assignee": "Select Assignee",
-    "prio": "Priority"
+    "prio": "Priority",
+    "add-tags": "Add Tags"
   },
   "messages": {
     "title": "Conversations",
@@ -163,6 +167,7 @@
     "add": "add",
     "tab-all": "All",
     "tab-admin": "Administrators",
+    "tab-admin-org": "Org. Admin",
     "tab-moderators": "Moderators",
     "tab-users": "Users",
     "find-account": "Find Account",
@@ -220,7 +225,8 @@
     "signup-login-text": "Please click the button below in order to login with your email",
     "active-now": "Active Now",
     "more-conversation": "More Conversations",
-    "login": "Login"
+    "login": "Login",
+    "organization": "Organization"
   },
   "groups": {
     "title": "Groups",
@@ -233,6 +239,18 @@
     "members": "Members",
     "send-mail": "Send Mail To",
     "create": "Create Group"
+  },
+  "organizations": {
+    "title": "Organizations",
+    "short-name": "Short Name",
+    "type": "Organization Type",
+    "city": "City",
+    "name": "Organization Name",
+    "address1": "Address 1",
+    "address2": "Address 2",
+    "address3": "Address 3",
+    "find-org": "Find Organization",
+    "created-smsg": "Organization Created Successfully"
   },
   "reports": {
     "nav-title": "Reports",

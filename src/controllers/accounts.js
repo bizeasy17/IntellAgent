@@ -19,6 +19,9 @@ var _               = require('lodash');
 var winston         = require('winston');
 var userSchema      = require(RELPATH + 'models/user');
 var groupSchema     = require(RELPATH + 'models/group');
+// 2018-5-28 JH declare organization schema to get all current user created org
+var orgSchema       = require(RELPATH + 'models/organization');
+// end
 var permissions     = require(RELPATH + 'permissions');
 var emitter         = require(RELPATH + 'emitter');
 
@@ -107,13 +110,18 @@ accountsController.get = function(req, res) {
             var result = [];
             async.waterfall([
                 function(cc) {
-                    groupSchema.getAllGroups(function(err, grps) {
+                    orgSchema.getAllOrgsOfUser(user._id, function (err, organizations) {
                         if (err) return cc(err);
-                        var g = grps.slice(0);
-                        g.members = undefined;
-                        g.sendMailTo = undefined;
-                        content.data.allGroups = g;
-                        cc(null, grps)
+
+                        content.data.allOrgs = _.sortBy(organizations, 'name');
+                        groupSchema.getAllGroups(function (err, grps) {
+                            if (err) return cc(err);
+                            var g = grps.slice(0);
+                            g.members = undefined;
+                            g.sendMailTo = undefined;
+                            content.data.allGroups = g;
+                            cc(null, grps)
+                        });
                     });
                 },
                 function(grps, cc) {
@@ -152,6 +160,7 @@ accountsController.get = function(req, res) {
         }
     ], function(err, rr) {
         if (err) return res.render('error', {message: err.message, error: err, layout: false});
+        
         content.data.accounts = _.sortBy(rr, 'fullname');
 
         res.render('accounts', content);

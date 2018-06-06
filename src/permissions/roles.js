@@ -46,7 +46,7 @@ var roles = {
     // 2018-5-9 JH add organization related role:action pair. START
     adminOrg: {
         id: "adminOrg",
-        name: "AdministratorsOrg",
+        name: "AdminOrganization",
         description: "Organization Administrators",
         allowedAction: ["users:create editSelf view delete", "groups:create editSelf view delete", "organizations:create editSelf view delete", "notices:create editSelf view delete", "settings:*"]
     },

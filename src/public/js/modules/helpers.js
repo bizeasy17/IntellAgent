@@ -191,7 +191,10 @@ function($, _, moment, UIkit, CountUp, Waves, Selectize, Snackbar, ROLES, Cookie
         var sidebarElements = [
             {element: "#side-nav-sub-tickets", target: 'tickets'},
             {element: "#side-nav-sub-reports", target: 'reports'},
-            {element: "#side-nav-sub-settings", target: 'settings'}
+            {element: "#side-nav-sub-settings", target: 'settings'},
+            // 2018-6-2 JH add sub menu for articles
+            { element: "#side-nav-sub-articles", target: 'articles' }
+            //end
         ];
 
         _.each(sidebarElements, function(item) {
