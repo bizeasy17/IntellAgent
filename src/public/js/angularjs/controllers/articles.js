@@ -1,180 +1,130 @@
-/*
-    8888                            88   88         88
-     88             88              88   88   88   88 88                               88
-     88    8888   888888    8888    88   88       88   88  888888    8888     8888   888888
-     88   88   88   88    88888888  88   88   88  8888888  88  88  88888888  88   88   88
-     88   88   88   88 88  88       88   88   88  88   88  888888  88        88   88   88 88
-    8888  88   88    888    88888   8889 8889 88  88   88      88    88888   88   88   8888
-                                                          8888888
- ===========================================================================================
- Created:    05/17/2017
- Modified:   Jay Han
+'use strict';
 
- **/
-
-define(['angular', 'underscore', 'jquery', 'modules/helpers', 'uikit', 'history'], function(angular, _, $, helpers, UIkit) {
+define(['angular', 'jquery', 'angularjs/services/session', 'modules/helpers', 'history'], function (angular, $, helpers) {
     return angular.module('trudesk.controllers.articles', [])
-        .controller('articlesCtrl', function($scope, $http, $timeout, $log) {
+        .controller('createArticleCtrl', function (SessionService, $scope, $http, $timeout, $log) {
+            var editor = testEditor;
+            $scope.loggedInAccount = SessionService.getUser();
 
-            $scope.editArticles = function($event) {
-                if (_.isNull($event.target) || _.isUndefined($event.target))
-                    return false;
-                var self = $($event.target);
-                var groupId = self.attr('data-group-id');
+            // $scope.init = function () {
 
-                $http.get(
-                    '/api/v1/articles/' + groupId
-                )
-                    .success(function(data) {
-                        var group = data.group;
-                        var form = $('#editArticleForm');
-                        form.find('#__EditId').text(group._id);
-                        form.find('#gName').val(group.name).parent().addClass('md-input-filled');
-                        var $members = form.find('#gMembers')[0].selectize;
-                        var $sendMailTo = form.find('#gSendMailTo')[0].selectize;
+            //     // console.log(editor.getPreviewedHTML());
+            //     // alert("create article alert");
+            //     // var testEditor;
 
-                        _.each(group.members, function(i) {
-                            if (i)
-                                $members.addItem(i._id, true);
-                        });
+            //     // testEditor = editormd("test-editormd", {
+            //     //     // 
+            //     //     width: "100%",
+            //     //     height: 640,
+            //     //     syncScrolling: "single",
+            //     //     path: "./lib"
+            //     // });
+            // }
+            // $scope.init();
 
-                        _.each(group.sendMailTo, function(i) {
-                            if (i)
-                                $sendMailTo.addItem(i._id, true);
-                        });
+            $scope.publishArticle = function ($event) {
+                // alert('here');
+                $event.preventDefault();
+                //$log.log('[trudesk:organizations:createGroup] - Info: enter the create function');
+                var formData = $('#createArticleForm').serializeObject();
+                var tags = { };
+                var systems = {};
+                var services = {};
 
-                        $members.refreshItems();
-                        $sendMailTo.refreshItems();
-
-                        UIkit.modal('#articleEditModal').show();
-                    })
-                    .error(function(err) {
-                        $log.log('[trudesk:articles:editArticle] - Error: ' + err);
-                        helpers.UI.showSnackbar(err, true);
-                    });
-            };
-
-            $scope.saveEditArticle = function($event) {
-                var id = $($event.target).parents('form').find('#__EditId').text();
-                if (_.isUndefined(id)) {
-                    helpers.UI.showSnackbar('Unable to get Group ID', true);
-                    return false;
-                }
-                var formData = $('#editOrganizationForm').serializeObject();
                 var apiData = {
-                    name: formData.gName,
-                    members: formData.gMembers,
-                    sendMailTo: formData.gSendMailTo
-                };
-
-                $http({
-                    method: 'PUT',
-                    url: '/api/v1/articles/' + id,
-                    data: apiData,
-                    headers: { 'Content-Type': 'application/json' }
-                })
-                    .success(function() {
-                        helpers.UI.showSnackbar('Articles Saved Successfully', false);
-                        UIkit.modal('#articleEditModal').hide();
-                        //Refresh Grid
-                        refreshGrid();
-                    })
-                    .error(function(err) {
-                        $log.log('[trudesk:groups:saveEditOrganization] - Error: ' + err);
-                        helpers.UI.showSnackbar(err.error, true);
-                    });
-            };
-
-            $scope.createArticle = function() {
-                var formData = $('#createOrganizationForm').serializeObject();
-                var apiData = {
-                    name: formData.gName,
-                    members: formData.gMembers,
-                    sendMailTo: formData.gSendMailTo
+                    author: $scope.loggedInAccount._id,
+                    subject: formData.aSubject,
+                    content: formData.aContent,
+                    contentHtml: editor.getPreviewedHTML(),
+                    excerpt: formData.aContent.substring(0, 100),
+                    category: formData.aCategory
+                    // tags: tags,
+                    // systems: systems,
+                    // services: services,
+                    // organization: formData.aOrganization,
+                    // commentStatus: formData.aCommentStatus
                 };
 
                 $http({
                     method: 'POST',
-                    url: '/api/v1/organizations/create',
+                    url: '/api/v1/article/post',
                     data: apiData,
                     headers: { 'Content-Type': 'application/json' }
                 })
-                    .success(function() {
-                        helpers.UI.showSnackbar('Organization Created Successfully', false);
-                        UIkit.modal("#articleCreateModal").hide();
-                        //Refresh Grid
-                        $timeout(function() {
-                            refreshGrid();
-                        }, 0);
+                    .success(function () {
+                        // helpers.UI.showSnackbar('Publish Article Successfully', false);
+                        // UIkit.modal("#groupCreateModal").hide();
+                        History.pushState(null, null, '/articles');
                     })
-                    .error(function(err) {
-                        $log.log('[trudesk:organizations:create] - Error: ' + err);
-                        helpers.UI.showSnackbar(err, true);
+                    .error(function (err) {
+                        $log.log('[trudesk:articles:publishArticle] - Error: ' + err);
+                        // helpers.UI.showSnackbar(err, true);
                     })
-            };
-
-            $scope.deleteArticle = function(event) {
-                event.preventDefault();
-                var self = $(event.target);
-                var groupID = self.attr('data-group-id');
-                var card = self.parents('.tru-card-wrapper');
-                if (groupID) {
-                    UIkit.modal.confirm(
-                    'Are you sure you want to delete group: <strong>' + card.find('h3').attr('data-group-name') + '</strong>'
-                    , function() {
-                            helpers.showLoader(0.8);
-                            $http.delete(
-                            '/api/v1/groups/' + groupID
-                        )
-                            .success(function() {
-                                helpers.hideLoader();
-                                helpers.UI.showSnackbar('Group Successfully Deleted', false);
-
-                                card.remove();
-                                UIkit.$html.trigger('changed.uk.dom');
-                            })
-                            .error(function(err) {
-                                helpers.hideLoader();
-                                $log.log('[trudesk:groups:deleteGroup] - Error: ' + err.error);
-                                helpers.UI.showSnackbar(err.error, true);
-                            });
-                    }, {
-                        labels: {'Ok': 'Yes', 'Cancel': 'No'}, confirmButtonClass: 'md-btn-danger'
-                    });
-                }
-            };
-
-            function refreshGrid() {
-                var $cards = $('#group_list').find('.tru-card-wrapper');
-                $cards.each(function() {
-                    var vm = this;
-                    var self = $(vm);
-                    self.remove();
-                });
-
-                $http.get('/api/v1/groups/all')
-                    .success(function(data) {
-                        var $groupList = $('#group_list');
-
-                        var html = '';
-                        _.each(data.groups, function(group) {
-                            html += buildHTML(group);
-                        });
-
-                        var $injector = angular.injector(["ng", "trudesk"]);
-                        $injector.invoke(["$compile", "$rootScope", function ($compile, $rootScope) {
-                            var $scope = $groupList.append(html).scope();
-                            $compile($groupList)($scope || $rootScope);
-                            $rootScope.$digest();
-                        }]);
-
-                        UIkit.$html.trigger('changed.uk.dom');
-                    })
-                    .error(function(err) {
-                        $log.log('[trudesk:groups:refreshGrid] - Error: ' + err.error);
-                        helpers.UI.showSnackbar(err.error, true);
-                    })
-
             }
         });
 });
+
+// 'use strict';
+
+// angular.module('trudesk.controllers.articles', ['hc.marked', 'hljs', 'angular-markdown-editor'])
+//     .config(['markedProvider', 'hljsServiceProvider', function (markedProvider, hljsServiceProvider) {
+//         // marked config
+//         markedProvider.setOptions({
+//             gfm: true,
+//             tables: true,
+//             sanitize: true,
+//             highlight: function (code, lang) {
+//                 if (lang) {
+//                     return hljs.highlight(lang, code, true).value;
+//                 } else {
+//                     return hljs.highlightAuto(code).value;
+//                 }
+//             }
+//         });
+
+//         // highlight config
+//         hljsServiceProvider.setOptions({
+//             // replace tab with 4 spaces
+//             tabReplace: '    '
+//         });
+//     }])
+//     .controller("articlesCtrl", ["$rootScope", "$scope", "marked", function MarkdownController($rootScope, $scope, marked) {
+//         $scope.editor1 = "*This* **is** [markdown](https://daringfireball.net/projects/markdown/)\n and `{{ 1 + 2 }}` = {{ 1 + 2 }}";
+//         $scope.markdownService = marked('#TEST');
+
+//         // --
+//         // normal flow, function call
+//         $scope.convertMarkdown = function () {
+//             vm.convertedMarkdown = marked(vm.markdown);
+//         }
+
+//         /**
+//          * For some convenience, Angular-Markdown-Editor Directive also save each Markdown Editor inside $rootScope
+//          * Each of editor object are available through their $rootScope.markdownEditorObjects[editorName]
+//          *
+//          * Example: <textarea name="editor1" markdown-editor="{'iconlibrary': 'fa'}"></textarea>
+//          * We would then call our object through $rootScope.markdownEditorObjects.editor1
+//          */
+//         $scope.fullScreenPreview = function () {
+//             $rootScope.markdownEditorObjects.editor1.showPreview();
+//             $rootScope.markdownEditorObjects.editor1.setFullscreen(true);
+//         }
+
+//         /** Markdown event hook onFullscreen, in this example we will automatically show the result preview when going in full screen
+//          * the argument (e) is the actual Markdown object returned which help call any of API functions defined in Markdown Editor
+//          * For a list of API functions take a look on official demo site http://www.codingdrama.com/bootstrap-markdown/
+//          * @param object e: Markdown Editor object
+//          */
+//         $scope.onFullScreenCallback = function (e) {
+//             e.showPreview();
+//         }
+
+//         /** After exiting from full screen, let's go back to editor mode (which mean hide the preview)
+//          * NOTE: If you want this one to work, you will have to manually download the JS file, not sure why but they haven't released any versions in a while
+//          *       https://github.com/toopay/bootstrap-markdown/tree/master/js
+//          */
+//         $scope.onFullScreenExitCallback = function (e) {
+//             e.hidePreview();
+//         }
+
+//     }]);

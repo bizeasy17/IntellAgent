@@ -73,7 +73,7 @@ function mainRoutes(router, middleware, controllers) {
     //Articles
     // 2018-5-10 JH route for the articles START
     router.get('/articles/self', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getSelf, controllers.articles.processor);
-    router.get('/articles/all', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getAll, controllers.articles.processor);
+    router.get('/articles', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getAll, controllers.articles.processor);
     router.get('/articles/create', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getCreate);
     // router.post('/article/create', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.edit);
     // END
@@ -204,7 +204,8 @@ function mainRoutes(router, middleware, controllers) {
     router.delete('/api/v1/notices/:id', middleware.api, controllers.api.notices.deleteNotice);
 
     // 2018-5-13 add route for Articles JH, START
-    router.post('/api/v1/articles/create', middleware.api, controllers.api.articles.create);
+    // router.post('/api/v1/article/save', middleware.api, controllers.api.articles.create);
+    router.post('/api/v1/article/post', middleware.api, controllers.api.articles.post); //2018-6-23
     // END
 
     // 2018-5-16 add route for Organization JH, START

@@ -1,122 +1,198 @@
 <div ng-init="
     user='{{data.common.loggedInAccount._id}}';">
 
-    <div ng-controller="articlesCtrl">
-        <div class="page-right-content">
-            <div class="uk-float-left page-title page-title-small noshadow nopadding relative" style="width: 360px; max-width: 360px; min-width: 360px;">
-                <div class="page-title-border-right relative" style="padding: 0 30px">
-                    <p>{{ t 'articles.title-create-new' }}</p>
-                    <div id="__ticketId" class="hide"></div>
-                    <div id="__ticketStatus" class="hide"></div>
-                </div>
-                <div class="page-content-left full-height scrollable">
-                    <div class="ticket-details-wrap uk-clearfix">
-                        <div class="ticket-assignee-wrap uk-clearfix" style="padding-right: 30px;">
-                            <h4>{{ t 'article.author' }}</h4>
-                            <div class="ticket-assignee uk-clearfix">
-                                <a role="button" style="float: left;" class="relative no-ajaxy">
-                                     {{#isNull data.user.image}}
-                                    <img src="/uploads/users/defaultProfile.jpg" alt="" /> {{else}}
-                                    <img src="/uploads/users/{{data.user.image}}" alt="" /> {{/isNull}}
-                                    <span class="user-offline uk-border-circle" data-user-status-id="{{data.user._id}}"></span>
-                                    <span class="drop-icon material-icons" style="">keyboard_arrow_down</span>
-                                </a>
-                                <div class="ticket-assignee-details">
-                                    <h3>{{data.user.fullname}}</h3>
-                                    <a class="comment-email-link uk-text-truncate" href="mailto:{{{data.user.email}}}">{{{data.user.email}}}</a>
-                                    <span>{{{data.user.title}}}</span>
+    <div  ng-controller="createArticleCtrl">
+        <form id="createArticleForm" class="uk-form-stacked" action="/">
+            <div class="page-right-content">
+                <div class="uk-float-left page-title page-title-small noshadow nopadding relative" style="width: 360px; max-width: 360px; min-width: 360px;">
+                    <div class="page-title-border-right relative" style="padding: 0 30px">
+                        <p>{{ t 'articles.title-create-new' }}</p>
+                        <div id="__articleId" class="hide"></div>
+                        <div id="__articleStatus" class="hide"></div>
+                    </div>
+                    <div class="page-content-left full-height scrollable">
+                        <div class="ticket-details-wrap uk-clearfix">
+                            <div class="ticket-assignee-wrap uk-clearfix" style="padding-right: 30px;">
+                                <h4>{{ t 'article.author' }}</h4>
+                                <div class="ticket-assignee uk-clearfix">
+                                    <a role="button" style="float: left;" class="relative no-ajaxy">
+                                        {{#isNull data.user.image}}
+                                        <img src="/uploads/users/defaultProfile.jpg" alt="" /> {{else}}
+                                        <img src="/uploads/users/{{data.user.image}}" alt="" /> {{/isNull}}
+                                        <span class="user-offline uk-border-circle" data-user-status-id="{{data.user._id}}"></span>
+                                        <span class="drop-icon material-icons" style="">keyboard_arrow_down</span>
+                                    </a>
+                                    <div class="ticket-assignee-details">
+                                        <h3>{{data.user.fullname}}</h3>
+                                        <a class="comment-email-link uk-text-truncate" href="mailto:{{{data.user.email}}}">{{{data.user.email}}}</a>
+                                        <span>{{{data.user.title}}}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="uk-width-1-1 padding-left-right-15">
-                            <div class="tru-card ticket-details uk-clearfix" style="background: #fff;">
-                                <div class="uk-width-1-1 nopadding uk-clearfix">
-                                    <span>{{ t 'articles.category' }}</span>
-                                    <select name="aCategory" id="aCategory" ng-model="selected_category" ng-options="c.name for c in categories track by c._id">
-                                    </select>
+                            <div class="uk-width-1-1 padding-left-right-15">
+                                <div class="tru-card ticket-details uk-clearfix" style="background: #fff;">
+                                    <div class="uk-width-1-1 nopadding uk-clearfix">
+                                        <span>{{ t 'articles.category' }}</span>
+                                        <select name="aCategory" id="aCategory" >
+                                            {{!-- ng-model="selected_category" ng-options="c.name for c in categories track by c._id"> --}}
+                                            <option id="1" value="SOP" selected>SOP</option>
+                                        </select>
+                                    </div>
+                                    <div class="uk-width-1-1 nopadding">
+                                        <span>{{ t 'settings.tags-group' }}
+                                            <div id="editTags" style="display: inline;">-
+                                                <a href="#" style="font-size: 11px;" class="no-ajaxy" ng-click="showTags($event)" data-uk-modal="{bgclose:false}">{{ t 'shared.edit-tag' }}</a>
+                                            </div>                                   
+                                        </span>
+                                        <div class="tag-list uk-clearfix">
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-1 nopadding">
+                                        <div class="left">
+                                            <h6 style="margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'articles.allow-comments' }}
+                                            </h6>
+                                            <h5 style="margin: 2px 0 0 0; font-size: 12px;" class="uk-text-muted">
+                                                {{ t 'articles.allow-comments-desc' }}
+                                            </h5>
+                                        </div>
+                                        <div class="right" style="position:relative;">
+                                            <!-- Switch -->
+                                            <div class="md-switch md-green" style="margin: 20px 0 0 0;">
+                                                <label>
+                                                    {{ t 'settings.enable' }}
+                                                    <input type="checkbox" id="aCommentStatus" name="aCommentStatus" ng-change="showTourChanged()" ng-model="showTour">
+                                                    <span class="lever"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="uk-width-1-1 nopadding">
-                                    <span>{{ t 'settings.tags-group' }}
-                                        <div id="editTags" style="display: inline;">-
-                                            <a href="#" style="font-size: 11px;" class="no-ajaxy" ng-click="showTags($event)" data-uk-modal="{bgclose:false}">{{ t 'shared.edit-tag' }}</a>
-                                        </div>                                   
-                                    </span>
-                                    <div class="tag-list uk-clearfix">
+                            </div>
+                            <div class="ticket-details-wrap uk-clearfix">
+                                <div class="uk-width-1-1 padding-left-right-15">
+                                    <div class="tru-card ticket-details uk-clearfix" style="background: #fff;">
+                                        <div class="uk-width-1-1 nopadding uk-clearfix">
+                                            <span>{{ t 'articles.service' }}</span>
+                                            <select name="aService" id="aCategory" ng-model="selected_service" ng-options="c.name for c in categories track by c._id">
+                                            </select>
+                                        </div>
+                                        <div class="uk-width-1-1 nopadding">
+                                            <span>{{ t 'articles.system' }}</span>
+                                            <select name="aSystem" id="aSystem" ng-model="selected_system" ng-options="c.name for c in categories track by c._id">
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="page-message nopadding" style="margin-left: 360px;">
-                <div class="page-title-right noshadow">
-                    <div>
-                        <label for="aSubject">{{ t 'articles.subject' }}</label>
-                        <input type="text" class="md-input" id="caSubject" name="aSubject" data-validation="length" data-validation-length="min5"
-                            data-validation-error-msg="Please enter a valid name. Name must be at be 5 characters." />
+                <div class="page-message nopadding" style="margin-left: 360px;">
+                    <div class="page-title-right noshadow">
+                        <div class="uk-float-left">
+                            {{!-- <label for="aSubject">{{ t 'articles.subject' }}</label> --}}
+                            <input type="text" class="md-input" id="aSubject" name="aSubject" data-validation="length" data-validation-length="min5"
+                                data-validation-error-msg="Please enter a valid name. Name must be at be 5 characters." />
+                        </div>
+                        <div class="uk-clearfix page-top-comments uk-float-right">
+                            <!--<a href="#" class="btn no-ajaxy" data-ticketId="{{data.ticket._id}}" data-action="scrolltobottom" data-targetScroll=".page-content-right" data-preventDefault="true">-->
+                            <!--{{data.ticket.commentCount}} Comment{{#unless_eq data.ticket.commentCount compare=1}}s{{/unless_eq}}-->
+                            <!--</a>-->
+                            <button type="submit" class="uk-margin-left uk-float-right md-btn md-btn-success md-btn-wave-light" id="createArticleSubmit"
+                                ng-click="publishArticle($event);">{{ t 'articles.publish' }}</button>
+                        </div>
+                        <div class="page-top-comments uk-float-right">
+                            <!--<a href="#" class="btn no-ajaxy" data-ticketId="{{data.ticket._id}}" data-action="scrolltobottom" data-targetScroll=".page-content-right" data-preventDefault="true">-->
+                            <!--{{data.ticket.commentCount}} Comment{{#unless_eq data.ticket.commentCount compare=1}}s{{/unless_eq}}-->
+                            <!--</a>-->
+                            <a href="#" class="btn no-ajaxy" data-action="scrolltobottom" data-targetScroll=".page-content-right" data-preventDefault="true"
+                                ng-click="saveDraftArticle($event)">
+                                {{ t 'articles.save-draft' }}
+                            </a>
+                        </div>
+                       
+                        <div class="onoffswitch subscribeSwitch uk-float-right" style="margin-right: 10px; position: relative; top: 18px;">
+                            <input type="checkbox" name="subscribeSwitch" class="onoffswitch-checkbox" id="subscribeSwitch" ng-model="subscribed" ng-change="SubscriberChange()"
+                                data-subscribe-userId="{{data.common.loggedInAccount._id}}">
+                            <label class="onoffswitch-label" for="subscribeSwitch">
+                                <span class="onoffswitch-inner subscribeSwitch-inner"></span>
+                                <span class="onoffswitch-switch subscribeSwitch-switch"></span>
+                            </label>
+                        </div>
+                        <div class="pagination uk-float-right" style="margin-right: 5px;">
+                            <ul class="button-group">
+                                <li class="pagination">
+                                    <a href="/tickets/print/{{data.ticket.uid}}" class="btn no-ajaxy" style="border-radius: 3px; margin-right: 5px;" onclick="window.open(this.href); return false;"
+                                        onkeypress="window.open(this.href); return false;">
+                                        <i class="material-icons">&#xE8AD;</i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    {{!-- <div class="onoffswitch subscribeSwitch uk-float-right" style="margin-right: 10px; position: relative; top: 18px;">
-                        <input type="checkbox" name="subscribeSwitch" class="onoffswitch-checkbox" id="subscribeSwitch" ng-model="subscribed" ng-change="SubscriberChange()"
-                            data-subscribe-userId="{{data.common.loggedInAccount._id}}">
-                        <label class="onoffswitch-label" for="subscribeSwitch">
-                            <span class="onoffswitch-inner subscribeSwitch-inner"></span>
-                            <span class="onoffswitch-switch subscribeSwitch-switch"></span>
-                        </label>
-                    </div> --}}
-                </div>
-
-                <div class="page-content-right full-height scrollable">
-                   
+                    <div id="test-editormd" class="page-content-right full-height scrollable">
+                        <textarea style="display:none;" name="aContent"></textarea>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="addTagModal" class="uk-modal" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-            <div class="uk-modal-dialog uk-clearfix">
-                <a class="uk-modal-close uk-close no-ajaxy"></a>
-                <h5 style="font-weight: 300;">{{ t 'shared.add-tags' }}</h5>
-                <div>
-                    <form id="addTagForm" action="#" method="POST" class="nomargin" ng-submit="submitAddTags($event)">
-                        <!--<label for="tags">Tag:</label>-->
-                        <div class="search-container">
-                            <!--<input type="text" name="tags" id="tags" />-->
-                            <select name="tags" id="tags" class="chosen-select" multiple data-placeholder=" " data-noresults="No Tags Found for ">
-                            </select>
-                            <button type="button" ng-click="showCreateTags($event)" style="border-radius: 0; -moz-border-radius: 0;">
-                                <i class="fa fa-plus" style="margin-right: 0;"></i>
-                            </button>
-                        </div>
+            <div id="addTagModal" class="uk-modal" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                <div class="uk-modal-dialog uk-clearfix">
+                    <a class="uk-modal-close uk-close no-ajaxy"></a>
+                    <h5 style="font-weight: 300;">{{ t 'shared.add-tags' }}</h5>
+                    <div>
+                        <form id="addTagForm" action="#" method="POST" class="nomargin" ng-submit="submitAddTags($event)">
+                            <!--<label for="tags">Tag:</label>-->
+                            <div class="search-container">
+                                <!--<input type="text" name="tags" id="tags" />-->
+                                <select name="tags" id="tags" class="chosen-select" multiple data-placeholder=" " data-noresults="No Tags Found for ">
+                                </select>
+                                <button type="button" ng-click="showCreateTags($event)" style="border-radius: 0; -moz-border-radius: 0;">
+                                    <i class="fa fa-plus" style="margin-right: 0;"></i>
+                                </button>
+                            </div>
 
-                        <div class="left" style="margin-top: 15px;">
-                            <button class="uk-button red nomargin" type="button" ng-click="clearTags($event)">{{ t 'shared.clear' }}</button>
-                        </div>
-                        <div class="right" style="margin-top: 15px;">
-                            <button class="uk-button uk-button-secondary cancel nomargin uk-modal-close" type="button">{{ t 'shared.cancel' }}</button>
-                            <button class="uk-button uk-button-success nomargin" type="submit">{{ t 'shared.save-tags' }}</button>
-                        </div>
-                    </form>
+                            <div class="left" style="margin-top: 15px;">
+                                <button class="uk-button red nomargin" type="button" ng-click="clearTags($event)">{{ t 'shared.clear' }}</button>
+                            </div>
+                            <div class="right" style="margin-top: 15px;">
+                                <button class="uk-button uk-button-secondary cancel nomargin uk-modal-close" type="button">{{ t 'shared.cancel' }}</button>
+                                <button class="uk-button uk-button-success nomargin" type="submit">{{ t 'shared.save-tags' }}</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="createTagModal" class="uk-modal" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-            <div class="uk-modal-dialog uk-clearfix">
-                <a class="uk-modal-close uk-close no-ajaxy"></a>
-                <h5 style="font-weight: 300;">{{ t 'shared.create-tag' }}</h5>
-                <div>
-                    <form id="createTagForm" action="#" method="POST" class="nomargin" ng-submit="submitAddNewTag($event)">
-                        <input type="text" id="tag" name="tag" class="md-input" />
+            <div id="createTagModal" class="uk-modal" aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                <div class="uk-modal-dialog uk-clearfix">
+                    <a class="uk-modal-close uk-close no-ajaxy"></a>
+                    <h5 style="font-weight: 300;">{{ t 'shared.create-tag' }}</h5>
+                    <div>
+                        <form id="createTagForm" action="#" method="POST" class="nomargin" ng-submit="submitAddNewTag($event)">
+                            <input type="text" id="tag" name="tag" class="md-input" />
 
-                        <div class="right" style="margin-top: 15px;">
-                            <button class="uk-button uk-button-success nomargin" type="submit">{{ t 'shared.create-tag' }}</button>
-                        </div>
-                    </form>
+                            <div class="right" style="margin-top: 15px;">
+                                <button class="uk-button uk-button-success nomargin" type="submit">{{ t 'shared.create-tag' }}</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        </form>
     </div>
 </div>
+<script type="text/javascript">
+    var testEditor;
 
+    $(function () {
+        testEditor = editormd("test-editormd", {
+            // 
+            width: "100%",
+            height: "100%",
+            syncScrolling: "single",
+            path: "/js/lib/"
+        });
+    });
+</script>
 {{#contentFor 'js-plugins'}} {{/contentFor}}

@@ -14,7 +14,7 @@
     "codacy": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --recursive -R spec && cat ./coverage/lcov.info | cross-env CODACY_PROJECT_TOKEN=65070aca43cc4fba96eaabd4033c9528 codacy-coverage && rm -rf ./coverage",
     "webpackwatch": "webpack --config webpack.config.js --watch",
     "webpackdev": "webpack --config webpack.config.js",
-    "webpackdist": "webpack --config webpack.config.dist.js",
+    "webpackdist": "webpack --config webpack.config.dist.js --display-modules",
     "snyk-protect": "snyk protect"
   },
   "dependencies": {
@@ -47,6 +47,7 @@
     "grunt-sass": "2.1.0",
     "grunt-shell": "2.1.0",
     "handlebars": "4.0.11",
+    "highlight.js": "8.7.0",
     "i18n-nodejs": "3.0.0",
     "i18next": "8.3.0",
     "i18next-express-middleware": "1.0.5",
@@ -66,7 +67,6 @@
     "mongoose": "5.0.6",
     "nconf": "0.10.0",
     "netmask": "1.0.6",
-    "ng-i18next": "0.5.2",
     "node-cache": "4.1.1",
     "node-sass": "4.7.2",
     "nodemailer": "4.4.2",

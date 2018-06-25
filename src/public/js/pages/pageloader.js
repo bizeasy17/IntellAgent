@@ -36,6 +36,9 @@ define('pages/pageloader', ['async'], function(async) {
             'pages/logs',
             'pages/tags',
             'pages/settingsTicketTypes',
+            // 2018-06-10 JH for creat article page start
+            // 'pages/articles',
+            // end
 
             'modules/ajaximgupload',
             'modules/attachmentUpload'
@@ -57,6 +60,9 @@ define('pages/pageloader', ['async'], function(async) {
                 function(done) { n.init(done); },
                 function(done) { o.init(done); },
                 function(done) { p.init(done); },
+                // 2018-06-10 JH for creat article page start
+                // function(done) { q.init(done); },
+                // end
                 function(done) {
                     q.init();
                     r.init();

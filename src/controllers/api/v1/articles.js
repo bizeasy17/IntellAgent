@@ -227,7 +227,7 @@ api_articles.search = function(req, res) {
         }
  */
 
-api_articles.create = function(req, res) {
+api_articles.post = function(req, res) {
     var response = {};
     response.success = true;
 
@@ -254,10 +254,10 @@ api_articles.create = function(req, res) {
     var d = new Date();
     article.dateGmt = d;
     article.modifiedDateGmt = d;
-    var marked = require('marked');
-    var aContent = article.content;
-    aContent = aContent.replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
-    article.aContent = marked(aContent);
+    // var marked = require('marked');
+    // var aContent = article.content;
+    // aContent = aContent.replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
+    // article.aContent = marked(aContent);
     article.history = [HistoryItem];
     article.subscribers = [req.user._id];
 
@@ -273,6 +273,8 @@ api_articles.create = function(req, res) {
 
         response.article = a;
         res.json(response);
+
+        // return next(null, { article: a });
     });
 };
 

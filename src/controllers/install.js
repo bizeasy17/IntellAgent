@@ -172,6 +172,18 @@ installController.install = function(req, res) {
                 return next(err);
             });
         },
+        // 2018-6-26 JH, add counter for articles. start
+        function (next) {
+            var Counter = new counters({
+                _id: "articles",
+                next: 1001
+            });
+
+            Counter.save(function (err) {
+                return next(err);
+            });
+        },
+        // end
         function(next) {
             var type = new ticketTypeSchema({
                 name: 'Issue'
@@ -186,6 +198,7 @@ installController.install = function(req, res) {
 
             type.save(function(err){return next(err); });
         },
+        
         function(next) {
             groupSchema.getGroupByName('Administrators', function(err, group) {
                 if (err) {

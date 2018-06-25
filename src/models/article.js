@@ -21,11 +21,12 @@ var COLLECTION = 'articles';
 /**
  * Group Schema
  * @module models/knowledgebase
- * @class Group
+ * @class Article
  * @requires {@link Tag}
  * @requires {@link User}
  *
  * @property {object} _id ```Required``` ```unique``` MongoDB Object ID
+ * @property {Number} uid ```Required``` ```unique``` Readable Article ID
  * @property {String} author ```Required``` ```unique``` author of Article
  * @property {Date} date created date of the article
  * @property {Date} dateGmt created date of article (GMT)
@@ -57,25 +58,28 @@ var articleSchema = mongoose.Schema({
     dateGmt: {type: Date, required: true },
     subject: { type: String, required: true, unique: true },
     content: { type: String, required: true},
+    contentHtml: { type: String, required: true },
     excerpt: { type: String, required: false},
-    tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'tags' }],
+    category: { type: String, required: true },
+    tags: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'tags' }],
     systems: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'systems' }],
     services: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'services' }],
     organizations: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'organizations' }],
-    isOriginal: { type: Boolean, default: true, required: true},
-    permalink: { type: String, required: false, unique: true },
+    isOriginal: { type: Boolean, default: true, required: false},
+    permalink: { type: String, required: false, unique: false },
+    postType: { type: String, required: false, default: 'page'},
     password: { type: String, required: false },
-    status: { type: String, required: true },
-    deleted: { type: Boolean, default: false, required: true, index: true },
-    commentStatus: { type: String, required: true, default: 'open' }, //open | closed
-    pingStatus: { type: String, required: true, default: 'closed' }, //open | closed
-    shortName: { type: String, required: true },
+    status: { type: String, required: true, default: 'publish' },
+    deleted: { type: Boolean, default: false, required: false, index: true },
+    commentStatus: { type: String, required: false, default: 'open' }, //open | closed
+    pingStatus: { type: String, required: false, default: 'closed' }, //open | closed
+    shortName: { type: String, required: false },
     modifiedDate: { type: Date, required: false, default: Date.now },
     modifiedDateGmt: { type: Date, required: false },
     comments: [commentSchema],
     commentCount: { type: Number },
     subscribers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'accounts', required: false }],
-    likers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'accounts', required: true }],
+    likers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'accounts', required: false }],
     likeCount: {type: Number, default: 0},
     history: [historySchema],
 });

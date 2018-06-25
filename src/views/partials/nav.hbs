@@ -103,24 +103,24 @@
             </li>
             <!-- 2018-5-17 JH: add article menu item start !-->
             {{#canUser data.user "articles:view"}}
-                <li class="hasSubMenu {{#is nav 'acticles-all'}}active{{/is}}"  data-nav-id="articles" data-nav-accordion data-nav-accordion-target="side-nav-accordion-articles">
-                    <a class="no-ajax" href="/articles/all">
+                <li class="hasSubMenu {{#is nav 'acticles'}}active{{/is}}"  data-nav-id="articles" data-nav-accordion data-nav-accordion-target="side-nav-accordion-articles">
+                    <a class="no-ajax" href="/articles">
                         <i class="material-icons">school</i>{{ t 'articles.title' }}</a>
                     <ul id="side-nav-accordion-articles" class="side-nav-sub side-nav-accordion">
-                        <li {{#is subnav 'articles-all'}} class='active' {{/is}}>
-                            <a href="/articles/all">
+                        <li {{#is subnav 'articles'}} class='active' {{/is}}>
+                            <a href="/articles">
                                 <i class="material-icons fa-sub-icon">format_list_bulleted</i>
                                 <span>{{ t 'articles.view-all' }}</span>
                             </a>
                         </li>
                         {{#canUser data.user "articles:create"}}
-                        <hr>
-                        <li {{#is subnav 'articles-create'}} class='active' {{/is}}>
-                            <a href="/articles/create">
-                                <i class="material-icons fa-sub-icon">create</i>
-                                <span>{{ t 'articles.create' }}</span>
-                            </a>
-                        </li>
+                            <hr>
+                            <li {{#is subnav 'articles-create'}} class='active' {{/is}}>
+                                <a href="/articles/create">
+                                    <i class="material-icons fa-sub-icon">create</i>
+                                    <span>{{ t 'articles.create' }}</span>
+                                </a>
+                            </li>
                         {{/canUser}}
                     </ul>
                 </li>
@@ -128,7 +128,9 @@
             <!-- end -->
 
             {{#canUser data.user "notices:view"}}
-                <li {{#is nav 'notices'}} class='active' {{/is}}><a href="/notices"><i class="fa fa-exclamation-triangle fa-large"></i>{{ t 'notices.title' }}</a></li>
+                <li {{#is nav 'notices'}} class='active' {{/is}}><a href="/notices"><i class="material-icons">warning</i>{{ t 'notices.title' }}</a>
+                </li>
+                {{!-- fa fa-exclamation-triangle fa-large"></i> --}}
             {{/canUser}}
 
             <hr>
@@ -180,8 +182,8 @@
     </ul>
     <!-- 2018-6-2 JH: add article menu item start !-->
     <ul id="side-nav-sub-articles" class="side-nav-sub side-nav-floating">
-        <li {{#is subnav 'articles-all'}} class='active' {{/is}}>
-            <a href="/articles/all">
+        <li {{#is subnav 'articles'}} class='active' {{/is}}>
+            <a href="/articles">
                 <i class="material-icons fa-sub-icon">format_list_bulleted</i>
                 <span>{{ t 'articles.view-all' }}</span>
             </a>

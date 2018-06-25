@@ -72,7 +72,13 @@ module.exports = function(grunt) {
                         'src/public/js/vendor/shepherd/css/shepherd-theme-arrows.css',
                         'src/public/js/vendor/shepherd/css/shepherd-theme-arrows-fix.css',
                         'src/public/js/vendor/shepherd/css/shepherd-theme-square.css',
-                        'src/public/js/vendor/shepherd/css/shepherd-theme-square-dark.css'
+                        'src/public/js/vendor/shepherd/css/shepherd-theme-square-dark.css',
+                        // 2018-6-16 JH markdown editor style start
+                        // 'src/public/js/vendor/angular/angular-markdown-editor.css',
+                        // 'src/public/js/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css'
+                        'src/public/js/vendor/codemirror/codemirror.min.css',
+                        'src/public/js/vendor/editormd/css/editormd.min.css'
+                        // end
                     ]
                 }
             },

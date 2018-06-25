@@ -53,7 +53,14 @@
     "assignee": "articles.assignee",
     "updated": "articles.updated",
     "title-create-new": "articles.title-create-new",
-    "view-all": "articles.view-all"
+    "view-all": "articles.view-all",
+    "group": "articles.group",
+    "publish": "articles.publish",
+    "service": "articles.service",
+    "system": "articles.system",
+    "allow-comments": "articles.allow-comments",
+    "allow-comments-desc": "articles.allow-comments-desc",
+    "save-draft": "articles.save-draft"
   },
   "notices": {
     "turquoise": "notices.turquoise"

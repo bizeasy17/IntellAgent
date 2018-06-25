@@ -208,9 +208,10 @@ articleController.getCreate = function (req, res) {
 
         content.data.users = _.sortBy(users, "fullname");
 
-        res.render('subviews/createArticle', content);
+        res.render('subviews/createArticle', {data: content.data, layout: '../layout/article'} );
     });
 };
+
 
 articleController.edit = function (req, res) {
     var user = req.user;

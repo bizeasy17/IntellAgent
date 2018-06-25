@@ -2,11 +2,20 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+
 module.exports = {
     //context: path.resolve(__dirname, 'public/js'),
     target: 'web',
     entry : {
-        vendor: ['jquery', 'jquery_custom', 'angular', 'angularRoute', 'angularCookies', 'angularSanitize', 'datatables', 'dt_responsive', 'dt_grouping', 'dt_ipaddress', 'modernizr', 'underscore'],
+        vendor: ['jquery', 'jquery_custom', 'angular', 'angularRoute', 'angularCookies', 'angularSanitize', 
+            'datatables', 'dt_responsive', 'dt_grouping', 'dt_ipaddress', 'modernizr', 'underscore'
+            // 2018-6-16 JH Markdown editor start
+            // ,'bootstrap', 'marked', 'angularMarked', 'bootstrapMarkdown', 'highlight',
+            // 'angularHighlight', 'angularMDEditor' 
+            // , 'marked', 'flowchart', 'jquery_flowchart', 'prettify', 'raphael', 'sequence_diagram', 'codemirror',
+            // 'katex', 'editormd'
+            // end
+        ],// 'md_editor', 'requirejs'],
         truRequire: 'expose-loader?truRequire!' + path.resolve(__dirname, './src/public/js/truRequire'),
         "trudesk.min": path.resolve(__dirname, 'src/public/js/app.js')
     },
@@ -15,6 +24,7 @@ module.exports = {
         path: path.resolve(__dirname, 'public/js'),
         publicPath: '/js/'
     },
+    node: { fs: 'empty' },
     resolve: {
         modules: [path.resolve(__dirname, 'src/public/js/')],
         alias: {
@@ -32,6 +42,7 @@ module.exports = {
             moment:         'vendor/moment/moment',
             uikit:          'vendor/uikit/js/uikit_combined.min',
             modernizr:      'vendor/modernizr/modernizr',
+           
             fastclick:      'vendor/fastclick/fastclick',
             placeholder:    'vendor/placeholder/placeholder',
             // nicescroll:     'vendor/nicescroll/nicescroll.min',
@@ -70,6 +81,25 @@ module.exports = {
             tether:         'vendor/tether/tether.min',
             shepherd:       'vendor/shepherd/js/shepherd.min',
             snackbar:       'plugins/snackbar'
+            
+            //2018-6-16 JH markdown editor start
+            // bootstrap:          'vendor/bootstrap/dist/js/bootstrap.min',
+            // marked:         'vendor/marked/lib/marked',            
+            // prettify:           'vendor/prettify/prettify.min',
+            // raphael:            'vendor/raphael/raphael.min',
+            // flowchart:          'vendor/flowchart/flowchart.min',
+            // jquery_flowchart:   'vendor/jquery/jquery.flowchart.min',
+            // sequence_diagram:   'vendor/sequence-diagram/sequence-diagram.min',
+            // codemirror:         'vendor/codemirror/codemirror.min',
+            // katex:              "vendor/katex/katex.min",
+            // editormd:       'vendor/editormd/editormd.min'
+            // angularMarked:      'vendor/angular/angular-marked.min',
+            // bootstrapMarkdown:  'vendor/bootstrap-markdown/js/bootstrap-markdown',
+            // highlight:          'vendor/highlight.js/lib/highlight',
+            // angularHighlight:   'vendor/angular/angular-highlightjs.min',
+            // angularMDEditor:    'vendor/angular/angular-markdown-editor',
+
+            //end
         }
     },
     externals: {
