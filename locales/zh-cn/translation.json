@@ -37,7 +37,8 @@
     "clear": "清除",
     "edit": "编辑",
     "remove": "删除",
-    "invalid-request": "无效请求"
+    "invalid-request": "无效请求",
+    "delete": "删除"
   },
   "main": {
     "please-wait": "请耐心等候...",
@@ -92,7 +93,7 @@
     "set-status-closed": "设置成关闭",
     "status": "状态",
     "subject": "标题",
-    "created": "已创建的",
+    "created": "创建日期",
     "requester": "请求人",
     "group": "组",
     "assignee": "分配人",
@@ -137,7 +138,8 @@
     "all": "所有",
     "select-assignee": "选择分配人",
     "prio": "优先级",
-    "add-tags": "添加标签"
+    "add-tags": "添加标签",
+    "title-edit-type": "编辑工单类型"
   },
   "messages": {
     "title": "对话",
@@ -239,6 +241,18 @@
     "members": "Members",
     "send-mail": "发邮件给",
     "create": "创建组"
+  },
+  "organizations": {
+    "title": "公司",
+    "short-name": "公司缩写",
+    "type": "公司类型",
+    "city": "城市",
+    "name": "公司名称",
+    "address1": "地址1",
+    "address2": "地址2",
+    "address3": "地址3",
+    "find-org": "搜索公司",
+    "created-smsg": "成功创建公司"
   },
   "reports": {
     "nav-title": "报表",

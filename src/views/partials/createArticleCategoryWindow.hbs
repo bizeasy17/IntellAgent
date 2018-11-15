@@ -1,0 +1,17 @@
+<div class="uk-modal" id="createArticleCategoryModal" ng-controller="settingsCtrl">
+    <div class="uk-modal-dialog">
+        <form class="uk-form-stacked" id="createArticleCategoryForm" ng-submit="createArticleCategory($event)">
+            <div class="">
+                <label for="category">{{ t 'shared.ticket-category-name' }}</label>
+                <input type="text" class="md-input" id="category" name="category"
+                       data-validation="length"
+                       data-validation-length="min3"
+                       data-validation-error-msg="Please enter a valid category name. Category name must contain at least 3 characters." />
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button type="button" class="md-btn md-btn-flat uk-modal-close">{{ t 'shared.close' }}</button>
+                <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" id="submitCreateArticleCategory" ng-click="createArticleCategory($event)">{{ t 'shared.create' }}</button>
+            </div>
+        </form>
+    </div>
+</div>

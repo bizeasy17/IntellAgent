@@ -2,7 +2,7 @@
     <div class="uk-width-3-10 message-list">
         <div class="page-title noshadow nopadding-right" style="padding-left: 20px;">
             <div class="page-title-border-right">
-                <p>{{ t 'settings.edit-ttype' }}</p>
+                <p>{{title}}</p>
             </div>
         </div>
 
@@ -17,9 +17,9 @@
                                 <input id="editType_Name" name="editType_Name" type="text" class="md-input" value="{{data.tickettype.name}}" />
                             </div>
 
-                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-success" ng-click="updateTicketType('{{data.tickettype._id}}')">{{ t 'shared.update' }}</button>
+                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-success" ng-click="updateTicketType('{{data.tickettype._id}}')">Update</button>
                             <hr />
-                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-danger uk-margin-medium-bottom" ng-click="showDeleteTicketType('{{data.tickettype._id}}', {{data.hasTickets}})">{{ t 'shared.delete' }}</button>
+                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-danger uk-margin-medium-bottom" ng-click="showDeleteTicketType('{{data.tickettype._id}}', {{data.hasTickets}})">Delete</button>
                         </div>
                     </div>
                 </div>

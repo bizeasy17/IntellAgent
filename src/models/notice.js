@@ -37,7 +37,9 @@ var noticeSchema = mongoose.Schema({
     message:    { type: String, required: true },
     active:     { type: Boolean, default: false, required: true },
     activeDate: { type: Date, default: Date.now },
-    alertWindow:{ type: Boolean, default: false }
+    alertWindow:{ type: Boolean, default: false },
+    // 2018-11-04 JH add created by
+    createdBy: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'accounts', default: 'sys' },
 });
 
 noticeSchema.statics.getNotices = function(callback) {

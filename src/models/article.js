@@ -60,11 +60,11 @@ var articleSchema = mongoose.Schema({
     content: { type: String, required: true},
     contentHtml: { type: String, required: true },
     excerpt: { type: String, required: false},
-    category: { type: String, required: true },
+    category: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'articlecategories' },
     tags: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'tags' }],
     systems: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'systems' }],
     services: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'services' }],
-    organizations: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'organizations' }],
+    organizations: { type: mongoose.Schema.Types.ObjectId, required: false, ref: 'organizations' },
     isOriginal: { type: Boolean, default: true, required: false},
     permalink: { type: String, required: false, unique: false },
     postType: { type: String, required: false, default: 'page'},
@@ -144,72 +144,17 @@ articleSchema.statics.softDelete = function (oId, callback) {
  *    status: 1
  * }
  */
-articleSchema.statics.getArticlesOfOrgWithObject = function (orgId, object, callback) {
-    if (_.isUndefined(orgId)) {
-        return callback("Invalid GroupId - ArticleSchema.GetTickets()", null);
-    }
-
-    // if (!_.isArray(orgId)) {
-    //     return callback("Invalid GroupId (Must be of type Array) - ArticleSchema.GetTicketsWithObject()", null);
-    // }
-
-    if (!_.isObject(object)) {
-        return callback("Invalid Object (Must be of type Object) - ArticleSchema.GetTicketsWithObject()", null);
-    }
+articleSchema.statics.getPublishedArticlesByCategory = function (orgId, categoryId, callback, limit) {
+    if (_.isUndefined(orgId)) return callback("Invalid Org Ids = articleSchema.GetPublishedArticlesByCategory()", null);
+    if (_.isUndefined(categoryId)) return callback("Invalid Category Type Id - articleSchema.GetPublishedArticlesByCategory()", null);
 
     var self = this;
 
-    var limit = (object.limit === null ? 10 : object.limit);
-    var page = (object.page === null ? 0 : object.page);
-    var _status = object.status;
+    var q = self.model(COLLECTION).find({ organizations: orgId, category: categoryId, deleted: false });
+    if (limit)
+        q.limit(1000);
 
-    // if (!_.isUndefined(object.filter) && !_.isUndefined(object.filter.groups)) {
-    //     var g = _.map(orgId, '_id').map(String);
-    //     orgId = _.intersection(object.filter.groups, g);
-    // }
-
-    var q = self.model(COLLECTION).find({ organization: orgId, deleted: false })
-        .populate('author liker subscribers comments.owner history.owner', 'username fullname email role image title')
-        .populate('systems services tags organizations')
-        .sort('-uid');
-
-    if (limit !== -1) {
-        q.skip(page * limit).limit(limit);
-    }
-
-    if (!_.isUndefined(object.filter) && !_.isUndefined(object.filter.uid)) {
-        object.filter.uid = parseInt(object.filter.uid);
-        if (!_.isNaN(object.filter.uid))
-            q.or([{ uid: object.filter.uid }]);
-    }
-
-    if (!_.isUndefined(_status) && !_.isNull(_status) && _.isArray(_status) && _.size(_status) > 0) {
-        q.where({ status: { $in: _status } });
-    }
-
-    if (!_.isUndefined(object.filter) && !_.isUndefined(object.filter.tags)) {
-        q.where({ tags: { $in: object.filter.tags } });
-    }
-
-    if (!_.isUndefined(object.filter) && !_.isUndefined(object.filter.author)) {
-        q.where({ author: { $in: object.filter.author } });
-    }
-
-    if (!_.isUndefined(object.filter) && !_.isUndefined(object.filter.subject)) q.or([{ subject: new RegExp(object.filter.subject, "i") }]);
-    // if (!_.isUndefined(object.filter) && !_.isUndefined(object.filter.issue)) q.or([{ issue: new RegExp(object.filter.issue, "i") }]);
-
-    if (!_.isUndefined(object.filter) && !_.isUndefined(object.filter.date)) {
-        var startDate = new Date(2000, 0, 1, 0, 0, 1);
-        var endDate = new Date();
-        if (!_.isUndefined(object.filter.date.start))
-            startDate = new Date(object.filter.date.start);
-        if (!_.isUndefined(object.filter.date.end))
-            endDate = new Date(object.filter.date.end);
-
-        q.where({ date: { $gte: startDate, $lte: endDate } });
-    }
-
-    return q.exec(callback);
+    return q.lean().exec(callback);
 };
 
 articleSchema.statics.getCountWithObject = function (userId, object, callback) {

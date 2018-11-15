@@ -2,24 +2,24 @@
     <div class="uk-width-3-10 message-list">
         <div class="page-title noshadow nopadding-right" style="padding-left: 20px;">
             <div class="page-title-border-right">
-                <p>{{ t 'settings.edit-ttype' }}</p>
+                <p>{{ t 'settings.edit-acategory' }}</p>
             </div>
         </div>
 
         <div class="page-content-left full-height">
             <div class="tag-info-wrap uk-clearfix" style="padding: 15px 0 0 15px;">
-                <h4>{{ t 'settings.tag-info' }}</h4>
+                <h4>{{ t 'settings.article-category' }}</h4>
                 <div class="uk-width-1-1 padding-right-15">
                     <div class="tru-card" style="background: #fff;min-height: 150px; margin: 0; padding: 15px;">
                         <div class="scrollable">
                             <div class="uk-margin-small-top uk-margin-medium-bottom">
-                                <label for="editType_Name">{{ t 'settings.tag-name' }}</label>
-                                <input id="editType_Name" name="editType_Name" type="text" class="md-input" value="{{data.tickettype.name}}" />
+                                <label for="editCategory_Name">{{ t 'settings.category-name' }}</label>
+                                <input id="editCategory_Name" name="editCategory_Name" type="text" class="md-input" value="{{data.category.name}}" />
                             </div>
 
-                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-success" ng-click="updateTicketType('{{data.tickettype._id}}')">{{ t 'shared.update' }}</button>
+                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-success" ng-click="updateArticleCategory('{{data.category._id}}')">{{ t 'share.update' }}</button>
                             <hr />
-                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-danger uk-margin-medium-bottom" ng-click="showDeleteTicketType('{{data.tickettype._id}}', {{data.hasTickets}})">{{ t 'shared.delete' }}</button>
+                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-danger uk-margin-medium-bottom" ng-click="showDeleteArticleCategory('{{data.category._id}}', {{data.hasArticles}})">{{ t 'shared.delete' }}</button>
                         </div>
                     </div>
                 </div>
@@ -42,19 +42,19 @@
                                         <table class="uk-table">
                                             <thead>
                                             <tr>
-                                                <th class="uk-text-nowrap">{{ t 'dashboard.ticket' }}</th>
-                                                <th class="uk-text-nowrap">{{ t 'tickets.status' }}</th>
-                                                <th class="uk-text-nowrap">{{ t 'tickets.subject' }}</th>
-                                                <th class="uk-text-nowrap uk-text-right">{{ t 'tickets.created' }}</th>
+                                                <th class="uk-text-nowrap">{{ t 'articles.article-num' }}</th>
+                                                <th class="uk-text-nowrap">{{ t 'articles.status' }}</th>
+                                                <th class="uk-text-nowrap">{{ t 'articles.subject' }}</th>
+                                                <th class="uk-text-nowrap uk-text-right">{{ t 'articles.created-date' }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
 
-                                            {{#each data.tickets}}
+                                            {{#each data.articles}}
                                                 <tr class="uk-table-middle">
-                                                    <td class="uk-width-1-10 uk-text-nowrap"><a href="/tickets/{{uid}}">T#{{uid}}</a></td>
+                                                    <td class="uk-width-1-10 uk-text-nowrap"><a href="/articles/{{uid}}">A#{{uid}}</a></td>
                                                     <td class="uk-width-1-10 uk-text-nowrap">
-                                                        <span class="uk-badge ticket-status-{{lowercase (statusName status)}} uk-width-1-1">{{statusName status}}</span></td>
+                                                        <span class="uk-badge article-status-{{status}} uk-width-1-1">{{status}}</span></td>
                                                     <td class="uk-width-6-10">
                                                         {{subject}}
                                                     </td>
@@ -76,7 +76,7 @@
 
 </div>
 
-{{> deleteTicketTypeWindow}}
+{{> deleteArticleCategoryWindow}}
 
 {{#contentFor 'js-plugins'}}
 

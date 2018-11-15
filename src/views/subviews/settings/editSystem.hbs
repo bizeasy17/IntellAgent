@@ -1,25 +1,53 @@
-<div class="uk-grid uk-grid-collapse" ng-controller="settingsCtrl">
+<div class="uk-grid uk-grid-collapse" ng-controller="settingsCtrl" ng-init="editSystem_Status={{data.system.status}};init();">
     <div class="uk-width-3-10 message-list">
         <div class="page-title noshadow nopadding-right" style="padding-left: 20px;">
             <div class="page-title-border-right">
-                <p>{{ t 'settings.edit-ttype' }}</p>
+                <p>{{ t 'systems.title' }}</p>
             </div>
         </div>
 
         <div class="page-content-left full-height">
             <div class="tag-info-wrap uk-clearfix" style="padding: 15px 0 0 15px;">
-                <h4>{{ t 'settings.tag-info' }}</h4>
+                <h4>{{ t 'systems.system-info' }}</h4>
                 <div class="uk-width-1-1 padding-right-15">
                     <div class="tru-card" style="background: #fff;min-height: 150px; margin: 0; padding: 15px;">
                         <div class="scrollable">
                             <div class="uk-margin-small-top uk-margin-medium-bottom">
-                                <label for="editType_Name">{{ t 'settings.tag-name' }}</label>
-                                <input id="editType_Name" name="editType_Name" type="text" class="md-input" value="{{data.tickettype.name}}" />
+                                <label for="editSystem_Name">{{ t 'systems.name' }}</label>
+                                <input id="editSystem_Name" name="editSystem_Name"   disabled type="text" class="md-input" value="{{data.system.name}}" />
                             </div>
 
-                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-success" ng-click="updateTicketType('{{data.tickettype._id}}')">{{ t 'shared.update' }}</button>
+                            <div class="uk-margin-small-top uk-margin-medium-bottom">
+                                <label for="editSystem_Type">{{ t 'systems.type' }}</label>
+                                <input id="editSystem_Type" name="editSystem_Type" type="text" class="md-input" value="{{data.system.type}}" />
+                            </div>
+
+                            <div class="uk-margin-small-top uk-margin-medium-bottom">
+                                <label for="editSystem_Desc">{{ t 'systems.desc' }}</label>
+                                <input id="editSystem_Desc" name="editSystem_Desc" type="text" class="md-input" value="{{data.system.desc}}" />
+                            </div>
+
+                            <div class="uk-margin-small-top uk-margin-medium-bottom">
+                                <div class="nopadding no-hover-shadow" style="min-height: 60px;">
+                                    <div class="left">
+                                        <label for="editSystem_Status">{{ t 'systems.status' }}</label>
+                                    </div>
+                                    <div class="right" style="position:relative;">
+                                        <!-- Switch -->
+                                        <div class="md-switch md-green" style="margin: 20px 0 0 0;">
+                                            <label>
+                                                {{ t 'settings.online' }}
+                                                <input type="checkbox" id="editSystem_Status" name="editSystem_Status" ng-model="editSystem_Status">
+                                                <span class="lever"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-success" ng-click="updateSystem('{{data.system._id}}')">{{ t 'shared.update' }}</button>
                             <hr />
-                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-danger uk-margin-medium-bottom" ng-click="showDeleteTicketType('{{data.tickettype._id}}', {{data.hasTickets}})">{{ t 'shared.delete' }}</button>
+                            <button type="button" class="md-btn md-btn-block md-btn-wave-light md-btn-danger uk-margin-medium-bottom" ng-click="showDeleteSystem('{{data.system._id}}', {{data.hasTickets}})">{{ t 'shared.delete' }}</button>
                         </div>
                     </div>
                 </div>
@@ -42,7 +70,7 @@
                                         <table class="uk-table">
                                             <thead>
                                             <tr>
-                                                <th class="uk-text-nowrap">{{ t 'dashboard.ticket' }}</th>
+                                                <th class="uk-text-nowrap">{{ t 'tickets.title' }}</th>
                                                 <th class="uk-text-nowrap">{{ t 'tickets.status' }}</th>
                                                 <th class="uk-text-nowrap">{{ t 'tickets.subject' }}</th>
                                                 <th class="uk-text-nowrap uk-text-right">{{ t 'tickets.created' }}</th>
@@ -56,7 +84,7 @@
                                                     <td class="uk-width-1-10 uk-text-nowrap">
                                                         <span class="uk-badge ticket-status-{{lowercase (statusName status)}} uk-width-1-1">{{statusName status}}</span></td>
                                                     <td class="uk-width-6-10">
-                                                        {{subject}}
+                                                        {{name}}
                                                     </td>
                                                     <td class="uk-width-2-10 uk-text-right uk-text-muted uk-text-small">
                                                         {{{formatDate date "MM.DD.YYYY"}}}

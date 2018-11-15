@@ -36,8 +36,15 @@ define('pages/pageloader', ['async'], function(async) {
             'pages/logs',
             'pages/tags',
             'pages/settingsTicketTypes',
-            // 2018-06-10 JH for creat article page start
-            // 'pages/articles',
+            
+            // 2018-07-01 JH for creat articles category page start
+            'pages/settingsArticleCategories',
+            // end
+
+            // 2018-09-02 JH for creat system, services, SLA page start
+            'pages/settingsSystems',
+            'pages/settingsServices',
+            'pages/settingsSLA',
             // end
 
             'modules/ajaximgupload',

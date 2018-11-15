@@ -257,6 +257,8 @@ api_tickets.create = function(req, res) {
     ticket.issue = marked(tIssue);
     ticket.history = [HistoryItem];
     ticket.subscribers = [req.user._id];
+    ticket.org = req.user.organization;//2018-10-27 JH add organization for each tickets
+    // ticket.
 
     ticket.save(function(err, t) {
         if (err) {

@@ -733,33 +733,40 @@ api_articles.getTypes = function(req, res) {
 };
 
 /**
- * @api {post} /api/v1/tickets/types/create Create Ticket Type
- * @apiName createType
- * @apiDescription Creates a new ticket type
+ * @api {post} /api/v1/articles/categories/create Create Article Category
+ * @apiName createCategory
+ * @apiDescription Creates a new aarticle category
  * @apiVersion 0.1.10
- * @apiGroup Ticket
+ * @apiGroup Article
  * @apiHeader {string} accesstoken The access token for the logged in user
  *
  * @apiExample Example usage:
  * curl -X POST
  *      -H "accesstoken: {accesstoken}"
- *      -d "{\"name\": \"TypeName\"}"
- *      -l http://localhost/api/v1/tickets/types/create
+ *      -d "{\"name\": \"CategoryName\"}"
+ *      -l http://localhost/api/v1/articles/categories/create
  *
  * @apiSuccess {boolean} success Successfully?
- * @apiSuccess {Object} tickettype Returns the newly create ticket type
+ * @apiSuccess {Object} articlecategories Returns the newly create article category
  *
+ * 2018-7-1 JH modified
  */
-api_articles.createType = function(req, res) {
-    var typeName = req.body.name;
-    if (_.isUndefined(typeName) || typeName.length < 3) return res.status(400).json({success: false, error: 'Invalid Type Name!'});
+api_articles.createCategory = function(req, res) {
+    var categoryName = req.body.name;
+    if (_.isUndefined(categoryName) || categoryName.length < 3) return res.status(400).json({success: false, error: 'Invalid Category Name!'});
 
-    var ticketTypeSchema = require('../../../models/tickettype');
-    ticketTypeSchema.create({name: typeName}, function(err, ticketType) {
-        if (err) return res.status(400).json({success: false, error: err.message});
+    var userModel = require('../../../models/user');
+    
+    userModel.getUser(req.user._id, function (err, user) {
+        if (err) return res.status(400).json({ success: false, error: err.message });
 
-        return res.json({success: true, tickettype: ticketType});
-    })
+        var articleCategorySchema = require('../../../models/articlecategory');
+        articleCategorySchema.create({ name: categoryName, createdBy: req.user._id, org: user.organization },
+            function (err, category) {
+                if (err) return res.status(400).json({ success: false, error: err.message });
+                return res.json({ success: true, category: category });
+            })
+    });
 };
 
 /**
@@ -775,21 +782,22 @@ api_articles.createType = function(req, res) {
  *
  * @apiSuccess {boolean} success Successfully?
  * @apiSuccess {object} tag Updated Ticket Type
+ * 2018-7-1 JH modified
  *
  */
-api_articles.updateType = function(req, res) {
+api_articles.updateCategory = function(req, res) {
     var id = req.params.id;
     var data = req.body;
     if (_.isUndefined(id) || _.isNull(id) || _.isNull(data) || _.isUndefined(data))
         return res.status(400).json({success: false, error: 'Invalid Put Data'});
 
-    var ticketTypeSchema = require('../../../models/tickettype');
-    ticketTypeSchema.getType(id, function(err, type) {
+    var articleCatSchema = require('../../../models/articlecategory');
+    articleCatSchema.getCategory(id, function(err, category) {
         if (err) return res.status(400).json({success: false, error: err.message});
 
-        type.name = data.name;
+        category.name = data.name;
 
-        type.save(function(err, t) {
+        category.save(function(err, t) {
             if (err) return res.status(400).json({success: false, error: err.message});
 
             return res.json({success: true, type: t});
@@ -798,7 +806,7 @@ api_articles.updateType = function(req, res) {
 };
 
 /**
- * @api {delete} /api/v1/tickets/types/:id Delete Ticket Type
+ * @api {delete} /api/v1/tickets/types/:id Delete Atrticle Category
  * @apiName deleteType
  * @apiDescription Deletes given ticket type
  * @apiVersion 0.1.10
@@ -813,45 +821,31 @@ api_articles.updateType = function(req, res) {
  *
  * @apiSuccess {boolean} success Successfully?
  * @apiSuccess {number} updated Count of Tickets updated to new type
+ * 2018-7-27 JH modified
  *
  */
-api_articles.deleteType = function(req, res) {
-    var newTypeId = req.body.newTypeId;
-    var delTypeId = req.params.id;
+api_articles.deleteCategory = function(req, res) {
+    // var hasArticles = req.body.hasArticles; // true or false
+    // var newCategoryId = req.body.newCatId; // 
+    var delCategoryId = req.params.id; // must defined
 
-    if (_.isUndefined(newTypeId) || _.isUndefined(delTypeId))
+    if (_.isUndefined(delCategoryId))
         return res.status(400).json({success: false, error: 'Invalid POST data.'});
 
-    var ticketTypeSchema = require('../../../models/tickettype');
-    var ticketSchema = require('../../../models/ticket');
-    var settingsSchema = require('../../../models/setting');
-    async.waterfall([
-        function(next) {
-            settingsSchema.getSettingByName('mailer:check:ticketype', function(err, setting) {
-                if (err) return next(err);
-                if (setting.value.toString().toLowerCase() === delTypeId.toString().toLowerCase())
-                    return next({custom: true, message: 'Type currently "Default Ticket Type" for mailer check.'});
+    var articleCategorySchema = require('../../../models/articlecategory');
+    // var articleSchema = require('../../../models/article');
+    // var settingsSchema = require('../../../models/setting');
+    
 
-                return next(null);
-            });
-        },
-        function(next) {
-            ticketSchema.updateType(delTypeId, newTypeId, next);
-        },
-        function(result, next) {
-            ticketTypeSchema.getType(delTypeId, function(err, type) {
-                if (err) return next(err);
+    articleCategorySchema.getCategory(delCategoryId, function(err, category) {
+        if (err) return res.status(400).json({ success: false, error: err });
 
-                type.remove(function(err) {
-                    if (err) return next(err);
-                    return next(null, result);
-                });
-            });
-        }
-    ], function(err, result) {
-        if (err) return res.status(400).json({success: false, error: err});
-        return res.json({success: true, updated: result.nModified});
+        category.remove(function(err, result) {
+            if(err) return res.status(400).json({ success: false, error: err });
+            return res.json({ success: true, updated: result.nModified });
+        });
     });
+        
 };
 
 

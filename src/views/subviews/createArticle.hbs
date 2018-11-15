@@ -39,15 +39,25 @@
                                         </select>
                                     </div>
                                     <div class="uk-width-1-1 nopadding">
-                                        <span>{{ t 'settings.tags-group' }}
-                                            <div id="editTags" style="display: inline;">-
-                                                <a href="#" style="font-size: 11px;" class="no-ajaxy" ng-click="showTags($event)" data-uk-modal="{bgclose:false}">{{ t 'shared.edit-tag' }}</a>
-                                            </div>                                   
-                                        </span>
-                                        <div class="tag-list uk-clearfix">
+                                        <div class="uk-width-1-1 nopadding uk-clearfix">
+                                            <span>{{ t 'articles.service' }}</span>
+                                            <select name="aService" id="aCategory" ng-model="selected_service" ng-options="c.name for c in categories track by c._id">
+                                            </select>
+                                        </div>
+                                        <div class="uk-width-1-1 nopadding">
+                                            <span>{{ t 'articles.system' }}</span>
+                                            <select name="aSystem" id="aSystem" ng-model="selected_system" ng-options="c.name for c in categories track by c._id">
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="uk-width-1-1 nopadding">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ticket-details-wrap uk-clearfix">
+                                <div class="uk-width-1-1 padding-left-right-15">
+                                    <div class="tru-card ticket-details uk-clearfix" style="background: #fff;">
                                         <div class="left">
                                             <h6 style="margin: 15px 0 0 0; font-size: 16px; line-height: 14px;">{{ t 'articles.allow-comments' }}
                                             </h6>
@@ -68,18 +78,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ticket-details-wrap uk-clearfix">
-                                <div class="uk-width-1-1 padding-left-right-15">
+                            <div class="ticket-details-wrap uk-clearfix">                             
+                                <div class="uk-width-1-1 padding-left-right-15">     
                                     <div class="tru-card ticket-details uk-clearfix" style="background: #fff;">
-                                        <div class="uk-width-1-1 nopadding uk-clearfix">
-                                            <span>{{ t 'articles.service' }}</span>
-                                            <select name="aService" id="aCategory" ng-model="selected_service" ng-options="c.name for c in categories track by c._id">
-                                            </select>
-                                        </div>
                                         <div class="uk-width-1-1 nopadding">
-                                            <span>{{ t 'articles.system' }}</span>
-                                            <select name="aSystem" id="aSystem" ng-model="selected_system" ng-options="c.name for c in categories track by c._id">
-                                            </select>
+                                            <span>{{ t 'settings.tags-group' }}
+                                                <div id="editTags" style="display: inline;">-
+                                                    <a href="#" style="font-size: 11px;" class="no-ajaxy" ng-click="showTags($event)" data-uk-modal="{bgclose:false}">{{ t 'shared.edit-tag' }}</a>
+                                                </div>
+                                            </span>
+                                            <div class="tag-list uk-clearfix">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -89,19 +98,18 @@
                 </div>
                 <div class="page-message nopadding" style="margin-left: 360px;">
                     <div class="page-title-right noshadow">
-                        <div class="uk-float-left">
+                        <div class="uk-float-left" style="width:75%">
                             {{!-- <label for="aSubject">{{ t 'articles.subject' }}</label> --}}
-                            <input type="text" class="md-input" id="aSubject" name="aSubject" data-validation="length" data-validation-length="min5"
+                            <input type="text" class="md-input" style="width:100%" id="aSubject" name="aSubject" data-validation="length" data-validation-length="min5"
                                 data-validation-error-msg="Please enter a valid name. Name must be at be 5 characters." />
                         </div>
-                        <div class="uk-clearfix page-top-comments uk-float-right">
+                        <div class="page-top-comments uk-float-right">
                             <!--<a href="#" class="btn no-ajaxy" data-ticketId="{{data.ticket._id}}" data-action="scrolltobottom" data-targetScroll=".page-content-right" data-preventDefault="true">-->
                             <!--{{data.ticket.commentCount}} Comment{{#unless_eq data.ticket.commentCount compare=1}}s{{/unless_eq}}-->
                             <!--</a>-->
-                            <button type="submit" class="uk-margin-left uk-float-right md-btn md-btn-success md-btn-wave-light" id="createArticleSubmit"
-                                ng-click="publishArticle($event);">{{ t 'articles.publish' }}</button>
+                            <button type="submit" class="uk-button uk-button-success" id="createArticleSubmit" ng-click="publishArticle($event);">{{ t 'articles.publish' }}</button>
                         </div>
-                        <div class="page-top-comments uk-float-right">
+                        {{!-- <div class="page-top-comments uk-float-right">
                             <!--<a href="#" class="btn no-ajaxy" data-ticketId="{{data.ticket._id}}" data-action="scrolltobottom" data-targetScroll=".page-content-right" data-preventDefault="true">-->
                             <!--{{data.ticket.commentCount}} Comment{{#unless_eq data.ticket.commentCount compare=1}}s{{/unless_eq}}-->
                             <!--</a>-->
@@ -109,16 +117,16 @@
                                 ng-click="saveDraftArticle($event)">
                                 {{ t 'articles.save-draft' }}
                             </a>
-                        </div>
+                        </div> --}}
                        
-                        <div class="onoffswitch subscribeSwitch uk-float-right" style="margin-right: 10px; position: relative; top: 18px;">
+                        {{!-- <div class="onoffswitch subscribeSwitch uk-float-right" style="margin-right: 10px; position: relative; top: 18px;">
                             <input type="checkbox" name="subscribeSwitch" class="onoffswitch-checkbox" id="subscribeSwitch" ng-model="subscribed" ng-change="SubscriberChange()"
                                 data-subscribe-userId="{{data.common.loggedInAccount._id}}">
                             <label class="onoffswitch-label" for="subscribeSwitch">
                                 <span class="onoffswitch-inner subscribeSwitch-inner"></span>
                                 <span class="onoffswitch-switch subscribeSwitch-switch"></span>
                             </label>
-                        </div>
+                        </div> --}}
                         <div class="pagination uk-float-right" style="margin-right: 5px;">
                             <ul class="button-group">
                                 <li class="pagination">

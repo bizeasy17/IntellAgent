@@ -21,7 +21,11 @@
     "clear": "tickets.clear",
     "loading": "tickets.loading",
     "upload-profile-image": "tickets.upload-profile-image",
-    "upload-profile-image-desc": "tickets.upload-profile-image-desc"
+    "upload-profile-image-desc": "tickets.upload-profile-image-desc",
+    "title-edit-type": "tickets.title-edit-type",
+    "warning-change-type2": "tickets.warning-change-type2",
+    "warning-change-type3": "tickets.warning-change-type3",
+    "id": "tickets.id"
   },
   "setting": {
     "tags-group": "setting.tags-group"
@@ -36,7 +40,12 @@
     "edit-tag": "shared.edit-tag",
     "add-tags": "shared.add-tags",
     "save-tags": "shared.save-tags",
-    "create-tag": "shared.create-tag"
+    "create-tag": "shared.create-tag",
+    "ticket-category-name": "shared.ticket-category-name",
+    "delete": "shared.delete",
+    "name": "shared.name",
+    "description": "shared.description",
+    "status": "shared.status"
   },
   "articles": {
     "title": "articles.title",
@@ -60,10 +69,17 @@
     "system": "articles.system",
     "allow-comments": "articles.allow-comments",
     "allow-comments-desc": "articles.allow-comments-desc",
-    "save-draft": "articles.save-draft"
+    "save-draft": "articles.save-draft",
+    "article-num": "articles.article-num",
+    "created-date": "articles.created-date",
+    "message-change-category": "articles.message-change-category",
+    "warning-change-cat1": "articles.warning-change-cat1",
+    "warning-change-cat2": "articles.warning-change-cat2",
+    "warning-change-cat3": "articles.warning-change-cat3"
   },
   "notices": {
-    "turquoise": "notices.turquoise"
+    "turquoise": "notices.turquoise",
+    "subject": "notices.subject"
   },
   "organizations": {
     "title": "organizations.title",
@@ -83,5 +99,39 @@
   },
   "article": {
     "author": "article.author"
+  },
+  "tikets": {
+    "status": "tikets.status"
+  },
+  "settings": {
+    "title-edit-tag": "settings.title-edit-tag",
+    "articlecategory": "settings.articlecategory",
+    "systems": "settings.systems",
+    "services": "settings.services",
+    "sla": "settings.sla",
+    "title-article-category": "settings.title-article-category",
+    "article-category": "settings.article-category",
+    "edit-ttype": "settings.edit-ttype",
+    "edit-acategory": "settings.edit-acategory",
+    "category-name": "settings.category-name",
+    "online": "settings.online"
+  },
+  "share": {
+    "update": "share.update"
+  },
+  "systems": {
+    "title": "systems.title",
+    "name": "systems.name",
+    "system-info": "systems.system-info",
+    "type": "systems.type",
+    "desc": "systems.desc",
+    "status": "systems.status"
+  },
+  "services": {
+    "title": "services.title",
+    "id": "services.id",
+    "status": "services.status",
+    "subject": "services.subject",
+    "created": "services.created"
   }
 }

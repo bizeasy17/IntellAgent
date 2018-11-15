@@ -56,8 +56,10 @@ var userSchema = mongoose.Schema({
         lastOnline: Date,
         title:      String,
         image:      String,
-        organization: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'organizations'},
-        //2018-5-25, JH: User organization
+        organization: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'organizations' },//2018-5-25, JH: User organization
+        //2018-11-04, JH: User organization
+        usertype:   { type: String, required: true, default: 'demo'},
+        createdBy:  { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'accounts', default: 'sys'},
 
         resetPassHash: { type: String, select: false},
         resetPassExpire: { type: Date, select: false},
@@ -345,6 +347,27 @@ userSchema.statics.getUsersByOrganization = function (organization, callback) {
 
     return this.model(COLLECTION).find({ organization: organization }, callback);
 };
+
+//2018-11-04, JH: User organization
+/**
+ * Gets tickets by given Requester User Id
+ * @memberof User
+ * @static
+ * @method getUsersByCreator
+ *
+ * @param {Object} userId MongoDb _id of user.
+ * @param {QueryCallback} callback MongoDB Query Callback
+ */
+userSchema.statics.getUsersByCreator = function (userId, callback) {
+    if (_.isUndefined(userId)) return callback("Invalid Requester Id - UserSchema.getUsersByCreator()", null);
+
+    var self = this;
+
+    var q = self.model(COLLECTION).find({ creator: userId, deleted: false });
+
+    return q.exec(callback);
+};
+
 
 /**
  * Gets user via reset password hash

@@ -43,7 +43,7 @@ var articleController = {};
 articleController.content = {};
 
 /**
- * Get Ticket View based on article active articles
+ * Get Ticket View based on active articles
  * @param {object} req Express Request
  * @param {object} res Express Response
  * @param {function} next Sends the ```req.processor``` object to the processor
@@ -56,7 +56,7 @@ articleController.getSelf = function (req, res, next) {
     var processor = {};
     processor.title = "Articles";
     processor.nav = 'articles';
-    processor.subnav = 'articles-self';
+    processor.subnav = 'articles';
     processor.renderpage = 'articles';
     processor.pagetype = 'active';
     processor.object = {
@@ -77,14 +77,42 @@ articleController.getSelf = function (req, res, next) {
  * @param {function} next Sends the ```req.processor``` object to the processor
  * @see Articles
  */
-articleController.getAll = function (req, res, next) {
+articleController.getPublished = function (req, res, next) {
     var page = req.params.page;
     if (_.isUndefined(page)) page = 0;
 
     var processor = {};
     processor.title = "Articles";
     processor.nav = 'articles';
-    processor.subnav = 'articles-all';
+    processor.subnav = 'articles';
+    processor.renderpage = 'articles';
+    processor.pagetype = 'active';
+    processor.object = {
+        limit: 50,
+        page: page,
+        status: [0, 1, 2]
+    };
+
+    req.processor = processor;
+
+    return next();
+};
+
+/**
+ * Get T View based on article all articles
+ * @param {object} req Express Request
+ * @param {object} res Express Response
+ * @param {function} next Sends the ```req.processor``` object to the processor
+ * @see Articles
+ */
+articleController.getDraft = function (req, res, next) {
+    var page = req.params.page;
+    if (_.isUndefined(page)) page = 0;
+
+    var processor = {};
+    processor.title = "Articles";
+    processor.nav = 'articles';
+    processor.subnav = 'articles';
     processor.renderpage = 'articles';
     processor.pagetype = 'active';
     processor.object = {
@@ -197,6 +225,7 @@ articleController.getCreate = function (req, res) {
     var content = {};
     content.title = "Articles";
     content.nav = 'articles';
+    content.subnav = 'articles-create';
 
     content.data = {};
     content.data.user = req.user;

@@ -167,6 +167,92 @@ accountsController.get = function(req, res) {
     });
 };
 
+// 2018-11-04 JH get all user created records count
+accountsController.getAllRecordsCount = function (req, res) {
+    var user = req.user;
+    if (_.isUndefined(user) || !permissions.canThis(user.role, 'accounts:view')) {
+        return res.redirect('/');
+    }
+
+    // 2018-5-5 JH workaround for i18next not work in handlebar each loop. START
+    hbs.registerHelper('i18n', function (options) {
+        return req.t(options).toString();
+    });
+    // END
+
+    var content = {};
+    content.data = {};
+
+    async.parallel([
+        function (cb) {
+            var ticketSchema = require('../models/ticket');
+            ticketSchema.getTicketsByRequester(user._id, function (err, tickets) {
+                if (err) return cb(err);
+
+                content.data.ticketsCount = _.size(tickets);
+
+                cb();
+            });
+        },
+        function (cb) {
+            var userSchema = require('../models/user');
+            userSchema.getUsersByCreator(user._id, function (err, users) {
+                if (err) return cb(err);
+
+                content.data.usersCount = _.size(users);
+
+                cb();
+            });
+        },
+        function (cb) {
+            var groupSchema = require('../models/group');
+            groupSchema.getGroupsByCreator(user._id, function (err, users) {
+                if (err) return cb(err);
+
+                content.data.groupsCount = _.size(users);
+
+                cb();
+            });
+        },
+        function (cb) {
+            var orgSchema = require('../models/organization');
+            orgSchema.getOrgsByCreator(user._id, function (err, orgs) {
+                if (err) return cb(err);
+
+                content.data.orgsCount = _.size(orgs);
+
+                cb();
+            });
+        },
+        function (cb) {
+            var tagSchema = require('../models/tag');
+            tagSchema.getTagsByCreator(user._id, function (err, tags) {
+                if (err) return cb(err);
+
+                content.data.tagsCount = _.size(tags);
+
+                cb();
+            });
+        },
+        function (cb) {
+            var ticketTypeSchema = require('../models/tickettype');
+            ticketTypeSchema.getTicketTypesByCreator(user._id, function (err, types) {
+                if (err) return cb(err);
+
+                content.data.ticketTypesCount = _.size(types);
+
+                cb();
+            });
+        },
+    ], function () {
+        return res.json({
+            success: true,
+            error: null,
+            content: content
+        });
+    });
+};
+
 accountsController.profile = function(req, res) {
     var user = req.user;
     var backUrl = req.header('Referer') || '/';

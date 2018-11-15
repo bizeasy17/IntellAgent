@@ -33,6 +33,9 @@ var async = require('async'),
     // 2018-5-16 JH: Add Article api for controller, START
     api_organizations_v1 = require('./api/v1/organizations'),
     //END
+    // 2018-9-2 JH: Add System api for controller, START
+    api_systems_v1 = require('./api/v1/systems'),
+    //END
     api_plugins_v1      = require('./api/v1/plugins');
 
 /**
@@ -65,6 +68,8 @@ apiController.settings = api_settings_v1;
 apiController.plugins = api_plugins_v1;
 apiController.articles = api_articles_v1;// 2018-5-13 JH: Add Article api for controller, START
 apiController.organizations = api_organizations_v1; // 2018-5-16 JH: Add Organization api for controller, START
+apiController.systems = api_systems_v1; // 2018-5-16 JH: Add System api for controller, START
+
 
 apiController.import = function(req, res) {
     var fs = require('fs');

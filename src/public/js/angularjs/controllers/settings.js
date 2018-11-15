@@ -456,6 +456,7 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'modules/ui', 'uik
                 });
             };
 
+            // 2018-7-24, JH, found BUG for issue type with tickets assigned
             $scope.showDeleteTicketType = function(typeId, hasTickets) {
                 event.preventDefault();
                 if (hasTickets) {
@@ -582,5 +583,268 @@ define(['angular', 'underscore', 'jquery', 'modules/helpers', 'modules/ui', 'uik
 
                 });
             };
+
+            // 2018-6-30 JH, New setting for article category, system,  window. start
+            $scope.showCreateArticleCategoryWindow = function ($event) {
+                $event.preventDefault();
+                var createArticleCategoryModal = $('#createArticleCategoryModal');
+                if (createArticleCategoryModal.length > 0) {
+                    UIkit.modal(createArticleCategoryModal, { bgclose: false }).show();
+                }
+            };
+
+            $scope.createArticleCategory = function (event) {
+                event.preventDefault();
+                var form = $('#createArticleCategoryForm');
+                if (!form.isValid(null, null, false)) {
+                    return true;
+                } else {
+                    var categoryName = form.find('input[name="category"]').val();
+                    if (!categoryName || categoryName.length < 3) return true;
+
+                    $http.post('/api/v1/articles/categories/create', {
+                        name: categoryName
+                    }, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(function successCallback() {
+                            helpers.UI.showSnackbar('Category: ' + categoryName + ' created successfully', false);
+
+                            History.pushState(null, null, '/settings/articlecategories/?refresh=1');
+
+                        }, function errorCallback(err) {
+                            helpers.UI.showSnackbar('Unable to create article category. Check console', true);
+                            $log.error(err);
+                        });
+                }
+            };
+
+            $scope.editArticleCategory = function ($event) {
+                if (_.isNull($event.target) || _.isUndefined($event.target) ||
+                    $event.target.tagName.toLowerCase() === 'label' ||
+                    $event.target.tagName.toLowerCase() === 'input')
+                    return true;
+
+                var articleCategoryId = $event.currentTarget.dataset.articlecategoryid;
+                if (!articleCategoryId) return true;
+
+                History.pushState(null, null, '/settings/articlecategories/' + articleCategoryId);
+            };
+
+            $scope.updateArticleCategory = function (categoryId) {
+                if (!categoryId || categoryId.length < 1) {
+                    helpers.UI.showSnackbar('Unable to get category id', true);
+                    return true;
+                }
+
+                var categoryName = $('#editCategory_Name').val();
+
+                $http.put('/api/v1/articles/categories/' + categoryId, {
+                    name: categoryName
+                }, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function successCallback() {
+                        helpers.UI.showSnackbar('Category: ' + categoryName + ' updated successfully', false);
+                    }, function errorCallback(err) {
+                        helpers.UI.showSnackbar(err, true);
+                    });
+            };
+
+            $scope.showDeleteArticleCategory = function (categoryId, hasArticles) {
+                event.preventDefault();
+                if (hasArticles) {
+                    // var delArticleCategoryModal = $('#deleteArticleCategoryModal');
+                    // if (delArticleCategoryModal.length > 0) {
+                    //     UIkit.modal(delArticleCategoryModal, { bgclose: false }).show();
+                    // }
+                    helpers.UI.showSnackbar('Has articles, category can not be deleted', false);
+                    return true;
+                } else {
+                    $scope.submitDeleteArticleCategory(categoryId, undefined);
+                }
+            };
+
+            $scope.submitDeleteArticleCategory = function (categoryId, event) {
+                if (event) event.preventDefault();
+
+                if (_.isUndefined(categoryId) || categoryId.length < 1) {
+                    helpers.UI.showSnackbar('Unable to get category ID', true);
+                    return true;
+                }
+
+                var catName = $('input#del_category_name').val();
+                // var newCatId = $('form#deleteArticleCategoryForm select[name="category"]').val();
+
+                // if (!newCatId || newCatId.length < 1) {
+                //     helpers.UI.showSnackbar('Unable to get new article category. Aborting...', true);
+                //     return true;
+                // }
+
+                $http({
+                    method: 'DELETE',
+                    url: '/api/v1/articles/categories/' + categoryId,
+                    // data: {
+                    //     hasArticles: hasArticles,
+                    //     newCatId: newCatId
+                    // },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function successCallback(response) {
+                    if (response.data.success) {
+                        helpers.UI.showSnackbar('Successfully removed article category: ' + catName, false);
+
+                        return History.pushState(null, null, '/settings/articlecategories/');
+                    }
+                }, function errorCallback(response) {
+                    if (!_.isUndefined(response.data.error.custom)) {
+                        $log.error('[trudesk:settings:submitDeleteArticleCategory] Error -', response.data.error);
+                        helpers.UI.showSnackbar(response.data.error.message, true);
+                    } else {
+                        $log.error('[trudesk:settings:submitArticleCategory] Error -', response.data.error);
+                        helpers.UI.showSnackbar('Unable to remove article category. Check console.', true);
+                    }
+                });
+            };
+            // end
+
+            // 2018-9-1 JH, New setting for system,  window. start
+            $scope.showCreateSystemWindow = function ($event) {
+                $event.preventDefault();
+                var createSystemModal = $('#createSystemModal');
+                if (createSystemModal.length > 0) {
+                    UIkit.modal(createSystemModal, { bgclose: false }).show();
+                }
+            };
+
+            $scope.createSystem = function (event) {
+                event.preventDefault();
+                var form = $('#createSystemForm');
+                if (!form.isValid(null, null, false)) {
+                    return true;
+                } else {
+                    var systemName = form.find('input[name="sName"]').val();
+                    if (!systemName || systemName.length < 3) return true;
+                    
+                    var systemType = form.find('input[name="sType"]').val();
+                    var systemDesc = form.find('input[name="sDesc"]').val();
+                    var systemStatus = form.find('input[name="sStatus"]').val();
+
+                    $http.post('/api/v1/systems/create', {
+                        name: systemName,
+                        type: systemType,
+                        description: systemDesc,
+                        status: systemStatus
+                    }, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(function successCallback() {
+                            helpers.UI.showSnackbar('System: ' + systemName + ' created successfully', false);
+
+                            History.pushState(null, null, '/settings/systems/?refresh=1');
+
+                        }, function errorCallback(err) {
+                            helpers.UI.showSnackbar('Unable to create system. Check console', true);
+                            $log.error(err);
+                        });
+                }
+            };
+
+            $scope.editSystem = function ($event) {
+                if (_.isNull($event.target) || _.isUndefined($event.target) ||
+                    $event.target.tagName.toLowerCase() === 'label' ||
+                    $event.target.tagName.toLowerCase() === 'input')
+                    return true;
+
+                var systemId = $event.currentTarget.dataset.systemid;
+                if (!systemId) return true;
+
+                History.pushState(null, null, '/settings/systems/' + systemId);
+            };
+
+            $scope.updateSystem = function (sysId) {
+                if (!sysId || sysId.length < 1) {
+                    helpers.UI.showSnackbar('Unable to get system id', true);
+                    return true;
+                }
+
+                var sysName = $('#editSystem_Name').val();
+                var sysType = $('#editSystem_Type').val();
+                var sysDesc = $('#editSystem_Desc').val();
+                var sysStatus = $('#editSystem_Status').val() == 'on' ? true : false;
+
+                $http.put('/api/v1/systems/' + sysId, {
+                    name: sysName,
+                    type: sysType,
+                    desc: sysDesc,
+                    status: sysStatus
+                }, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function successCallback() {
+                        helpers.UI.showSnackbar('System: ' + sysName + ' updated successfully', false);
+                    }, function errorCallback(err) {
+                        helpers.UI.showSnackbar(err, true);
+                    });
+            };
+
+            $scope.showDeleteSystem = function (systemId, hasTickets) {
+                event.preventDefault();
+                if (hasTickets) {
+                    helpers.UI.showSnackbar('Has tickets related to system, system can not be deleted', false);
+                    return true;
+                } else {
+                    $scope.submitDeleteSystem(systemId, undefined);
+                }
+            };
+
+            $scope.submitDeleteSystem = function (systemId, event) {
+                if (event) event.preventDefault();
+
+                if (_.isUndefined(systemId) || systemId.length < 1) {
+                    helpers.UI.showSnackbar('Unable to get system ID', true);
+                    return true;
+                }
+
+                var catName = $('input#del_category_name').val();
+                // var newCatId = $('form#deleteArticleCategoryForm select[name="category"]').val();
+
+                // if (!newCatId || newCatId.length < 1) {
+                //     helpers.UI.showSnackbar('Unable to get new article category. Aborting...', true);
+                //     return true;
+                // }
+
+                $http({
+                    method: 'DELETE',
+                    url: '/api/v1/system/' + systemId,
+                    // data: {
+                    //     hasArticles: hasArticles,
+                    //     newCatId: newCatId
+                    // },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function successCallback(response) {
+                    if (response.data.success) {
+                        helpers.UI.showSnackbar('Successfully removed system: ' + catName, false);
+
+                        return History.pushState(null, null, '/settings/systems/');
+                    }
+                }, function errorCallback(response) {
+                    if (!_.isUndefined(response.data.error.custom)) {
+                        $log.error('[trudesk:settings:submitDeleteSystem] Error -', response.data.error);
+                        helpers.UI.showSnackbar(response.data.error.message, true);
+                    } else {
+                        $log.error('[trudesk:settings:submitSystem] Error -', response.data.error);
+                        helpers.UI.showSnackbar('Unable to remove system. Check console.', true);
+                    }
+                });
+            };
+            // end
         });
 });

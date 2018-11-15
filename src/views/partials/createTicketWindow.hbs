@@ -1,4 +1,7 @@
 <div class="uk-modal" id="ticketCreateModal" ng-controller="ticketsCtrl">
+    {{!-- JH 2018-11-04 start --}}
+    <div id="__accounts-demo" class="hide">{{data.common.loggedInAccount.usertype}}</div>
+    {{!-- end --}}
     <div class="uk-modal-dialog">
         <form class="uk-form-stacked" id="createTicketForm" action="#" method="POST">
             <input type="hidden" name="socketId" id="socketId" value="{{data.user.socket.id}}" />

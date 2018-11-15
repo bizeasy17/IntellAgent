@@ -102,7 +102,7 @@
                 </ul>
             </li>
             <!-- 2018-5-17 JH: add article menu item start !-->
-            {{#canUser data.user "articles:view"}}
+            {{!-- {{#canUser data.user "articles:view"}}
                 <li class="hasSubMenu {{#is nav 'acticles'}}active{{/is}}"  data-nav-id="articles" data-nav-accordion data-nav-accordion-target="side-nav-accordion-articles">
                     <a class="no-ajax" href="/articles">
                         <i class="material-icons">school</i>{{ t 'articles.title' }}</a>
@@ -124,7 +124,7 @@
                         {{/canUser}}
                     </ul>
                 </li>
-            {{/canUser}}
+            {{/canUser}} --}}
             <!-- end -->
 
             {{#canUser data.user "notices:view"}}
@@ -143,6 +143,32 @@
                         <hr>
                         <li {{#is subnav 'settings-tags'}} class='active' {{/is}}><a href="/settings/tags"><i class="material-icons fa-sub-icon">style</i><span>{{ t 'settings.tags-group' }}</span></a></li>
                         <li {{#is subnav 'settings-tickettypes'}} class='active' {{/is}}><a href="/settings/tickettypes"><i class="material-icons fa-sub-icon">text_fields</i><span>{{ t 'settings.tickettype-group' }}</span></a></li>
+                        {{!-- 2018-6-30 JH, article categories, system, services. start --}}
+                        {{!-- <li {{#is subnav 'settings-articlecategories'}} class='active' {{/is}}>
+                            <a href="/settings/articlecategories">
+                                <i class="material-icons fa-sub-icon">group_work</i>
+                                <span>{{ t 'settings.articlecategory' }}</span>
+                            </a>
+                        </li> --}}
+                        {{!-- <li {{#is subnav 'settings-systems'}} class='active' {{/is}}>
+                            <a href="/settings/systems">
+                                <i class="material-icons fa-sub-icon">apps</i>
+                                <span>{{ t 'settings.systems' }}</span>
+                            </a>
+                        </li> --}}
+                        {{!-- <li {{#is subnav 'settings-services'}} class='active' {{/is}}>
+                            <a href="/settings/services">
+                                <i class="material-icons fa-sub-icon">room_service</i>
+                                <span>{{ t 'settings.services' }}</span>
+                            </a>
+                        </li> --}}
+                        {{!-- <li {{#is subnav 'settings-sla'}} class='active' {{/is}}>
+                            <a href="/settings/sla">
+                                <i class="material-icons fa-sub-icon">access_time</i>
+                                <span>{{ t 'settings.sla' }}</span>
+                            </a>
+                        </li> --}}
+                        {{!-- end --}}
                         {{#canUser data.user "settings:logs"}}
                             <hr>
                             <li {{#is subnav 'settings-logs'}} class='active' {{/is}}><a href="/settings/logs"><i class="material-icons fa-sub-icon">remove_from_queue</i><span>{{ t 'settings.log' }}</span></a></li>
@@ -181,7 +207,7 @@
         <!--<li {{#is subnav 'reports-completed'}} class='active' {{/is}}><a href="/reports/completed"><i class="fa fa-check-circle fa-sub-icon"></i>Completed</a></li>-->
     </ul>
     <!-- 2018-6-2 JH: add article menu item start !-->
-    <ul id="side-nav-sub-articles" class="side-nav-sub side-nav-floating">
+    {{!-- <ul id="side-nav-sub-articles" class="side-nav-sub side-nav-floating">
         <li {{#is subnav 'articles'}} class='active' {{/is}}>
             <a href="/articles">
                 <i class="material-icons fa-sub-icon">format_list_bulleted</i>
@@ -197,7 +223,7 @@
                 </a>
             </li>
         {{/canUser}}
-    </ul>
+    </ul> --}}
     <!-- end -->
     <ul id="side-nav-sub-settings" class="side-nav-sub side-nav-floating">
         <li {{#is subnav 'settings-general'}} class='active' {{/is}}><a href="/settings"><i class="material-icons fa-sub-icon">tune</i><span>{{ t 'settings.general-group' }}</span></a></li>

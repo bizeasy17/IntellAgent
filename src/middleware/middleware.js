@@ -83,6 +83,7 @@ middleware.ensurel2Auth = function(req, res, next) {
     }
 };
 
+
 //Common
 middleware.loadCommonData = function(req, res, next) {
     var viewdata = require('../helpers/viewdata');

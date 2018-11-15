@@ -37,7 +37,8 @@
     "clear": "Clear",
     "edit": "Edit",
     "remove": "Remove",
-    "invalid-request": "Invalid Request"
+    "invalid-request": "Invalid Request",
+    "delete": "Delete"
   },
   "main": {
     "please-wait": "Please Wait...",
@@ -92,7 +93,7 @@
     "set-status-closed": "Closed",
     "status": "Status",
     "subject": "Subject",
-    "created": "Created",
+    "created": "Created Date",
     "requester": "Requester",
     "group": "Group",
     "assignee": "Assignee",
@@ -137,7 +138,8 @@
     "all": "All",
     "select-assignee": "Select Assignee",
     "prio": "Priority",
-    "add-tags": "Add Tags"
+    "add-tags": "Add Tags",
+    "title-edit-type": "Edit Ticket Type"
   },
   "messages": {
     "title": "Conversations",

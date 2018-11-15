@@ -21,6 +21,14 @@ var tagSchema           = require('../models/tag');
 var ticketTypeSchema    = require('../models/tickettype');
 var permissions         = require('../permissions');
 
+// 2018-6-30 JH. Article Category, System, Service and SLA. model schema. start
+var userSchema          = require('../models/user');
+var articleCatSchema    = require('../models/articlecategory');
+var systemSchema        = require('../models/system');
+var serviceSchema       = require('../models/service');
+var slaSchema           = require('../models/servicelevelagreement');
+// end
+
 var settingsController = {};
 
 settingsController.content = {};
@@ -364,6 +372,384 @@ settingsController.editTicketType = function(req, res) {
         return res.render('subviews/settings/editTicketType', content);
     });
 };
+
+// 2018-6-30. JH, Article Category, System, Services, SLA. start
+settingsController.articleCategories = function (req, res) {
+    if (!checkPerms(req, 'settings:articleCategories')) return res.redirect('/settings');
+
+    var content = {};
+    content.title = "Article Categories";
+    content.nav = 'settings';
+    content.subnav = 'settings-articlecategories';
+
+    content.data = {};
+    content.data.user = req.user;
+    content.data.common = req.viewdata;
+
+    // var resultCategories = [];
+    async.waterfall([
+        function (callback) {
+            userSchema.getUser(req.user._id, function (err, user) {
+                if (err) return callback(err);
+                return callback(err, user.organization);
+            });
+        },
+        function (org, next) {
+            articleCatSchema.getCategoriesByOrg(org, function (err, categories) {
+                if (err) return handleError(res, err);
+
+                return next(null, categories);
+            });
+        }
+    ], function (err, results) {
+        // resultCategories = results;
+        content.data.categories = _.sortBy(results, function (o) { return o.name; });
+        return res.render('subviews/settings/articleCategories', content)
+    });
+};
+
+settingsController.editArticleCategory = function (req, res) {
+    if (!checkPerms(req, 'settings:articlecategory')) return res.redirect('/settings/articlecategories');
+
+    var categoryId = req.params.id;
+    if (_.isUndefined(categoryId)) return res.redirect('/settings/articlecategories');
+
+    var content = {};
+    content.title = "Edit Article Category";
+    content.nav = 'settings';
+    content.subnav = 'settings-articlecategories';
+
+    content.data = {};
+    content.data.user = req.user;
+    content.data.common = req.viewdata;
+
+    async.parallel([
+        function (cb) {
+            articleCatSchema.getCategory(categoryId, function (err, category) {
+                if (err) return cb(err);
+
+                if (!category) {
+                    winston.debug('Invalid Category - ' + category);
+                    return res.redirect('/settings/articlecategories');
+                }
+
+                content.data.category = category;
+
+                return cb();
+            });
+        },
+        function (cb) {
+            // var ticketSchema = require('../models/ticket');
+            var articleSchema = require('../models/article');
+
+            articleSchema.getPublishedArticlesByCategory(req.user.organization, categoryId, function (err, articles) {
+                if (err) return cb(err);
+
+                content.data.articles = articles;
+                content.data.hasArticles = _.size(articles) > 0;
+
+                return cb();
+            });
+        }
+    ], function (err) {
+        if (err) return handleError(res, err);
+        return res.render('subviews/settings/editArticleCategory', content);
+    });
+};
+
+settingsController.systems = function (req, res) {
+    if (!checkPerms(req, 'settings:systems')) return res.redirect('/settings');
+
+    var content = {};
+    content.title = "Systems";
+    content.nav = 'settings';
+    content.subnav = 'settings-systems';
+
+    content.data = {};
+    content.data.user = req.user;
+    content.data.common = req.viewdata;
+
+    
+    systemSchema.getSystemsByOrg(req.user.organization, function (err, systems) {
+        if (err) return handleError(res, err);
+
+        content.data.systems = _.sortBy(systems, function (o) { return o.name; });
+        return res.render('subviews/settings/systems', content)
+    });
+};
+
+settingsController.editSystem = function (req, res) {
+    if (!checkPerms(req, 'settings:systems')) return res.redirect('/settings/systems');
+
+    var systemId = req.params.id;
+    if (_.isUndefined(systemId)) return res.redirect('/settings/systems');
+
+    var content = {};
+    content.title = "Edit System";
+    content.nav = 'settings';
+    content.subnav = 'settings-systems';
+
+    content.data = {};
+    content.data.user = req.user;
+    content.data.common = req.viewdata;
+
+    async.parallel([
+        function(cb){
+            systemSchema.getSystemById(systemId, function (err, system) {
+                if (err) return handleError(res, err);
+
+                if (!system) {
+                    winston.debug('Invalid Systems - ' + system);
+                    return res.redirect('/settings/systems');
+                }
+
+                content.data.system = system;
+        
+                return cb;
+            });
+            
+        },
+        function (cb) {
+            // var ticketSchema = require('../models/ticket');
+            var ticketSchema = require('../models/ticket');
+
+            ticketSchema.getTicketsBySystem(systemId, function (err, tickets) {
+                if (err) return cb(err);
+
+                content.data.tickets = tickets;
+                content.data.hasTickets = _.size(tickets) > 0;
+
+                return cb();
+            }, true);
+        }
+    ],function(err){
+        if (err) return handleError(res, err);
+        return res.render('subviews/settings/editSystem', content);
+    });
+};
+
+settingsController.services = function (req, res) {
+    if (!checkPerms(req, 'settings:tags')) return res.redirect('/settings');
+
+    var content = {};
+    content.title = "Services";
+    content.nav = 'settings';
+    content.subnav = 'settings-services';
+
+    content.data = {};
+    content.data.user = req.user;
+    content.data.common = req.viewdata;
+
+    var resultTags = [];
+    async.waterfall([
+        function (next) {
+            tagSchema.getTags(function (err, tags) {
+                if (err) return handleError(res, err);
+
+                return next(null, tags);
+            });
+        },
+        function (tags, next) {
+            var ts = require('../models/ticket');
+            async.each(tags, function (tag, cb) {
+                ts.getTagCount(tag._id, function (err, count) {
+                    if (err) return cb(err);
+                    //tag count for id
+
+                    resultTags.push({ tag: tag, count: count });
+
+                    cb();
+                });
+            }, function (err) {
+                return next(err);
+            });
+        }
+    ], function () {
+        content.data.tags = _.sortBy(resultTags, function (o) { return o.tag.name; });
+        return res.render('subviews/settings/services', content)
+    });
+};
+
+settingsController.editService = function (req, res) {
+    if (!checkPerms(req, 'settings:tags')) return res.redirect('/settings');
+
+    var tagId = req.params.id;
+    if (_.isUndefined(tagId)) return res.redirect('/settings/services');
+
+    var content = {};
+    content.title = "Edit Service";
+    content.nav = 'settings';
+    content.subnav = 'settings-services';
+
+    content.data = {};
+    content.data.user = req.user;
+    content.data.common = req.viewdata;
+
+    async.parallel([
+        function (cb) {
+            tagSchema.getTag(tagId, function (err, tag) {
+                if (err) return cb(err);
+
+                if (!tag) {
+                    winston.debug('Invalid Tag - ' + tag);
+                    return res.redirect('/settings/tags');
+                }
+
+                content.data.tag = tag;
+
+                return cb();
+            });
+        },
+        function (cb) {
+            var ticketSchema = require('../models/ticket');
+            var groupSchema = require('../models/group');
+            groupSchema.getAllGroupsOfUserNoPopulate(req.user._id, function (err, grps) {
+                if (err) return cb(err);
+
+                async.series([
+                    function (next) {
+                        var permissions = require('../permissions');
+                        if (permissions.canThis(req.user.role, 'ticket:public')) {
+                            groupSchema.getAllPublicGroups(function (err, publicGroups) {
+                                if (err) return next(err);
+
+                                grps = grps.concat(publicGroups);
+
+                                return next();
+                            });
+                        } else
+                            return next();
+                    }
+                ], function (err) {
+                    if (err) return cb(err);
+
+                    ticketSchema.getTicketsByTag(grps, tagId, function (err, tickets) {
+                        if (err) return cb(err);
+
+                        content.data.tickets = tickets;
+
+                        return cb();
+                    });
+                });
+            });
+        }
+    ], function (err) {
+        if (err) return handleError(res, err);
+        return res.render('subviews/settings/editServices', content);
+    });
+};
+
+settingsController.sla = function (req, res) {
+    if (!checkPerms(req, 'settings:tags')) return res.redirect('/settings');
+
+    var content = {};
+    content.title = "SLA";
+    content.nav = 'settings';
+    content.subnav = 'settings-sla';
+
+    content.data = {};
+    content.data.user = req.user;
+    content.data.common = req.viewdata;
+
+    var resultTags = [];
+    async.waterfall([
+        function (next) {
+            tagSchema.getTags(function (err, tags) {
+                if (err) return handleError(res, err);
+
+                return next(null, tags);
+            });
+        },
+        function (tags, next) {
+            var ts = require('../models/ticket');
+            async.each(tags, function (tag, cb) {
+                ts.getTagCount(tag._id, function (err, count) {
+                    if (err) return cb(err);
+                    //tag count for id
+
+                    resultTags.push({ tag: tag, count: count });
+
+                    cb();
+                });
+            }, function (err) {
+                return next(err);
+            });
+        }
+    ], function () {
+        content.data.tags = _.sortBy(resultTags, function (o) { return o.tag.name; });
+        return res.render('subviews/settings/sla', content)
+    });
+};
+
+settingsController.editSLA = function (req, res) {
+    if (!checkPerms(req, 'settings:tags')) return res.redirect('/settings');
+
+    var tagId = req.params.id;
+    if (_.isUndefined(tagId)) return res.redirect('/settings/tags');
+
+    var content = {};
+    content.title = "Edit SLA";
+    content.nav = 'settings';
+    content.subnav = 'settings-sla';
+
+    content.data = {};
+    content.data.user = req.user;
+    content.data.common = req.viewdata;
+
+    async.parallel([
+        function (cb) {
+            tagSchema.getTag(tagId, function (err, tag) {
+                if (err) return cb(err);
+
+                if (!tag) {
+                    winston.debug('Invalid Tag - ' + tag);
+                    return res.redirect('/settings/tags');
+                }
+
+                content.data.tag = tag;
+
+                return cb();
+            });
+        },
+        function (cb) {
+            var ticketSchema = require('../models/ticket');
+            var groupSchema = require('../models/group');
+            groupSchema.getAllGroupsOfUserNoPopulate(req.user._id, function (err, grps) {
+                if (err) return cb(err);
+
+                async.series([
+                    function (next) {
+                        var permissions = require('../permissions');
+                        if (permissions.canThis(req.user.role, 'ticket:public')) {
+                            groupSchema.getAllPublicGroups(function (err, publicGroups) {
+                                if (err) return next(err);
+
+                                grps = grps.concat(publicGroups);
+
+                                return next();
+                            });
+                        } else
+                            return next();
+                    }
+                ], function (err) {
+                    if (err) return cb(err);
+
+                    ticketSchema.getTicketsByTag(grps, tagId, function (err, tickets) {
+                        if (err) return cb(err);
+
+                        content.data.tickets = tickets;
+
+                        return cb();
+                    });
+                });
+            });
+        }
+    ], function (err) {
+        if (err) return handleError(res, err);
+        return res.render('subviews/settings/editSLA', content);
+    });
+};
+// end
 
 function checkPerms(req, role) {
     var user = req.user;

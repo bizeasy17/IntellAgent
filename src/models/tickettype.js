@@ -26,7 +26,9 @@ var COLLECTION = 'tickettypes';
  * @property {String} name ```Required``` ```unique``` Name of Ticket Type
  */
 var ticketTypeSchema = mongoose.Schema({
-    name:       { type: String, required: true, unique: true }
+    name:       { type: String, required: true, unique: true },
+    // 2018-11-04 JH add created by
+    createdBy: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'accounts', default: 'sys' },
 });
 
 /**

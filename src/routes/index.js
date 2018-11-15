@@ -73,7 +73,7 @@ function mainRoutes(router, middleware, controllers) {
     //Articles
     // 2018-5-10 JH route for the articles START
     router.get('/articles/self', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getSelf, controllers.articles.processor);
-    router.get('/articles', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getAll, controllers.articles.processor);
+    router.get('/articles', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getPublished, controllers.articles.processor);
     router.get('/articles/create', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.getCreate);
     // router.post('/article/create', middleware.redirectToLogin, middleware.loadCommonData, controllers.articles.edit);
     // END
@@ -123,6 +123,17 @@ function mainRoutes(router, middleware, controllers) {
     router.get('/settings/tags/:id', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.editTag);
     router.get('/settings/tickettypes', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.ticketTypes);
     router.get('/settings/tickettypes/:id', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.editTicketType);
+    
+    // 2018-6-30 JH. Article Category, System, Services, SLA settings. start
+    router.get('/settings/articlecategories', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.articleCategories);
+    router.get('/settings/articlecategories/:id', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.editArticleCategory);
+    router.get('/settings/systems', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.systems);
+    router.get('/settings/systems/:id', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.editSystem);
+    router.get('/settings/services', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.services);
+    router.get('/settings/services/:id', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.editService);
+    router.get('/settings/sla', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.sla);
+    router.get('/settings/sla/:id', middleware.redirectToLogin, middleware.loadCommonData, controllers.settings.editSLA);
+    // end
 
     //Plugins
     router.get('/plugins', middleware.redirectToLogin, middleware.loadCommonData, controllers.plugins.get);
@@ -206,6 +217,9 @@ function mainRoutes(router, middleware, controllers) {
     // 2018-5-13 add route for Articles JH, START
     // router.post('/api/v1/article/save', middleware.api, controllers.api.articles.create);
     router.post('/api/v1/article/post', middleware.api, controllers.api.articles.post); //2018-6-23
+    router.post('/api/v1/articles/categories/create', middleware.api, controllers.api.articles.createCategory); //2018-7-1
+    router.put('/api/v1/articles/categories/:id', middleware.api, controllers.api.articles.updateCategory);//2081-7-20    
+    router.delete('/api/v1/articles/categories/:id', middleware.api, controllers.api.articles.deleteCategory);//2081-7-20        
     // END
 
     // 2018-5-16 add route for Organization JH, START
@@ -214,6 +228,14 @@ function mainRoutes(router, middleware, controllers) {
     router.put('/api/v1/organizations/:id', middleware.api, controllers.api.organizations.updateOrganization);//2018-5-25       
     router.delete('/api/v1/organizations/:id', middleware.api, controllers.api.organizations.deleteOrganization);//2018-5-25
     router.post('/api/v1/organizations/create', middleware.api, controllers.api.organizations.create);
+    // END
+
+    // 2018-9-2 add route for system JH, START
+    router.get('/api/v1/systems/get', middleware.api, controllers.api.systems.get);
+    router.get('/api/v1/systems/:id', middleware.api, controllers.api.systems.getSingleSystem); 
+    router.put('/api/v1/systems/:id', middleware.api, controllers.api.systems.updateSystem);      
+    router.delete('/api/v1/systems/:id', middleware.api, controllers.api.systems.deleteSystem);
+    router.post('/api/v1/systems/create', middleware.api, controllers.api.systems.create);
     // END
 
     //Reports Generator

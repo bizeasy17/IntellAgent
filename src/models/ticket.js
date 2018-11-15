@@ -55,6 +55,7 @@ var COLLECTION = 'tickets';
  * @property {Number} status ```Required``` [default: 0] Ticket Status. (See {@link Ticket#setStatus})
  * @property {Number} prioirty ```Required```
  * @property {Array} tags An array of Tags.
+ * @property {Array} tags An array of Tags.
  * @property {String} subject ```Required``` The subject of the ticket. (Overview)
  * @property {String} issue ```Required``` Detailed information about the ticket problem/task
  * @property {Date} closedDate show the datetime the ticket was moved to status 3.
@@ -76,6 +77,8 @@ var ticketSchema = mongoose.Schema({
     status:     { type: Number, default: 0, required: true, index: true },
     priority:   { type: Number, required: true },
     tags:       [{ type: mongoose.Schema.Types.ObjectId, ref: 'tags' }],
+    system:     { type: mongoose.Schema.Types.ObjectId, ref: 'systems', required: false}, //2018-10-27 JH for ticket raise to system
+    org:        { type: mongoose.Schema.Types.ObjectId, ref: 'organizations', required: true }, //2018-10-27 JH for ticket of organization
     subject:    { type: String, required: true },
     issue:      { type: String, required: true },
     closedDate: { type: Date },
@@ -1072,6 +1075,30 @@ ticketSchema.statics.getTicketsByType = function(grpId, typeId, callback, limit)
     var self = this;
 
     var q = self.model(COLLECTION).find({group: {$in: grpId}, type: typeId, deleted: false});
+    if (limit)
+        q.limit(1000);
+
+    return q.lean().exec(callback);
+};
+
+/**
+ * Gets tickets via type id
+ * @memberof Ticket
+ * @static
+ * @method getTicketsBySystem
+ *
+ * @param {Array} grpId Group Array of User
+ * @param {string} typeId Type Id
+ * @param {QueryCallback} callback MongoDB Query Callback
+ * @param {Boolean} limit Should Limit results?
+ */
+ticketSchema.statics.getTicketsBySystem = function (systemId, callback, limit) {
+    if (_.isUndefined(systemId)) return callback("Invalid System Ids = TicketSchema.getTicketsBySystem()", null);
+    // if (_.isUndefined(typeId)) return callback("Invalid Ticket Type Id - TicketSchema.getTicketsBySystem()", null);
+
+    var self = this;
+
+    var q = self.model(COLLECTION).find({ system: systemId, deleted: false });
     if (limit)
         q.limit(1000);
 

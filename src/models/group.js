@@ -32,7 +32,9 @@ var groupSchema = mongoose.Schema({
     name:       { type: String, required: true, unique: true },
     members:    [{type: mongoose.Schema.Types.ObjectId, ref: 'accounts'}],
     sendMailTo: [{type: mongoose.Schema.Types.ObjectId, ref: 'accounts'}],
-    public:     { type: Boolean, required: true, default: false }
+    public:     { type: Boolean, required: true, default: false },
+    // 2018-11-04 JH add created by
+    createdBy: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'accounts', default: 'sys' },
 });
 
 groupSchema.methods.addMember = function(memberId, callback) {

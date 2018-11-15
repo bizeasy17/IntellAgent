@@ -1,0 +1,29 @@
+<div class="uk-modal" id="deleteArticleCategoryModal" ng-controller="settingsCtrl">
+    <div class="uk-modal-dialog">
+        <form class="uk-form-stacked" id="deleteArticleCategoryForm" action="#" method="POST">
+            <input type="hidden" id="del_category_name" name="del_category_name" value="{{data.category.name}}">
+            <div class="uk-margin-medium-bottom uk-clearfix">
+                <span>{{ t 'articles.message-change-category' }}</span>
+            </div>
+            <div class="uk-margin-medium-bottom uk-clearfix">
+                <div class="uk-float-left" style="width: 100%;">
+                    <label for="category" class="uk-form-label">{{ t 'articles.category' }}</label>
+                    <select class="selectize-white" name="category" id="category" data-md-selectize-inline>
+                        {{#each data.common.articleCategories}}
+                            {{#isnot name ../data.articlecategory.name}}
+                                <option value="{{{_id}}}">{{name}}</option>
+                            {{/isnot}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="uk-margin-medium-bottom uk-clearfix">
+                <span class="uk-text-danger">{{ t 'articles.warning-change-cat1'}}: <strong>{{data.articlecategory.name}}</strong> {{ t 'articles.warning-change-cat2'}}to the selected ticket type above. <br /><strong>{{ t 'articles.warning-change-cat3'}}This is permanent!</strong></span>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button type="button" class="md-btn md-btn-flat uk-modal-close">{{ t 'shared.cancel' }}</button>
+                <button type="button" class="md-btn md-btn-flat md-btn-flat-danger" id="submitDeleteArticleCategory" ng-click="submitDeleteArticleCategory('{{data.category._id}}', $event)">{{ t 'shared.delete'}}</button>
+            </div>
+        </form>
+    </div>
+</div>

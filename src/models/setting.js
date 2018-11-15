@@ -28,7 +28,10 @@ var COLLECTION = 'settings';
  */
 var settingSchema = mongoose.Schema({
     name:       { type: String, required: true, unique: true },
-    value:      { type: mongoose.Schema.Types.Mixed, required: true}
+    value:      { type: mongoose.Schema.Types.Mixed, required: true},
+    //2018-11-04 JH for ticket of organization
+    org:        { type: mongoose.Schema.Types.ObjectId, ref: 'organizations', required: true }, 
+    createdBy:  { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'accounts', default: 'sys' },
 });
 
 /**

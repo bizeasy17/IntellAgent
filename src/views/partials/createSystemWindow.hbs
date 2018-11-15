@@ -1,0 +1,31 @@
+<div class="uk-modal" id="createSystemModal" ng-controller="settingsCtrl">
+    <div class="uk-modal-dialog">
+        <form class="uk-form-stacked" id="createSystemForm" ng-submit="createSystem($event)">
+            <div class="">
+                <label for="sName">{{ t 'shared.name' }}</label>
+                <input type="text" class="md-input" id="sName" name="sName"
+                       data-validation="length"
+                       data-validation-length="min3"
+                       data-validation-error-msg="Please enter a valid category name. Category name must contain at least 3 characters." />
+            </div>
+            <div class="">
+                <label for="sType">{{ t 'shared.type' }}</label>
+                <input type="text" class="md-input" id="sType" name="sType" data-validation="length" data-validation-length="min3" data-validation-error-msg="Please enter a valid category name. Category name must contain at least 3 characters."
+                />
+            </div>
+            <div class="">
+                <label for="sDesc">{{ t 'shared.description' }}</label>
+                <input type="text" class="md-input" id="sDesc" name="sDesc" data-validation="length" data-validation-length="min10" data-validation-error-msg="Please enter a valid category name. Category name must contain at least 10 characters."
+                />
+            </div>
+            <div class="">
+                <label for="sStatus">{{ t 'shared.status' }}</label>
+                <input type="text" class="md-input" id="sStatus" name="sStatus"/>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button type="button" class="md-btn md-btn-flat uk-modal-close">{{ t 'shared.close' }}</button>
+                <button type="button" class="md-btn md-btn-flat md-btn-flat-primary" id="submitCreateSystem" ng-click="createSystem($event)">{{ t 'shared.create' }}</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -15,23 +15,50 @@ var COLLECTION = 'systems';
 
  *
  * @property {object} _id ```Required``` ```unique``` MongoDB Object ID
- * @property {String} name ```Required``` ```unique``` Name of Ticket Type
+ * @property {String} name ```Required``` ```unique``` Name of System
  */
 var systemSchema = mongoose.Schema({
-    name:       { type: String, required: true, unique: true }
+    // uid:        { type: Number, unique: true, index: true },
+    name:       { type: String, required: true, unique: true },
+    type:       { type: String, required: false },
+    // version:    { type: String, required: false },
+    desc:       { type: String, required: false},
+    status:     { type: Boolean, required: true, default: true},
+    // startDate:  { type: Date, required: false },
+    // endDate:    { type: Date, required: false },
+    service:    { type: mongoose.Schema.Types.ObjectId, required: false, ref: 'services' },
+    createDate: { type: Date, default: Date.now, required: true },
+    editDate:   { type: Date },
+    organization:   { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'organizations' }
 });
 
 /**
- * Return all Ticket Types
+ * Return all System
  *
- * @memberof TicketType
+ * @memberof System
  * @static
- * @method getTypes
+ * @method getSystems
  *
  * @param {QueryCallback} callback MongoDB Query Callback
  */
-systemSchema.statics.getTypes = function(callback) {
+systemSchema.statics.getSystems = function(callback) {
     var q = this.model(COLLECTION).find({});
+
+    return q.exec(callback);
+};
+
+/**
+ * Return all System
+ *
+ * @memberof System
+ * @static
+ * @method getSystems
+ *
+ * @param {QueryCallback} callback MongoDB Query Callback
+ */
+systemSchema.statics.getSystemById = function (sysId, callback) {
+    var q = this.model(COLLECTION).findOne({_id: sysId});
+        // .populate('services'); //2018-10-27 JH
 
     return q.exec(callback);
 };
@@ -62,8 +89,8 @@ systemSchema.statics.getType = function(id, callback) {
  * @param {String} name Name of Ticket Type to search for
  * @param {QueryCallback} callback MongoDB Query Callback
  */
-systemSchema.statics.getTypeByName = function(name, callback) {
-    var q = this.model(COLLECTION).findOne({name: name});
+systemSchema.statics.getSystemsByOrg = function(organization, callback) {
+    var q = this.model(COLLECTION).find({organization: organization});
 
     return q.exec(callback);
 };

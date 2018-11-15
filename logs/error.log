@@ -314,3 +314,214 @@
 {"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-06-20T23:18:53.066Z"}
 {"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-06-20T23:18:53.082Z"}
 {"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-06-20T23:18:53.082Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:29:39.450Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:29:39.452Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:29:49.465Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:29:49.480Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:29:49.480Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:29:59.498Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:29:59.508Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:29:59.508Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:09.515Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:09.521Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:30:09.521Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:19.532Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:19.537Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:30:19.537Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:29.547Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:29.554Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:30:29.554Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:39.570Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:39.587Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:30:39.589Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:49.600Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:49.610Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:30:49.611Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:59.618Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:30:59.623Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:30:59.624Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:31:09.635Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:31:09.641Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:31:09.641Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:31:19.649Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:31:19.654Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:31:19.654Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:31:29.665Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-07-17T23:31:29.670Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-07-17T23:31:29.671Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:31:39.682Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:31:39.686Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:31:39.686Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:31:49.695Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:31:49.700Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:31:49.700Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:31:59.705Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:31:59.709Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:31:59.709Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:32:09.714Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:32:09.719Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-07-17T23:32:09.719Z"}
+{"level":"error","message":"Address in use, exiting...","timestamp":"2018-07-24T14:00:56.543Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:21.406Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:21.407Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:31.415Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:31.421Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:31.422Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:41.432Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:41.437Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:41.438Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:51.446Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:51.451Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:30:51.451Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:01.460Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:01.465Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:01.465Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:11.484Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:11.494Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:11.494Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:21.499Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:21.503Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:21.503Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:31.509Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:31.517Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:31.517Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:41.531Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:41.538Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:41.538Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:51.542Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:51.545Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:31:51.545Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:01.554Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:01.567Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:01.567Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:11.574Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:11.587Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:11.588Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:21.598Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:21.605Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:21.605Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:31.611Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:31.624Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:31.624Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:41.633Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:41.639Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:41.640Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:51.644Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:51.650Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:32:51.650Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:01.660Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:01.673Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:01.673Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:11.684Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:11.689Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:11.689Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:21.699Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:21.706Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:21.706Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:31.715Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:31.720Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:31.721Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:41.729Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:41.732Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:41.733Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:51.741Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:51.745Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:33:51.745Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:01.751Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:01.755Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:01.755Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:11.761Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:11.764Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:11.764Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:21.773Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:21.781Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:21.781Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:31.791Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:31.795Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:31.797Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:41.802Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:41.808Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:41.808Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:51.815Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:51.820Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:34:51.821Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:01.831Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:01.836Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:01.837Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:11.850Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:11.863Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:11.863Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:21.879Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:21.891Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:21.891Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:31.896Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:31.900Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:31.900Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:41.908Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:41.913Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:41.914Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:51.924Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:51.930Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:35:51.930Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:01.940Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:01.943Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:01.944Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:11.954Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:11.960Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:11.961Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:21.966Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:21.973Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:21.974Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:31.983Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:31.988Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:31.988Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:41.997Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:42.001Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:42.002Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:52.007Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:52.010Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:36:52.010Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:02.015Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:02.020Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:02.020Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:12.026Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:12.030Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:12.031Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:22.039Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:22.044Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:22.045Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:32.054Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:32.058Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:32.059Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:42.070Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:42.076Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:42.076Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:52.085Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:52.090Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:37:52.090Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:03.197Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:03.209Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-10-20T01:38:03.210Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:13.221Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:13.232Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-10-20T01:38:13.233Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:23.244Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:23.250Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-10-20T01:38:23.250Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:38.865Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-10-20T01:38:38.866Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:48.882Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:48.898Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-10-20T01:38:48.899Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:58.913Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:38:58.919Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-10-20T01:38:58.920Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:39:08.934Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - Authentication failed.","timestamp":"2018-10-20T01:39:08.940Z"}
+{"level":"error","message":"FETAL: Authentication failed.","timestamp":"2018-10-20T01:39:08.941Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:39:18.952Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:39:18.958Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:39:18.958Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:39:28.974Z"}
+{"level":"error","message":"Oh no, something went wrong with DB! - failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:39:28.980Z"}
+{"level":"error","message":"FETAL: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]","timestamp":"2018-10-20T01:39:28.980Z"}
